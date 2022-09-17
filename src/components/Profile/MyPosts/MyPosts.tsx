@@ -11,11 +11,8 @@ export const MyPosts: React.FC = () => {
                 <button>Add post</button>
             </div>
             <div className={style.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message="Hello, my friends"/>
+                <Post message="My brother"/>
             </div>
         </div>
     )
