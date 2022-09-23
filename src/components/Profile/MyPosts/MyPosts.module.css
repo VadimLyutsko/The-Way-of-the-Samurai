@@ -2,3 +2,11 @@
     grid-area: c;
     background-color: #a93e3e;
 }
+
+.postsBlock{
+    padding: 10px;
+}
+
+.posts{
+    margin-top: 10px;
+}
