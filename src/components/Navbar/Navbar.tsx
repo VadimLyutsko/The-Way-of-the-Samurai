@@ -7,23 +7,23 @@ export const Navbar: React.FC = () => {
         <nav className={style.nav}>
 
             <div className={style.item}>
-                <NavLink to="/profile" activeClassName={style.active}>Profile</NavLink>
+                <NavLink  to="/profile/*" activeClassName={style.active}>Profile</NavLink>
             </div>
 
             <div className={`${style.item} ${style.active}`}>
-                <NavLink to="/dialogs" activeClassName={style.active}>Dialogs</NavLink>
+                <NavLink  to="/dialogs/*" activeClassName={style.active}>Dialogs</NavLink>
             </div>
 
             <div className={style.item}>
-                <NavLink to="/news" activeClassName={style.active}>News</NavLink>
+                <NavLink  to="/news/*" activeClassName={style.active}>News</NavLink>
             </div>
 
             <div className={style.item}>
-                <NavLink to="/music" activeClassName={style.active}>Music</NavLink>
+                <NavLink exact strict sensitive to="/music" activeClassName={style.active}>Music</NavLink>  {/*exact strict*/}
             </div>
 
             <div className={style.item}>
-                <NavLink to="/settings" activeClassName={style.active}>Settings</NavLink>
+                <NavLink exact to="/settings" activeClassName={style.active}>Settings</NavLink>   {/*exact */}
             </div>
 
         </nav>
