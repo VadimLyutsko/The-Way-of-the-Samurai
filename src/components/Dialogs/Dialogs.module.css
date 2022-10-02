@@ -1,13 +1,9 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-columns: 3fr 8fr;
 }
 
-.dialog{
-    padding: 5px;
-}
-
-.message{
+.dialog {
     padding: 5px;
 }
 
@@ -15,6 +11,16 @@
     padding: 15px;
 }
 
-.messagesItem{
+.dialogsItem a {
+    text-decoration: none;
+    color: #d5b1b1;
+    font-weight: bold;
+}
+
+.message {
+    padding: 5px;
+}
+
+.messagesItem {
     padding: 15px;
 }

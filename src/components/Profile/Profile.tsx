@@ -8,7 +8,6 @@ export const Profile: React.FC = () => {
         <div>
             <ProfileInfo/>
             <MyPosts/>
-
         </div>
     );
 };
