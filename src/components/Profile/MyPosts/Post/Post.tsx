@@ -5,17 +5,17 @@ type PestProps = {
     message: string
     likeCount: number
     id: number
-    imgAddress:string
+    imgAddress: string
 }
 
-export const Post: React.FC<PestProps> = ({message,  likeCount,id,imgAddress}) => {
+export const Post: React.FC<PestProps> = ({message, likeCount, imgAddress}) => {
     return (
         <div className={style.item}>
             <img
                 src={imgAddress}
                 alt=""/>
             {message}
-            <div><span>{likeCount}</span></div>
+            <div><span> Likes: {likeCount}</span></div>
         </div>
     );
 };
