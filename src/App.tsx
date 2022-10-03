@@ -15,13 +15,17 @@ type StatePropsType = {                  //for All state
 }
 
 type StateDataPropsType = {
-    dialogs: DialogsDataTypes
-    postsData: Array<PostPropsType>
+    profilePage: DialogsDataType
+    messagePage: MessagesDataType
 }
 
-type  DialogsDataTypes = {
+type  DialogsDataType = {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageProps>
+}
+
+type MessagesDataType = {
+    postsData: Array<PostPropsType>
 }
 
 export type DialogPropsType = {
@@ -40,11 +44,15 @@ export type PostPropsType = {
     imgAddress: string
 }
 
+
 const App: React.FC<StatePropsType> = ({state}) => {
 
     const {
-        postsData: [...postsData],
-        dialogs: {
+        messagePage: {
+            postsData: [...postsData
+            ]
+        },
+        profilePage: {
             dialogsData: [...dialogsData],
             messagesData: [...messagesData]
         }
