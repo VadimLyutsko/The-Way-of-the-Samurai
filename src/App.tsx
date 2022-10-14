@@ -8,10 +8,12 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {Dialogs} from './components/Dialogs/Dialogs';
+import {addNewPost} from './redux/State';
 
 
 type StatePropsType = {                  //for All state
     state: StateDataPropsType
+    addNewPost:(mewPostMessage:string)=>void
 }
 
 type StateDataPropsType = {
@@ -46,7 +48,7 @@ export type PostPropsType = {
 }
 
 
-const App: React.FC<StatePropsType> = ({state}) => {
+const App: React.FC<StatePropsType> = ({state,addNewPost}) => {
 
     const {
         messagePage: {
@@ -67,7 +69,7 @@ const App: React.FC<StatePropsType> = ({state}) => {
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile postsData={postsData}/>}/>
+                <Route path="/profile" render={() => <Profile addNewPost={addNewPost} postsData={postsData}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs messagesData={messagesData}
                                                               dialogsData={dialogsData}/>}/>
                 <Route path="/news" render={() => <News/>}/>
