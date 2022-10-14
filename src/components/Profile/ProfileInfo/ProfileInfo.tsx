@@ -5,7 +5,9 @@ export const ProfileInfo: React.FC = () => {
     return (
         <div>
             <div>
-                <img src="https://st16.stpulscen.ru/images/product/443/107/594_big.jpg" alt=""/>
+                <img
+                    src="https://www.wallpaperflare.com/static/555/605/138/mountain-range-panorama-landscape-nature-wallpaper-preview.jpg"
+                    alt=""/>
             </div>
             <div className={styles.description}>ava + description
             </div>

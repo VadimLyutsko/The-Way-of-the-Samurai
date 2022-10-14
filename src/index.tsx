@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
-import {state} from './redux/State';
+import { state} from './redux/State';
 
 
 
@@ -51,6 +51,7 @@ ReactDOM.render(
     <BrowserRouter>
         <App
             state={state}
+
             // postsData={postsData}
             //  dialogsData={dialogsData}
             // messagesData={messagesData}

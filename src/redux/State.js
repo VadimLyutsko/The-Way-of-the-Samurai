@@ -1,3 +1,5 @@
+import {PostPropsType} from '../App';
+
 export const state = {
     messagePage: {
         postsData: [
@@ -23,11 +25,11 @@ export const state = {
     },
     profilePage: {
         dialogsData: [
-            {id: '1', name: 'Vasiliska'},
-            {id: '2', name: 'Ivan'},
-            {id: '3', name: 'Vadim'},
-            {id: '4', name: 'Andrey'},
-            {id: '5', name: 'Valera'},
+            {id: '1', name: 'Vasiliska',imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'},
+            {id: '2', name: 'Ivan',imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'},
+            {id: '3', name: 'Vadim',imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'},
+            {id: '4', name: 'Andrey',imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'},
+            {id: '5', name: 'Valera',imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'},
 
         ],
         messagesData: [
@@ -39,3 +41,4 @@ export const state = {
         ]
     }
 };
+

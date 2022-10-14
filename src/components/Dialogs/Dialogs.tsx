@@ -11,8 +11,16 @@ type DialogsDataType = {
 }
 
 export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) => {
-    const dialogsElements = dialogsData.map(item => <DialogItem id={item.id} name={item.name}/>);
+    const dialogsElements = dialogsData.map(item => <DialogItem id={item.id} name={item.name}
+                                                                imgAddress={item.imgAddress}/>);
     const messageElements = messagesData.map(item => <Message message={item.message}/>);
+
+    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+    const onClickButtonHandler = () => {
+        newMessageElement.current?.value ? alert(newMessageElement.current?.value) : alert('Введи хоть что-нибудь, умник...');
+    };
+
     return (
         <div className={styles.dialogs}>
 
@@ -22,7 +30,16 @@ export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) 
 
             <div className={styles.messagesItem}>
                 {messageElements}
+                <div className={styles.inpNewMessage}>
+                    <textarea
+                        ref={newMessageElement}
+                        // onChange={onChangeTextAreaValue}
+                    >
+                </textarea>
+                    <button onClick={onClickButtonHandler}>+</button>
+                </div>
             </div>
+
         </div>
     );
 };

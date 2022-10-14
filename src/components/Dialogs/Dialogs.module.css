@@ -7,8 +7,14 @@
     padding: 5px;
 }
 
+.dialog img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
 .dialogsItem {
-    padding: 15px;
+    padding: 25px;
 }
 
 .dialogsItem a {
@@ -18,9 +24,16 @@
 }
 
 .message {
-    padding: 5px;
+    padding: 20px;
 }
 
 .messagesItem {
-    padding: 15px;
+    padding: 35px;
+}
+
+.inpNewMessage{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 220px;
 }

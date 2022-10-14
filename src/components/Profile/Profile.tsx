@@ -7,7 +7,10 @@ export type PostDataType = {
     postsData: Array<PostPropsType>
 }
 
-export const Profile: React.FC<PostDataType> = ({postsData}) => {
+export const Profile: React.FC<PostDataType> = (
+    {
+        postsData,
+    }) => {
 
 
     return (

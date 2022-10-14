@@ -31,6 +31,7 @@ type MessagesDataType = {
 export type DialogPropsType = {
     id: string
     name: string
+    imgAddress: string
 }
 
 export type MessageProps = {
@@ -58,7 +59,10 @@ const App: React.FC<StatePropsType> = ({state}) => {
         }
     } = state;
 
+
     return (
+
+
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
