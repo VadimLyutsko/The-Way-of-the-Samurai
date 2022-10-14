@@ -4,10 +4,11 @@ import {Post} from './Post/Post';
 import {PostDataType} from '../Profile';
 
 
-export const MyPosts: React.FC<PostDataType> = ({postsData}) => {
+export const MyPosts: React.FC<PostDataType> = ({postsData, addNewPost}) => {
 
 
-    const postsElements = postsData.map(item => <Post id={item.id} message={item.message} likeCount={item.likeCount}
+    const postsElements = postsData.map(item => <Post key={item.id} id={item.id} message={item.message}
+                                                      likeCount={item.likeCount}
                                                       imgAddress={item.imgAddress}/>);
     const [textAreaValue, seTextAreaValue] = useState<string>('');
 
@@ -21,7 +22,8 @@ export const MyPosts: React.FC<PostDataType> = ({postsData}) => {
     // };
 
     const onClickButtonHandler = () => {
-        alert(newPostElement.current?.value);
+        let text = newPostElement.current?.value;
+        text && addNewPost(text);
     };
 
     // const onChangeTextAreaValue = (event: ChangeEvent<HTMLTextAreaElement>) => {

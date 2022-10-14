@@ -1,4 +1,4 @@
-import {PostPropsType} from '../App';
+import {renderEntireThree} from '../Render';
 
 export const state = {
     messagePage: {
@@ -42,3 +42,13 @@ export const state = {
     }
 };
 
+export const addNewPost = (mewPostMessage)=>{
+    let newPost = {
+        id: 4,
+        message: mewPostMessage,
+        likeCount: 0,
+        imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+    }
+    state.messagePage.postsData.push(newPost)
+    renderEntireThree(state)
+}
