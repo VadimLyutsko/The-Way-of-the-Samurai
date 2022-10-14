@@ -2,33 +2,23 @@ import React, {useState} from 'react';
 import style from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostDataType} from '../Profile';
+import {v1} from 'uuid';
 
 
-export const MyPosts: React.FC<PostDataType> = ({postsData, addNewPost}) => {
+export const MyPosts: React.FC<PostDataType> = ({postsData, addNewPost, updateNewPostText, newPostText}) => {
 
 
-    const postsElements = postsData.map(item => <Post key={item.id} id={item.id} message={item.message}
+    const postsElements = postsData.map(item => <Post key={v1()} id={item.id} message={item.message}
                                                       likeCount={item.likeCount}
                                                       imgAddress={item.imgAddress}/>);
-    const [textAreaValue, seTextAreaValue] = useState<string>('');
 
-    // const onClickButtonHandler = () => {
-    //     // addNewPost({
-    //     //     id: 1,
-    //     //     message: 'Hello, my friends',
-    //     //     likeCount: 1,
-    //     //     imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
-    //     // });
-    // };
-
-    const onClickButtonHandler = () => {
-        let text = newPostElement.current?.value;
-        text && addNewPost(text);
+    const addPost = () => {
+        addNewPost(newPostText);
     };
 
-    // const onChangeTextAreaValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    //     seTextAreaValue(event.currentTarget?.value);     //   ? - сетать, если в поле не пусто
-    // };
+    const onPostChange = () => {
+        newPostElement.current?.value && updateNewPostText(newPostElement.current?.value);
+    };
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -38,13 +28,14 @@ export const MyPosts: React.FC<PostDataType> = ({postsData, addNewPost}) => {
             <div>
                 <div><textarea
                     ref={newPostElement}
-                    // onChange={onChangeTextAreaValue}
-                >
-                </textarea>
+                    placeholder="type some text"
+                    onChange={onPostChange}
+                    value={newPostText}
+                />
                 </div>
                 <div>
                     <button
-                        onClick={onClickButtonHandler}
+                        onClick={addPost}
                     >Add post
                     </button>
                 </div>

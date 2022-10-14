@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
-import {addNewPost, state} from './redux/State';
+import {addNewPost, state, updateNewPostText} from './redux/State';
 
 
 export const renderEntireThree = (state) => {
@@ -13,6 +13,7 @@ export const renderEntireThree = (state) => {
             <App
                 state={state}
                 addNewPost={addNewPost}
+                updateNewPostText={updateNewPostText}
                 // postsData={postsData}
                 //  dialogsData={dialogsData}
                 // messagesData={messagesData}

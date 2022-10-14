@@ -6,19 +6,23 @@ import {PostPropsType} from '../../App';
 export type PostDataType = {
     postsData: Array<PostPropsType>
     addNewPost:(mewPostMessage:string)=>void
+    updateNewPostText:(mewPostText:string)=>void
+    newPostText:string
 }
 
 export const Profile: React.FC<PostDataType> = (
     {
         postsData,
-        addNewPost
+        addNewPost,
+        updateNewPostText,
+        newPostText
     }) => {
 
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts addNewPost={addNewPost} postsData={postsData}/>
+            <MyPosts newPostText={newPostText} updateNewPostText={updateNewPostText} addNewPost={addNewPost} postsData={postsData}/>
         </div>
     );
 };
