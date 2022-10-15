@@ -5,7 +5,7 @@ import style from './Header.module.css'
 export const Header: React.FC = () => {
     return (
         <header className={style.header}><img
-            src="https://avatars.mds.yandex.net/i?id=0ff1366b533e7174e3532a4eae741dc5-5869619-images-thumbs&n=13"
+            src="https://ysm-res.cloudinary.com/image/upload/c_limit,f_auto,h_630,q_auto,w_1200/v1/websites4/live-prod/ysph/public-health-research-and-practice/interdepartmental-foci/data-science/modeling/cennet-crop_248674_52825_v2.jpg"
             alt=""/></header>
     )
 }
