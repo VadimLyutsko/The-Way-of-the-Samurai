@@ -1,7 +1,29 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
-import {state} from './redux/State';
-import {renderEntireThree} from './Render';
+import App, {StateDataPropsType} from './App';
+import {BrowserRouter} from 'react-router-dom';
+import {addNewPost, state, subscribe, updateNewPostText} from './redux/State';
 
+
+export let renderEntireThree = (state:StateDataPropsType) => {
+
+    ReactDOM.render(
+        <BrowserRouter>
+            <App
+                state={state}
+                addNewPost={addNewPost}
+                updateNewPostText={updateNewPostText}
+                // postsData={postsData}
+                //  dialogsData={dialogsData}
+                // messagesData={messagesData}
+            />
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+};
+
+
+subscribe(renderEntireThree)
 
 renderEntireThree(state)

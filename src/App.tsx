@@ -11,13 +11,13 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {addNewPost, updateNewPostText} from './redux/State';
 
 
-type StatePropsType = {                  //for All state
+export type StatePropsType = {                  //for All state
     state: StateDataPropsType
     addNewPost:(mewPostMessage:string)=>void
     updateNewPostText:(mewPostText:string)=>void
 }
 
-type StateDataPropsType = {
+export type StateDataPropsType = {
     profilePage: DialogsDataType
     messagePage: MessagesDataType
 }

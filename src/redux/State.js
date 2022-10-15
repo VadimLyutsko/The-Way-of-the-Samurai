@@ -1,5 +1,8 @@
-import {renderEntireThree} from '../Render';
 import {v1} from 'uuid';
+
+let renderEntireThree = () => {   // Заглушка, чтобы заменить ее коллбэком ниже
+    console.log('rerender');
+};
 
 export const state = {
     messagePage: {
@@ -8,13 +11,13 @@ export const state = {
                 id: 1,
                 message: 'Hello, my friends',
                 likeCount: 1,
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: 2,
                 message: 'My brotherrr',
                 likeCount: 17,
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: 3,
@@ -69,7 +72,7 @@ export const addNewPost = (mewPostMessage) => {
         id: v1(),
         message: mewPostMessage,
         likeCount: 0,
-        imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+        imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
     };
     state.messagePage.postsData.push(newPost);
     updateNewPostText('');
@@ -80,4 +83,8 @@ export const updateNewPostText = (mewPostText) => {
     state.messagePage.newPostText = mewPostText;
     // console.log(mewPostText);
     renderEntireThree(state);
+};
+
+export let subscribe = (observer) => {
+    renderEntireThree = observer;
 };
