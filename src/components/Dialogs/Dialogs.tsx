@@ -3,6 +3,7 @@ import styles from './Dialogs.module.css';
 import {DialogItem} from './DialogsItem/DialogsItem';
 import {Message} from './MessageItem/MessageItem';
 import {DialogPropsType, MessageProps} from '../../App';
+import SuperButton from '../SuperComponents/SuperButton/SuperButton';
 
 
 type DialogsDataType = {
@@ -36,12 +37,14 @@ export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) 
                         // onChange={onChangeTextAreaValue}
                     >
                 </textarea>
-                    <button onClick={onClickButtonHandler}>+</button>
+                    <SuperButton
+                        title={'Add'}
+                        callBack={onClickButtonHandler}/>
                 </div>
             </div>
 
         </div>
-    );
+);
 };
 
 

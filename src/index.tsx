@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App, {StateDataPropsType} from './App';
 import {BrowserRouter} from 'react-router-dom';
-import {addNewPost, state, subscribe, updateNewPostText} from './redux/State';
+import {addNewPost, deleteLastPost, state, subscribe, updateNewPostText} from './redux/State';
 
 
 export let renderEntireThree = (state:StateDataPropsType) => {
@@ -13,7 +13,8 @@ export let renderEntireThree = (state:StateDataPropsType) => {
             <App
                 state={state}
                 addNewPost={addNewPost}
-                updateNewPostText={updateNewPostText}
+                deleteLastPost={deleteLastPost}
+            updateNewPostText={updateNewPostText}
                 // postsData={postsData}
                 //  dialogsData={dialogsData}
                 // messagesData={messagesData}

@@ -8,12 +8,13 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {Dialogs} from './components/Dialogs/Dialogs';
-import {addNewPost, updateNewPostText} from './redux/State';
+import {addNewPost, deleteLastPost, updateNewPostText} from './redux/State';
 
 
 export type StatePropsType = {                  //for All state
     state: StateDataPropsType
     addNewPost:(mewPostMessage:string)=>void
+    deleteLastPost:()=>void
     updateNewPostText:(mewPostText:string)=>void
 }
 
@@ -50,7 +51,7 @@ export type PostPropsType = {
 }
 
 
-const App: React.FC<StatePropsType> = ({state,addNewPost,updateNewPostText,}) => {
+const App: React.FC<StatePropsType> = ({state,addNewPost,deleteLastPost,updateNewPostText,}) => {
 
     const {
         messagePage: {
@@ -72,7 +73,7 @@ const App: React.FC<StatePropsType> = ({state,addNewPost,updateNewPostText,}) =>
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile newPostText={newPostText} updateNewPostText={updateNewPostText} addNewPost={addNewPost} postsData={postsData}/>}/>
+                <Route path="/profile" render={() => <Profile newPostText={newPostText} updateNewPostText={updateNewPostText} addNewPost={addNewPost} deleteLastPost={deleteLastPost} postsData={postsData}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs messagesData={messagesData}
                                                               dialogsData={dialogsData}/>}/>
                 <Route path="/news" render={() => <News/>}/>

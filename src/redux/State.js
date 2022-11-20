@@ -33,27 +33,27 @@ export const state = {
             {
                 id: '1',
                 name: 'Vasiliska',
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: '2',
                 name: 'Ivan',
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: '3',
                 name: 'Vadim',
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: '4',
                 name: 'Andrey',
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
             {
                 id: '5',
                 name: 'Valera',
-                imgAddress: 'https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png'
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             },
 
         ],
@@ -78,6 +78,12 @@ export const addNewPost = (mewPostMessage) => {
     updateNewPostText('');
     renderEntireThree(state);
 };
+
+export const deleteLastPost =()=>{
+
+    state.messagePage.postsData.shift();
+    renderEntireThree(state);
+}
 
 export const updateNewPostText = (mewPostText) => {
     state.messagePage.newPostText = mewPostText;

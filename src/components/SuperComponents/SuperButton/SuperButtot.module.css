@@ -1,0 +1,44 @@
+.addSuperButton {
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    background-color: #67677c;
+
+}
+
+.deleteSuperButton {
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    background-color: #a19696;
+}
+
+.addSuperButton:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.addSuperButton:active {
+    background: white;
+}
+
+.deleteSuperButton:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.deleteSuperButton:active {
+    background: white;
+}
