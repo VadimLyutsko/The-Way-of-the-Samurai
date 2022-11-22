@@ -8,14 +8,13 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {Dialogs} from './components/Dialogs/Dialogs';
-import {addNewPost, deleteLastPost, updateNewPostText} from './redux/State';
 
 
 export type StatePropsType = {                  //for All state
     state: StateDataPropsType
-    addNewPost:(mewPostMessage:string)=>void
-    deleteLastPost:()=>void
-    updateNewPostText:(mewPostText:string)=>void
+    addNewPost: (mewPostMessage: string) => void
+    deleteLastPost: () => void
+    updateNewPostText: (mewPostText: string) => void
 }
 
 export type StateDataPropsType = {
@@ -30,7 +29,7 @@ type  DialogsDataType = {
 
 type MessagesDataType = {
     postsData: Array<PostPropsType>
-    newPostText:string
+    newPostText: string
 }
 
 export type DialogPropsType = {
@@ -44,19 +43,19 @@ export type MessageProps = {
 }
 
 export type PostPropsType = {
-    id: number
+    id: string
     message: string
     likeCount: number
     imgAddress: string
 }
 
 
-const App: React.FC<StatePropsType> = ({state,addNewPost,deleteLastPost,updateNewPostText,}) => {
+const App: React.FC<StatePropsType> = ({state, addNewPost, deleteLastPost, updateNewPostText,}) => {
 
     const {
         messagePage: {
             postsData: [...postsData
-            ],newPostText
+            ], newPostText
 
         },
         profilePage: {
@@ -73,7 +72,10 @@ const App: React.FC<StatePropsType> = ({state,addNewPost,deleteLastPost,updateNe
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile newPostText={newPostText} updateNewPostText={updateNewPostText} addNewPost={addNewPost} deleteLastPost={deleteLastPost} postsData={postsData}/>}/>
+                <Route path="/profile"
+                       render={() => <Profile newPostText={newPostText} updateNewPostText={updateNewPostText}
+                                              addNewPost={addNewPost} deleteLastPost={deleteLastPost}
+                                              postsData={postsData}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs messagesData={messagesData}
                                                               dialogsData={dialogsData}/>}/>
                 <Route path="/news" render={() => <News/>}/>

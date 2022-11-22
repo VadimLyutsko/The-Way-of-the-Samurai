@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostDataType} from '../Profile';
 import {v1} from 'uuid';
-import {deleteLastPost} from '../../../redux/State';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 
 
@@ -35,7 +34,7 @@ export const MyPosts: React.FC<PostDataType> = ({
             <h3> My posts</h3>
             <div>
                 < ><textarea
-                    style={{minWidth:'245px'}}
+                    style={{minWidth: '245px'}}
                     ref={newPostElement}
                     placeholder="type some text"
                     onChange={onPostChange}

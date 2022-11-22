@@ -4,7 +4,7 @@ import style from './Post.module.css';
 type PestProps = {
     message: string
     likeCount: number
-    id: number
+    id: string
     imgAddress: string
 }
 

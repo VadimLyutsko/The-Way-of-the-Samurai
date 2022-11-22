@@ -1,5 +1,5 @@
 .app-wrapper {
-    width: 1200px;
+    width: 1200px; /* Нужно задавать в процентах для кроссбраузерности*/
     margin: 0 auto;
     display: grid;
 
@@ -13,8 +13,8 @@
     /*grid-gap: 10px;*/
 }
 
-.app-wrapper-content{
+.app-wrapper-content {
     grid-area: c;
-     background-color: rgba(185, 182, 182, 0.9);
+    background-color: rgba(185, 182, 182, 0.9);
 
 }
