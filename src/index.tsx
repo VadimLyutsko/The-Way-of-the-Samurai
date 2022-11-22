@@ -16,7 +16,12 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = AddNewPostAT | UpdateNewPostTextAT | DeletePostTextAT | AddNewDialogMessageAT|UpdateDialogsMessageAT
+export type ActionType =
+    AddNewPostAT
+    | UpdateNewPostTextAT
+    | DeletePostTextAT
+    | AddNewDialogMessageAT
+    | UpdateDialogsMessageAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -49,9 +54,6 @@ export let renderEntireThree = (store: StoreType) => {
             <App
                 state={store.getState()}
                 dispatch={store.dispatch.bind(store)}
-                // addNewPost={store.addNewPost.bind(store)}
-                // deleteLastPost={store.deleteLastPost.bind(store)}
-                // updateNewPostText={store.updateNewPostText.bind(store)}
             />
         </BrowserRouter>,
         document.getElementById('root')

@@ -20,7 +20,7 @@ export const MyPosts: React.FC<PostDataType> = ({
     const addPost = () => {
         // addNewPost(newPostText);  //Через прокидывание пропсов
         // dispatch({type: 'ADD-NEW-POST', mewPostMessage: newPostText}); // Через dispatch без AC
-        newPostElement.current?.value?  dispatch(addNewPostActionCreator(newPostText)): alert('Введите хоть что-нибудь...');
+        newPostElement.current?.value ? dispatch(addNewPostActionCreator(newPostText)) : alert('Введите хоть что-нибудь...');
     };
 
     const deletePost = () => {

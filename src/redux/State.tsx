@@ -103,31 +103,43 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_NEW_POST) {
-            let newPost = {
-                id: v1(),
-                message: action.mewPostMessage,
-                likeCount: 0,
-                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
-            };
-            this._state.messagePage.postsData.unshift(newPost);
-            this._updateNewPostText('');
-            this._renderEntireThree(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.messagePage.newPostText = action.mewPostText;
-            this._renderEntireThree(this._state);
-        } else if (action.type === DELETE_LAST_POST) {
-            this._state.messagePage.postsData.shift();
-            this._renderEntireThree(this._state);
-        } else if (action.type === ADD_NEW_DIALOG_MESSAGE) {
-            this._state.profilePage.messagesData.push({message: action.mewMessage});
-            this._updateDialogMessageText('');
-            this._renderEntireThree(this._state);
-        } else if (action.type === UPDATE_DIALOG_MESSAGE) {
-            this._state.profilePage.newDialogMessageText = action.mewMessageText;
-            this._renderEntireThree(this._state);
+
+        switch (action.type) {
+            case ADD_NEW_POST: {
+                let newPost = {
+                    id: v1(),
+                    message: action.mewPostMessage,
+                    likeCount: 0,
+                    imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+                };
+                this._state.messagePage.postsData.unshift(newPost);
+                this._updateNewPostText('');
+                this._renderEntireThree(this._state);
+                break;
+            }
+            case UPDATE_NEW_POST_TEXT: {
+                this._state.messagePage.newPostText = action.mewPostText;
+                this._renderEntireThree(this._state);
+                break;
+            }
+            case DELETE_LAST_POST: {
+                this._state.messagePage.postsData.shift();
+                this._renderEntireThree(this._state);
+                break;
+            }
+            case ADD_NEW_DIALOG_MESSAGE: {
+                this._state.profilePage.messagesData.push({message: action.mewMessage});
+                this._updateDialogMessageText('');
+                this._renderEntireThree(this._state);
+                break;
+            }
+            case UPDATE_DIALOG_MESSAGE : {
+                this._state.profilePage.newDialogMessageText = action.mewMessageText;
+                this._renderEntireThree(this._state);
+                break;
+            }
         }
-    },
+    }
 };
 
 export const addNewPostActionCreator = (mewPostMessage: string): AddNewPostAT => {
