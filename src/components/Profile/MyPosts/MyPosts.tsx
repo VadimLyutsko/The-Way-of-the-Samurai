@@ -4,14 +4,12 @@ import {Post} from './Post/Post';
 import {PostDataType} from '../Profile';
 import {v1} from 'uuid';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
+import {addNewPostActionCreator, deletePostActionCreator, updatePostTextActionCreator} from '../../../redux/State';
 
 
 export const MyPosts: React.FC<PostDataType> = ({
                                                     postsData,
-                                                    addNewPost,
-                                                    deleteLastPost,
-                                                    updateNewPostText,
-                                                    newPostText
+                                                    newPostText, dispatch
                                                 }) => {
 
 
@@ -20,11 +18,17 @@ export const MyPosts: React.FC<PostDataType> = ({
                                                       imgAddress={item.imgAddress}/>);
 
     const addPost = () => {
-        addNewPost(newPostText);
+        // addNewPost(newPostText);  //Через прокидывание пропсов
+        // dispatch({type: 'ADD-NEW-POST', mewPostMessage: newPostText}); // Через dispatch без AC
+        dispatch(addNewPostActionCreator(newPostText));
+    };
+
+    const deletePost = () => {
+        dispatch(deletePostActionCreator());
     };
 
     const onPostChange = () => {
-        newPostElement.current?.value && updateNewPostText(newPostElement.current?.value);
+        newPostElement.current?.value && dispatch(updatePostTextActionCreator(newPostElement.current?.value));
     };
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -54,7 +58,7 @@ export const MyPosts: React.FC<PostDataType> = ({
 
                     <SuperButton
                         title={'Delete post'}
-                        callBack={deleteLastPost}
+                        callBack={deletePost}
                     />
 
                 </div>

@@ -2,30 +2,25 @@ import React from 'react';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {PostPropsType} from '../../App';
+import {ActionType} from '../../index';
 
 export type PostDataType = {
     postsData: Array<PostPropsType>
-    addNewPost: (mewPostMessage: string) => void
-    deleteLastPost: () => void
-    updateNewPostText: (mewPostText: string) => void
     newPostText: string
+    dispatch: (action: ActionType) => void
 }
 
 export const Profile: React.FC<PostDataType> = (
     {
         postsData,
-        addNewPost,
-        deleteLastPost,
-        updateNewPostText,
-        newPostText
+        newPostText, dispatch
     }) => {
 
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts newPostText={newPostText} updateNewPostText={updateNewPostText} addNewPost={addNewPost}
-                     deleteLastPost={deleteLastPost} postsData={postsData}/>
+            <MyPosts newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>
         </div>
     );
 };

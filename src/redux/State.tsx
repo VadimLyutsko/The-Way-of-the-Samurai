@@ -1,6 +1,9 @@
 import {v1} from 'uuid';
-import {StoreType} from '../index';
+import {AddNewPostAT, DeletePostTextAT, StoreType, UpdateNewPostTextAT} from '../index';
 
+const ADD_NEW_POST = 'ADD-NEW-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const DELETE_LAST_POST = 'DELETE-LAST-POST';
 
 export let store: StoreType = {
 
@@ -15,7 +18,7 @@ export let store: StoreType = {
                 },
                 {
                     id: '2',
-                    message: 'My brotherrr',
+                    message: 'My brother',
                     likeCount: 17,
                     imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
                 },
@@ -32,7 +35,7 @@ export let store: StoreType = {
             dialogsData: [
                 {
                     id: '1',
-                    name: 'Vasiliska',
+                    name: 'Vadim',
                     imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
                 },
                 {
@@ -60,7 +63,7 @@ export let store: StoreType = {
             messagesData: [
                 {message: 'Hello!!!'},
                 {message: 'How are you???'},
-                {message: 'Privett'},
+                {message: 'Privet'},
                 {message: 'Yoo'},
                 {message: 'Yoo'}
             ]
@@ -71,24 +74,7 @@ export let store: StoreType = {
         console.log('rerender');
     },
 
-    addNewPost(mewPostMessage) {
-        let newPost = {
-            id: v1(),
-            message: mewPostMessage,
-            likeCount: 0,
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
-        };
-        this._state.messagePage.postsData.unshift(newPost);
-        this.updateNewPostText('');
-        this._renderEntireThree(this._state);
-    },
-
-    deleteLastPost() {
-        this._state.messagePage.postsData.shift();
-        this._renderEntireThree(this._state);
-    },
-
-    updateNewPostText(mewPostText) {
+    _updateNewPostText(mewPostText) {
         this._state.messagePage.newPostText = mewPostText;
         this._renderEntireThree(this._state);
     },
@@ -99,7 +85,46 @@ export let store: StoreType = {
 
     getState() {
         return this._state;
-    }
+    },
+
+    dispatch(action) {
+        if (action.type === ADD_NEW_POST) {
+            let newPost = {
+                id: v1(),
+                message: action.mewPostMessage,
+                likeCount: 0,
+                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            };
+            this._state.messagePage.postsData.unshift(newPost);
+            this._updateNewPostText('');
+            this._renderEntireThree(this._state);
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.messagePage.newPostText = action.mewPostText;
+            this._renderEntireThree(this._state);
+        } else if (action.type === DELETE_LAST_POST) {
+            this._state.messagePage.postsData.shift();
+            this._renderEntireThree(this._state);
+        }
+    },
 };
 
-// window.store = store;
+export const addNewPostActionCreator = (mewPostMessage: string): AddNewPostAT => {
+    return {
+        type: ADD_NEW_POST,
+        mewPostMessage
+    };
+};
+
+
+export const deletePostActionCreator = (): DeletePostTextAT => {
+    return {
+        type: DELETE_LAST_POST,
+    };
+};
+
+export const updatePostTextActionCreator = (mewPostText: string): UpdateNewPostTextAT => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        mewPostText
+    };
+};
