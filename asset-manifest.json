@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/The-Way-of-the-Samurai/static/css/main.dee84079.css",
+    "main.css": "/The-Way-of-the-Samurai/static/css/main.7884e48f.css",
     "main.js": "/The-Way-of-the-Samurai/static/js/main.fb62942c.js",
     "static/media/sound.mp3": "/The-Way-of-the-Samurai/static/media/sound.7fb70d35bd78c175dd74.mp3",
     "index.html": "/The-Way-of-the-Samurai/index.html",
-    "main.dee84079.css.map": "/The-Way-of-the-Samurai/static/css/main.dee84079.css.map",
+    "main.7884e48f.css.map": "/The-Way-of-the-Samurai/static/css/main.7884e48f.css.map",
     "main.fb62942c.js.map": "/The-Way-of-the-Samurai/static/js/main.fb62942c.js.map"
   },
   "entrypoints": [
-    "static/css/main.dee84079.css",
+    "static/css/main.7884e48f.css",
     "static/js/main.fb62942c.js"
   ]
 }
