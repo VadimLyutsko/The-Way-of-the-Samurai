@@ -4,14 +4,18 @@ import {DialogItem} from './DialogsItem/DialogsItem';
 import {Message} from './MessageItem/MessageItem';
 import {DialogPropsType, MessageProps} from '../../App';
 import SuperButton from '../SuperComponents/SuperButton/SuperButton';
+import {ActionType} from '../../index';
+import {addNewDialogsMessageActionCreator, updateDialogsMessageActionCreator} from '../../redux/State';
 
 
 type DialogsDataType = {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageProps>
+    newDialogMessageText:string
+    dispatch: (action: ActionType) => void
 }
 
-export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) => {
+export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData,newDialogMessageText,dispatch}) => {
     const dialogsElements = dialogsData.map(item => <DialogItem id={item.id} name={item.name}
                                                                 imgAddress={item.imgAddress}/>);
     const messageElements = messagesData.map(item => <Message message={item.message}/>);
@@ -19,8 +23,12 @@ export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) 
     let newMessageElement = React.createRef<HTMLTextAreaElement>();
 
     const onClickButtonHandler = () => {
-        newMessageElement.current?.value ? alert(newMessageElement.current?.value) : alert('Введи хоть что-нибудь, умник...');
+        newMessageElement.current?.value ? dispatch(addNewDialogsMessageActionCreator(newMessageElement.current?.value)) : alert('Введи хоть что-нибудь, умник...');
     };
+
+    const onChangeTextAreaValue = ()=>{
+        newMessageElement.current?.value && dispatch(updateDialogsMessageActionCreator(newMessageElement.current?.value));
+    }
 
     return (
         <div className={styles.dialogs}>
@@ -34,9 +42,10 @@ export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData}) 
                 <div className={styles.inpNewMessage}>
                     <textarea
                         ref={newMessageElement}
-                        // onChange={onChangeTextAreaValue}
-                    >
-                </textarea>
+                        value={newDialogMessageText}
+                        onChange={onChangeTextAreaValue}
+                    />
+
                     <SuperButton
                         title={'Add'}
                         callBack={onClickButtonHandler}/>

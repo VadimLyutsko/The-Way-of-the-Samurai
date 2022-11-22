@@ -34,6 +34,6 @@
 .inpNewMessage{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 220px;
+    justify-content: space-between;
+    width: 275px;
 }

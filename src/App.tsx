@@ -27,6 +27,7 @@ export type StateDataPropsType = {
 type  DialogsDataType = {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageProps>
+    newDialogMessageText: string
 }
 
 type MessagesDataType = {
@@ -57,13 +58,14 @@ const App: React.FC<StatePropsType> = ({state, dispatch}) => {
     const {
         messagePage: {
             postsData: [...postsData
-            ], newPostText
-
+            ],
+            newPostText
         },
         profilePage: {
             dialogsData: [...dialogsData],
-            messagesData: [...messagesData]
-        }
+            messagesData: [...messagesData],
+            newDialogMessageText
+        },
     } = state;
 
 
@@ -77,8 +79,10 @@ const App: React.FC<StatePropsType> = ({state, dispatch}) => {
                 <Route path="/profile"
                        render={() => <Profile newPostText={newPostText}
                                               postsData={postsData} dispatch={dispatch}/>}/>
-                <Route path="/dialogs" render={() => <Dialogs messagesData={messagesData}
-                                                              dialogsData={dialogsData}/>}/>
+                <Route path="/dialogs"
+                       render={() => <Dialogs messagesData={messagesData} newDialogMessageText={newDialogMessageText}
+                                              dialogsData={dialogsData}
+                                              dispatch={dispatch}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>

@@ -1,9 +1,18 @@
 import {v1} from 'uuid';
-import {AddNewPostAT, DeletePostTextAT, StoreType, UpdateNewPostTextAT} from '../index';
+import {
+    AddNewDialogMessageAT,
+    AddNewPostAT,
+    DeletePostTextAT,
+    StoreType,
+    UpdateDialogsMessageAT,
+    UpdateNewPostTextAT
+} from '../index';
 
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const DELETE_LAST_POST = 'DELETE-LAST-POST';
+const ADD_NEW_DIALOG_MESSAGE = 'ADD-NEW-DIALOG-MESSAGE';
+const UPDATE_DIALOG_MESSAGE = 'UPDATE-DIALOG-MESSAGE';
 
 export let store: StoreType = {
 
@@ -66,7 +75,8 @@ export let store: StoreType = {
                 {message: 'Privet'},
                 {message: 'Yoo'},
                 {message: 'Yoo'}
-            ]
+            ],
+            newDialogMessageText: '',
         }
     },
 
@@ -76,6 +86,11 @@ export let store: StoreType = {
 
     _updateNewPostText(mewPostText) {
         this._state.messagePage.newPostText = mewPostText;
+        this._renderEntireThree(this._state);
+    },
+
+    _updateDialogMessageText(newDialogMessageText) {
+        this._state.profilePage.newDialogMessageText = newDialogMessageText;
         this._renderEntireThree(this._state);
     },
 
@@ -104,6 +119,13 @@ export let store: StoreType = {
         } else if (action.type === DELETE_LAST_POST) {
             this._state.messagePage.postsData.shift();
             this._renderEntireThree(this._state);
+        } else if (action.type === ADD_NEW_DIALOG_MESSAGE) {
+            this._state.profilePage.messagesData.push({message: action.mewMessage});
+            this._updateDialogMessageText('');
+            this._renderEntireThree(this._state);
+        } else if (action.type === UPDATE_DIALOG_MESSAGE) {
+            this._state.profilePage.newDialogMessageText = action.mewMessageText;
+            this._renderEntireThree(this._state);
         }
     },
 };
@@ -128,3 +150,19 @@ export const updatePostTextActionCreator = (mewPostText: string): UpdateNewPostT
         mewPostText
     };
 };
+
+export const addNewDialogsMessageActionCreator = (mewMessage: string): AddNewDialogMessageAT => {
+    return {
+        type: ADD_NEW_DIALOG_MESSAGE,
+        mewMessage
+    };
+};
+
+export const updateDialogsMessageActionCreator = (mewMessageText: string): UpdateDialogsMessageAT => {
+    return {
+        type: UPDATE_DIALOG_MESSAGE,
+        mewMessageText
+    };
+};
+
+
