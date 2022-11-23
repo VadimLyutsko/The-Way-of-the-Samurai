@@ -5,7 +5,7 @@ import {Message} from './MessageItem/MessageItem';
 import {DialogPropsType, MessageProps} from '../../App';
 import SuperButton from '../SuperComponents/SuperButton/SuperButton';
 import {ActionType} from '../../index';
-import {addNewDialogsMessageActionCreator, updateDialogsMessageActionCreator} from '../../redux/State';
+import {addNewDialogsMessageActionCreator, updateDialogsMessageActionCreator} from '../../redux/dialogs-Reducer';
 
 
 type DialogsDataType = {
@@ -44,6 +44,7 @@ export const Dialogs: React.FC<DialogsDataType> = ({dialogsData, messagesData, n
                         ref={newMessageElement}
                         value={newDialogMessageText}
                         onChange={onChangeTextAreaValue}
+                        placeholder={'Enter your message'}
                     />
 
                     <SuperButton

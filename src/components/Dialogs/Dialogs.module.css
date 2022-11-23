@@ -4,12 +4,12 @@
 }
 
 .dialog {
-    padding: 5px;
+    padding: 15px;
 }
 
 .dialog img{
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     border-radius: 25px;
 }
 
@@ -19,12 +19,12 @@
 
 .dialogsItem a {
     text-decoration: none;
-    color: #d5b1b1;
+    color: #030000;
     font-weight: bold;
 }
 
 .message {
-    padding: 20px;
+    padding: 25px;
 }
 
 .messagesItem {

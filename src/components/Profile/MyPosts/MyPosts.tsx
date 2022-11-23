@@ -4,7 +4,11 @@ import {Post} from './Post/Post';
 import {PostDataType} from '../Profile';
 import {v1} from 'uuid';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
-import {addNewPostActionCreator, deletePostActionCreator, updatePostTextActionCreator} from '../../../redux/State';
+import {
+    addNewPostActionCreator,
+    deletePostActionCreator,
+    updatePostTextActionCreator
+} from '../../../redux/profile-Reducer';
 
 
 export const MyPosts: React.FC<PostDataType> = ({
@@ -40,7 +44,7 @@ export const MyPosts: React.FC<PostDataType> = ({
                 < ><textarea
                     style={{minWidth: '245px'}}
                     ref={newPostElement}
-                    placeholder="type some text"
+                    placeholder="Type some text"
                     onChange={onPostChange}
                     value={newPostText}
                 />

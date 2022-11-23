@@ -13,9 +13,6 @@ import {ActionType} from './index';
 
 export type StatePropsType = {                  //for All state
     state: StateDataPropsType
-    // addNewPost: (mewPostMessage: string) => void
-    // deleteLastPost: () => void
-    // updateNewPostText: (mewPostText: string) => void
     dispatch: (action: ActionType) => void
 }
 
@@ -24,13 +21,13 @@ export type StateDataPropsType = {
     messagePage: MessagesDataType
 }
 
-type  DialogsDataType = {
+export type  DialogsDataType = {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageProps>
     newDialogMessageText: string
 }
 
-type MessagesDataType = {
+export type MessagesDataType = {
     postsData: Array<PostPropsType>
     newPostText: string
 }

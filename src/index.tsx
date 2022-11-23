@@ -6,14 +6,13 @@ import {BrowserRouter} from 'react-router-dom';
 import {store} from './redux/State';
 
 
+
 export type StoreType = {
     _state: StateDataPropsType
     getState: () => StateDataPropsType
-    subscribe: (observer: () => void) => void
-    _updateNewPostText: (mewPostText: string) => void
-    _updateDialogMessageText: (newDialogMessageText: string) => void
-    _renderEntireThree: (state: StateDataPropsType) => void
     dispatch: (action: ActionType) => void
+    subscribe: (observer: () => void) => void
+    _renderEntireThree: (state: StateDataPropsType) => void
 }
 
 export type ActionType =
@@ -59,7 +58,6 @@ export let renderEntireThree = (store: StoreType) => {
         document.getElementById('root')
     );
 };
-
 
 store.subscribe(() => renderEntireThree(store));
 
