@@ -5,7 +5,46 @@ import {DialogsDataType} from '../App';
 const ADD_NEW_DIALOG_MESSAGE = 'ADD-NEW-DIALOG-MESSAGE';
 const UPDATE_DIALOG_MESSAGE = 'UPDATE-DIALOG-MESSAGE';
 
-const DialogsReducer = (state: DialogsDataType, action: ActionType): DialogsDataType => {
+let initialState = {
+    dialogsData: [
+        {
+            id: '1',
+            name: 'Vadim',
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '2',
+            name: 'Ivan',
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '3',
+            name: 'Vadim',
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '4',
+            name: 'Andrey',
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '5',
+            name: 'Valera',
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+
+    ],
+    messagesData: [
+        {message: 'Hello!!!'},
+        {message: 'How are you???'},
+        {message: 'Privet'},
+        {message: 'Yoo'},
+        {message: 'Yoo'}
+    ],
+    newDialogMessageText: '',
+};
+
+const DialogsReducer = (state: DialogsDataType = initialState, action: ActionType): DialogsDataType => {
 
     switch (action.type) {
         case ADD_NEW_DIALOG_MESSAGE: {

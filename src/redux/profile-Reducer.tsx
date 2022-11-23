@@ -2,12 +2,37 @@ import React from 'react';
 import {v1} from 'uuid';
 import {ActionType, AddNewPostAT, DeletePostTextAT, UpdateNewPostTextAT} from '../index';
 import {MessagesDataType} from '../App';
+import {EmptyObject} from 'redux';
 
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const DELETE_LAST_POST = 'DELETE-LAST-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const ProfileReducer = (state: MessagesDataType, action: ActionType): MessagesDataType => {
+let initialState = {
+    postsData: [
+        {
+            id: '1',
+            message: 'Hello, my friends',
+            likeCount: 1,
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '2',
+            message: 'My brother',
+            likeCount: 17,
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        },
+        {
+            id: '3',
+            message: 'My Valeria',
+            likeCount: 175,
+            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+        }
+    ],
+    newPostText: '',
+};
+
+const ProfileReducer = (state: EmptyObject & MessagesDataType = initialState, action: ActionType): MessagesDataType => {
     switch (action.type) {
         case ADD_NEW_POST: {
             let newPost = {

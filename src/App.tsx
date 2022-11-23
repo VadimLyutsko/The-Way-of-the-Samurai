@@ -9,10 +9,11 @@ import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {ActionType} from './index';
+import {AppStateType} from './redux/redux-store';
 
 
 export type StatePropsType = {                  //for All state
-    state: StateDataPropsType
+    state: AppStateType
     dispatch: (action: ActionType) => void
 }
 
@@ -51,19 +52,19 @@ export type PostPropsType = {
 
 
 const App: React.FC<StatePropsType> = ({state, dispatch}) => {
-
-    const {
-        messagePage: {
-            postsData: [...postsData
-            ],
-            newPostText
-        },
-        profilePage: {
-            dialogsData: [...dialogsData],
-            messagesData: [...messagesData],
-            newDialogMessageText
-        },
-    } = state;
+    //
+    // const {
+    //     profilePage: {
+    //         dialogsData: [...dialogsData],
+    //         messagesData: [...messagesData],
+    //         newDialogMessageText
+    //     },
+    //     dialogsPage: {
+    //         postsData: [...postsData
+    //         ],
+    //         newPostText
+    //     },
+    // } = state;
 
 
     return (
@@ -74,11 +75,11 @@ const App: React.FC<StatePropsType> = ({state, dispatch}) => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/profile"
-                       render={() => <Profile newPostText={newPostText}
-                                              postsData={postsData} dispatch={dispatch}/>}/>
+                       render={() => <Profile newPostText={state.profilePage.newPostText}
+                                              postsData={state.profilePage.postsData} dispatch={dispatch}/>}/>
                 <Route path="/dialogs"
-                       render={() => <Dialogs messagesData={messagesData} newDialogMessageText={newDialogMessageText}
-                                              dialogsData={dialogsData}
+                       render={() => <Dialogs messagesData={state.dialogsPage.messagesData} newDialogMessageText={state.dialogsPage.newDialogMessageText}
+                                              dialogsData={state.dialogsPage.dialogsData}
                                               dispatch={dispatch}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>

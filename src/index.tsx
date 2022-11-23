@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, {StateDataPropsType} from './App';
+import App from './App';
 import {BrowserRouter} from 'react-router-dom';
-import {store} from './redux/State';
-
-
-
+import store, {AppStateType} from './redux/redux-store';
+/*
 export type StoreType = {
     _state: StateDataPropsType
     getState: () => StateDataPropsType
     dispatch: (action: ActionType) => void
     subscribe: (observer: () => void) => void
     _renderEntireThree: (state: StateDataPropsType) => void
-}
+}*/
 
 export type ActionType =
     AddNewPostAT
@@ -46,7 +44,7 @@ export type DeletePostTextAT = {
     type: 'DELETE-LAST-POST'
 }
 
-export let renderEntireThree = (store: StoreType) => {
+export let renderEntireThree = ({}: AppStateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
@@ -59,6 +57,9 @@ export let renderEntireThree = (store: StoreType) => {
     );
 };
 
-store.subscribe(() => renderEntireThree(store));
+renderEntireThree(store.getState());
 
-renderEntireThree(store);
+store.subscribe(() => {
+    renderEntireThree(store.getState());
+});
+
