@@ -44,7 +44,7 @@ export type DeletePostTextAT = {
     type: 'DELETE-LAST-POST'
 }
 
-export let renderEntireThree = ({}: AppStateType) => {
+export let renderEntireThree = ({}: AppStateType)  => {
 
     ReactDOM.render(
         <BrowserRouter>

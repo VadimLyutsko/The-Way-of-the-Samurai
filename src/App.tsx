@@ -52,24 +52,8 @@ export type PostPropsType = {
 
 
 const App: React.FC<StatePropsType> = ({state, dispatch}) => {
-    //
-    // const {
-    //     profilePage: {
-    //         dialogsData: [...dialogsData],
-    //         messagesData: [...messagesData],
-    //         newDialogMessageText
-    //     },
-    //     dialogsPage: {
-    //         postsData: [...postsData
-    //         ],
-    //         newPostText
-    //     },
-    // } = state;
-
 
     return (
-
-
         <div className="app-wrapper">
             <Header/>
             <Navbar/>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {PostPropsType} from '../../App';
 import {ActionType} from '../../index';
+import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
 
 export type PostDataType = {
     postsData: Array<PostPropsType>
@@ -20,7 +20,7 @@ export const Profile: React.FC<PostDataType> = (
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>
+            <MyPostsContainer newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>
         </div>
     );
 };

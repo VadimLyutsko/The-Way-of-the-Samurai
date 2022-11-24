@@ -1,38 +1,37 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {PostDataType} from '../Profile';
 import {v1} from 'uuid';
-import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
-import {
-    addNewPostActionCreator,
-    deletePostActionCreator,
-    updatePostTextActionCreator
-} from '../../../redux/profile-Reducer';
+import SuperButton from '../../../SuperComponents/SuperButton/SuperButton';
+import {PostPropsType} from '../../../../App';
 
+type MyPostType = {
+    addPost: (text: string) => void
+    deletePost: () => void
+    onPostChange: (newPostElement: string) => void
+    postsData: Array<PostPropsType>
+    newPostText: string
+}
 
-export const MyPosts: React.FC<PostDataType> = ({
-                                                    postsData,
-                                                    newPostText, dispatch
-                                                }) => {
+export const MyPosts: React.FC<MyPostType> = (props
+) => {
 
+    const {postsData, newPostText, addPost, deletePost, onPostChange} = props;   // Destructuring for convenience
 
     const postsElements = postsData.map(item => <Post key={v1()} id={item.id} message={item.message}
                                                       likeCount={item.likeCount}
                                                       imgAddress={item.imgAddress}/>);
 
-    const addPost = () => {
-        // addNewPost(newPostText);  //Через прокидывание пропсов
-        // dispatch({type: 'ADD-NEW-POST', mewPostMessage: newPostText}); // Через dispatch без AC
-        newPostElement.current?.value ? dispatch(addNewPostActionCreator(newPostText)) : alert('Введите хоть что-нибудь...');
+    const addMyPost = () => {
+        newPostElement.current?.value ? addPost(newPostText) : alert('Введите хоть что-нибудь...');
     };
 
-    const deletePost = () => {
-        dispatch(deletePostActionCreator());
+    const deleteMyPost = () => {
+        deletePost();
     };
 
-    const onPostChange = () => {
-        newPostElement.current?.value && dispatch(updatePostTextActionCreator(newPostElement.current?.value));
+    const onMyPostChange = () => {
+        newPostElement.current?.value && onPostChange(newPostElement.current?.value);
     };
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -45,7 +44,7 @@ export const MyPosts: React.FC<PostDataType> = ({
                     style={{minWidth: '245px'}}
                     ref={newPostElement}
                     placeholder="Type some text"
-                    onChange={onPostChange}
+                    onChange={onMyPostChange}
                     value={newPostText}
                 />
                 </>
@@ -57,12 +56,12 @@ export const MyPosts: React.FC<PostDataType> = ({
                 }}>
                     <SuperButton
                         title={'Add post'}
-                        callBack={addPost}
+                        callBack={addMyPost}
                     />
 
                     <SuperButton
                         title={'Delete post'}
-                        callBack={deletePost}
+                        callBack={deleteMyPost}
                     />
 
                 </div>

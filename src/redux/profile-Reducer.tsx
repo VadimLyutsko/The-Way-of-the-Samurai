@@ -2,7 +2,6 @@ import React from 'react';
 import {v1} from 'uuid';
 import {ActionType, AddNewPostAT, DeletePostTextAT, UpdateNewPostTextAT} from '../index';
 import {MessagesDataType} from '../App';
-import {EmptyObject} from 'redux';
 
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const DELETE_LAST_POST = 'DELETE-LAST-POST';
@@ -32,7 +31,7 @@ let initialState = {
     newPostText: '',
 };
 
-const ProfileReducer = (state: EmptyObject & MessagesDataType = initialState, action: ActionType): MessagesDataType => {
+const ProfileReducer = (state:  MessagesDataType = initialState, action: ActionType): MessagesDataType => {
     switch (action.type) {
         case ADD_NEW_POST: {
             let newPost = {
