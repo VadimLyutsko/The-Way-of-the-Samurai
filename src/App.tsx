@@ -7,9 +7,9 @@ import {Profile} from './components/Profile/Profile';
 import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
-import {Dialogs} from './components/Dialogs/Dialogs';
 import {ActionType} from './index';
 import {AppStateType} from './redux/redux-store';
+import {DialogsContainer} from './components/DialogsContainer/DialogsContainer';
 
 
 export type StatePropsType = {                  //for All state
@@ -62,7 +62,7 @@ const App: React.FC<StatePropsType> = ({state, dispatch}) => {
                        render={() => <Profile newPostText={state.profilePage.newPostText}
                                               postsData={state.profilePage.postsData} dispatch={dispatch}/>}/>
                 <Route path="/dialogs"
-                       render={() => <Dialogs messagesData={state.dialogsPage.messagesData} newDialogMessageText={state.dialogsPage.newDialogMessageText}
+                       render={() => <DialogsContainer messagesData={state.dialogsPage.messagesData} newDialogMessageText={state.dialogsPage.newDialogMessageText}
                                               dialogsData={state.dialogsPage.dialogsData}
                                               dispatch={dispatch}/>}/>
                 <Route path="/news" render={() => <News/>}/>

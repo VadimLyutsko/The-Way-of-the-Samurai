@@ -9,7 +9,6 @@ export type PostDataType = {
     newPostText: string
     dispatch: (action: ActionType) => void
 }
-
 export const Profile: React.FC<PostDataType> = (
     {
         postsData,
