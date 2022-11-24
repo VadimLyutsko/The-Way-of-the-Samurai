@@ -7,38 +7,47 @@ import {
 } from '../../../redux/profile-Reducer';
 import {Post} from './MyPosts/Post/Post';
 import {v1} from 'uuid';
-import {ActionType, PostType} from '../../../redux/Types';
+import {StoreContext} from '../../../Context';
 
-type MyPostsContainerType = {
-    postsData: PostType[]
-    dispatch: (action: ActionType) => void
-    newPostText: string
-}
+// type MyPostsContainerType = {
+//     postsData: PostType[]
+//     dispatch: (action: ActionType) => void
+//     newPostText: string
+// }
 
-export const MyPostsContainer: React.FC<MyPostsContainerType> = ({
-                                                                     postsData,
-                                                                     newPostText, dispatch
-                                                                 }) => {
+export const MyPostsContainer: React.FC = () => {
 
-    const postsElements = postsData.map(item => <Post key={v1()} id={item.id} message={item.message}
-                                                      likeCount={item.likeCount}
-                                                      imgAddress={item.imgAddress}/>);
+    return (<StoreContext.Consumer>
 
-    const addPost = (text: string) => {
-        text ? dispatch(addNewPostActionCreator(text)) : alert('Введите хоть что-нибудь...');
-    };
+            {(store) => {
+                let state = store.getState();
+                const {profilePage: {postsData, newPostText}} = state;
 
-    const deletePost = () => {
-        dispatch(deletePostActionCreator());
-    };
+                const postsElements = postsData.map(item => <Post imgAddress={item.imgAddress}
+                                                                  likeCount={item.likeCount}
+                                                                  message={item.message}
+                                                                  id={item.id}
+                                                                  key={v1()}
+                />);
 
-    const onPostChange = (newPostElement: string) => {
-        newPostElement && dispatch(updatePostTextActionCreator(newPostElement));
-    };
+                const addPost = (text: string) => {
+                    text ? store.dispatch(addNewPostActionCreator(text)) : alert('Введите хоть что-нибудь...');
+                };
 
+                const deletePost = () => {
+                    store.dispatch(deletePostActionCreator());
+                };
 
-    return (
-        <MyPosts addPost={addPost} deletePost={deletePost} onPostChange={onPostChange} postsElements={postsElements}
-                 newPostText={newPostText}/>
+                const onPostChange = (newPostElement: string) => {
+                    newPostElement && store.dispatch(updatePostTextActionCreator(newPostElement));
+                };
+
+                return <MyPosts addPost={addPost}
+                                deletePost={deletePost}
+                                onPostChange={onPostChange}
+                                postsElements={postsElements}
+                                newPostText={newPostText}/>;
+            }}
+        </StoreContext.Consumer>
     );
 };

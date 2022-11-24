@@ -1,11 +1,9 @@
 import React from 'react';
-
 import {Dialogs} from './Dialogs/Dialogs';
 import {addNewDialogsMessageActionCreator, updateDialogsMessageActionCreator} from '../../redux/dialogs-Reducer';
 import {Message} from './Dialogs/MessageItem/MessageItem';
 import {DialogItem} from './Dialogs/DialogsItem/DialogsItem';
 import {StoreContext} from '../../Context';
-import {ActionType, MessageItemType, MessageType} from '../../redux/Types';
 
 
 // type DialogsContainerPropsType = {  //  if use without Context
@@ -17,7 +15,6 @@ import {ActionType, MessageItemType, MessageType} from '../../redux/Types';
 
 
 export const DialogsContainer: React.FC = () => {
-
 
     return (<StoreContext.Consumer>
 
