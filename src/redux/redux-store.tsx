@@ -4,9 +4,11 @@ import DialogsReducer from './dialogs-Reducer';
 
 // export type  storeType = typeof store;
 
-export type RootReducerType = typeof reducers;
+// export type RootReducerType = typeof reducers;
 
-export type AppStateType = ReturnType<RootReducerType>
+// export type StoreType = ReturnType<RootReducerType>
+
+export type StateType = ReturnType<typeof reducers>
 
 let reducers = combineReducers({
     dialogsPage: DialogsReducer,
@@ -14,5 +16,7 @@ let reducers = combineReducers({
 });
 
 let store = createStore(reducers);
+
+
 
 export default store;

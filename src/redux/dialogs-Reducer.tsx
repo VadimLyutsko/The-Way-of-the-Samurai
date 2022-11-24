@@ -1,6 +1,6 @@
 import React from 'react';
-import {ActionType, AddNewDialogMessageAT, UpdateDialogsMessageAT} from '../index';
-import {DialogsDataType} from '../App';
+import {ActionType, AddNewDialogMessageAT, InitialDialogsReducerType, UpdateDialogsMessageAT} from './Types';
+
 
 const ADD_NEW_DIALOG_MESSAGE = 'ADD-NEW-DIALOG-MESSAGE';
 const UPDATE_DIALOG_MESSAGE = 'UPDATE-DIALOG-MESSAGE';
@@ -44,7 +44,7 @@ let initialState = {
     newDialogMessageText: '',
 };
 
-const DialogsReducer = (state: DialogsDataType = initialState, action: ActionType): DialogsDataType => {
+const DialogsReducer = (state: InitialDialogsReducerType = initialState, action: ActionType): InitialDialogsReducerType => {
 
     switch (action.type) {
         case ADD_NEW_DIALOG_MESSAGE: {

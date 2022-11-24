@@ -1,26 +1,20 @@
 import React from 'react';
 import style from './MyPosts.module.css';
-import {Post} from './Post/Post';
-import {v1} from 'uuid';
 import SuperButton from '../../../SuperComponents/SuperButton/SuperButton';
-import {PostPropsType} from '../../../../App';
 
 type MyPostType = {
     addPost: (text: string) => void
     deletePost: () => void
     onPostChange: (newPostElement: string) => void
-    postsData: Array<PostPropsType>
+    postsElements: JSX.Element[]
     newPostText: string
 }
 
 export const MyPosts: React.FC<MyPostType> = (props
 ) => {
 
-    const {postsData, newPostText, addPost, deletePost, onPostChange} = props;   // Destructuring for convenience
+    const {postsElements, newPostText, addPost, deletePost, onPostChange} = props;   // Destructuring for convenience
 
-    const postsElements = postsData.map(item => <Post key={v1()} id={item.id} message={item.message}
-                                                      likeCount={item.likeCount}
-                                                      imgAddress={item.imgAddress}/>);
 
     const addMyPost = () => {
         newPostElement.current?.value ? addPost(newPostText) : alert('Введите хоть что-нибудь...');

@@ -5,13 +5,24 @@ import {
     deletePostActionCreator,
     updatePostTextActionCreator
 } from '../../../redux/profile-Reducer';
-import {PostDataType} from '../Profile';
+import {Post} from './MyPosts/Post/Post';
+import {v1} from 'uuid';
+import {ActionType, PostType} from '../../../redux/Types';
 
+type MyPostsContainerType = {
+    postsData: PostType[]
+    dispatch: (action: ActionType) => void
+    newPostText: string
+}
 
-export const MyPostsContainer: React.FC<PostDataType> = ({
-                                                             postsData,
-                                                             newPostText, dispatch
-                                                         }) => {
+export const MyPostsContainer: React.FC<MyPostsContainerType> = ({
+                                                                     postsData,
+                                                                     newPostText, dispatch
+                                                                 }) => {
+
+    const postsElements = postsData.map(item => <Post key={v1()} id={item.id} message={item.message}
+                                                      likeCount={item.likeCount}
+                                                      imgAddress={item.imgAddress}/>);
 
     const addPost = (text: string) => {
         text ? dispatch(addNewPostActionCreator(text)) : alert('Введите хоть что-нибудь...');
@@ -27,7 +38,7 @@ export const MyPostsContainer: React.FC<PostDataType> = ({
 
 
     return (
-        <MyPosts addPost={addPost} deletePost={deletePost} onPostChange={onPostChange} postsData={postsData}
+        <MyPosts addPost={addPost} deletePost={deletePost} onPostChange={onPostChange} postsElements={postsElements}
                  newPostText={newPostText}/>
     );
 };

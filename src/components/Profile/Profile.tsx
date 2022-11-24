@@ -1,15 +1,19 @@
 import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {PostPropsType} from '../../App';
-import {ActionType} from '../../index';
-import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
 
-export type PostDataType = {
-    postsData: Array<PostPropsType>
-    newPostText: string
+import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
+import {ActionType, PostType} from '../../redux/Types';
+
+
+type ProfilePropsType = {
+    postsData: PostType[]
     dispatch: (action: ActionType) => void
+    newPostText: string
+
 }
-export const Profile: React.FC<PostDataType> = (
+
+
+export const Profile: React.FC<ProfilePropsType> = (
     {
         postsData,
         newPostText, dispatch

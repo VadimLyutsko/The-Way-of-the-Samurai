@@ -3,21 +3,22 @@ import styles from './Dialogs.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 
 
-type DialogsDataType = {
+type DialogsPropsType = {
     dialogsElements: JSX.Element[]
     messageElements: JSX.Element[]
-    newDialogMessageText: string
     addMessage: (newMessageText: string) => void
     onChangeMessageValue: (changeNewMessageText: string) => void
+    newDialogMessageText: string
 }
 
-export const Dialogs: React.FC<DialogsDataType> = ({
-                                                       dialogsElements,
-                                                       messageElements,
-                                                       newDialogMessageText,
-                                                       addMessage,
-                                                       onChangeMessageValue
-                                                   }) => {
+
+export const Dialogs: React.FC<DialogsPropsType> = ({
+                                                        dialogsElements,
+                                                        messageElements,
+                                                        newDialogMessageText,
+                                                        addMessage,
+                                                        onChangeMessageValue
+                                                    }) => {
 
 
     const onClickButtonHandler = () => {
@@ -46,7 +47,6 @@ export const Dialogs: React.FC<DialogsDataType> = ({
                         onChange={onChangeTextAreaValue}
                         placeholder={'Enter your message'}
                     />
-
                     <SuperButton
                         title={'Add'}
                         callBack={onClickButtonHandler}/>

@@ -7,51 +7,18 @@ import {Profile} from './components/Profile/Profile';
 import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
-import {ActionType} from './index';
-import {AppStateType} from './redux/redux-store';
 import {DialogsContainer} from './components/DialogsContainer/DialogsContainer';
+import {StateType} from './redux/redux-store';
+import {ActionType} from './redux/Types';
 
 
-export type StatePropsType = {                  //for All state
-    state: AppStateType
+type AppPropsType = {
+    state: StateType
     dispatch: (action: ActionType) => void
 }
 
-export type StateDataPropsType = {
-    profilePage: DialogsDataType
-    messagePage: MessagesDataType
-}
 
-export type  DialogsDataType = {
-    dialogsData: Array<DialogPropsType>
-    messagesData: Array<MessageProps>
-    newDialogMessageText: string
-}
-
-export type MessagesDataType = {
-    postsData: Array<PostPropsType>
-    newPostText: string
-}
-
-export type DialogPropsType = {
-    id: string
-    name: string
-    imgAddress: string
-}
-
-export type MessageProps = {
-    message: string
-}
-
-export type PostPropsType = {
-    id: string
-    message: string
-    likeCount: number
-    imgAddress: string
-}
-
-
-const App: React.FC<StatePropsType> = ({state, dispatch}) => {
+const App: React.FC<AppPropsType> = ({state, dispatch}) => {
 
     return (
         <div className="app-wrapper">
@@ -62,9 +29,7 @@ const App: React.FC<StatePropsType> = ({state, dispatch}) => {
                        render={() => <Profile newPostText={state.profilePage.newPostText}
                                               postsData={state.profilePage.postsData} dispatch={dispatch}/>}/>
                 <Route path="/dialogs"
-                       render={() => <DialogsContainer messagesData={state.dialogsPage.messagesData} newDialogMessageText={state.dialogsPage.newDialogMessageText}
-                                              dialogsData={state.dialogsPage.dialogsData}
-                                              dispatch={dispatch}/>}/>
+                       render={() => <DialogsContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
