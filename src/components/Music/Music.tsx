@@ -5,13 +5,13 @@ import SuperButton from '../SuperComponents/SuperButton/SuperButton';
 export const Music: React.FC = () => {
 
     function play() {
-        alert('Отвали ❌')
+        alert('Отвали ❌');
         new Audio(sound).play();
     }
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
-            <SuperButton title={'Touch me!'} callBack={play}></SuperButton>&#128529;
+            <SuperButton type={'Evil'} title={'Touch me!'} callBack={play}></SuperButton>&#128529;
         </div>
     );
 };

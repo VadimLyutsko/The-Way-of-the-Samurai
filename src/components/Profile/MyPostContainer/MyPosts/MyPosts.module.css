@@ -10,3 +10,15 @@
 .posts{
     margin-top: 10px;
 }
+
+.myPostsButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 275px;
+    margin: 15px 0;
+}
+
+.myPostsTextArea{
+    min-width: 270px;
+
+}

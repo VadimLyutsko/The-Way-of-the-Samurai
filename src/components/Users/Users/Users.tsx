@@ -1,6 +1,7 @@
 import React from 'react';
 import {UserType} from '../../../redux/Types';
 import styles from './Users.module.css';
+import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 
 type UsersType = {
     users: UserType[]
@@ -24,7 +25,7 @@ export const Users: React.FC<UsersType> = ({users, setUsers, unFollowUser, follo
                 id: '2',
                 name: 'Vadim',
                 location: {country: 'Belarus', city: 'Kopyl'},
-                follow: true,
+                follow: false,
                 userPhoto: 'https://yt3.ggpht.com/ytc/AKedOLRAVID-MTG8mna_7U1E4o2_3GANNg6fVfKKGp5r=s900-c-k-c0x00ffffff-no-rj'
             },
             {
@@ -41,6 +42,8 @@ export const Users: React.FC<UsersType> = ({users, setUsers, unFollowUser, follo
         <div>
             {users.map(user => <div key={user.id}>
 
+
+
                     <div>
                         <div className={styles.userPhoto}>
                             <img src={user.userPhoto} alt=""/>
@@ -51,12 +54,11 @@ export const Users: React.FC<UsersType> = ({users, setUsers, unFollowUser, follo
                         <span>{`From: ${user.location.country}, ${user.location.city}`}</span>
 
                         <div>{user.follow ?
-                            <button onClick={() => {
-                                unFollowUser(user.id);
-                            }}>unfollow</button> :
-                            <button onClick={() => {
-                                followUser(user.id);
-                            }}>follow</button>}
+
+                            <SuperButton type={'Evil'} title={'Unfollow'} callBack={()=>{unFollowUser(user.id)}}></SuperButton> :
+
+                            <SuperButton type={'Goodness'} title={'Follow'} callBack={()=>{followUser(user.id)}}></SuperButton>}
+
                         </div>
                     </div>
 

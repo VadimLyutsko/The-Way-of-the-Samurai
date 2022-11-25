@@ -48,6 +48,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
                         placeholder={'Enter your message'}
                     />
                     <SuperButton
+                        type={'Evil'}
                         title={'Add'}
                         callBack={onClickButtonHandler}/>
                 </div>

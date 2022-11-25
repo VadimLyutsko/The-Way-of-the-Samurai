@@ -34,26 +34,23 @@ export const MyPosts: React.FC<MyPostType> = (props
         <div className={style.postsBlock}>
             <h3> My posts</h3>
             <div>
-                < ><textarea
-                    style={{minWidth: '245px'}}
-                    ref={newPostElement}
-                    placeholder="Type some text"
-                    onChange={onMyPostChange}
-                    value={newPostText}
-                />
+                < >
+                    <textarea
+                        className={style.myPostsTextArea}
+                        ref={newPostElement}
+                        placeholder="Type some text"
+                        onChange={onMyPostChange}
+                        value={newPostText}/>
                 </>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    width: '250px',
-                    margin: '15px 0'
-                }}>
+                <div className={style.myPostsButtonContainer}>
                     <SuperButton
+                        type={'Goodness'}
                         title={'Add post'}
                         callBack={addMyPost}
                     />
 
                     <SuperButton
+                        type={'Evil'}
                         title={'Delete post'}
                         callBack={deleteMyPost}
                     />

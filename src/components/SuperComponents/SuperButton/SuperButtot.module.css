@@ -4,13 +4,13 @@
     font-weight: 700;
     text-decoration: none;
     user-select: none;
-    padding: .5em 2em;
+    padding: .5em 1em;
     outline: none;
     border: none;
     border-radius: 5px;
     transition: 0.2s;
     background-color: #67677c;
-
+    width: 125px;
 }
 
 .deleteSuperButton {
@@ -19,12 +19,13 @@
     font-weight: 700;
     text-decoration: none;
     user-select: none;
-    padding: .5em 2em;
+    padding: .5em 1em;
     outline: none;
     border: none;
     border-radius: 5px;
     transition: 0.2s;
     background-color: #a19696;
+    width: 125px;
 }
 
 .addSuperButton:hover {
