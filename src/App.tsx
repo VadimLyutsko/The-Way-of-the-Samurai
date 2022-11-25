@@ -8,17 +8,9 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {DialogsContainer} from './components/DialogsContainer/DialogsContainer';
-import {StateType} from './redux/redux-store';
-import {ActionType} from './redux/Types';
 
 
-type AppPropsType = {
-    state: StateType
-    dispatch: (action: ActionType) => void
-}
-
-
-const App: React.FC<AppPropsType> = ({state, dispatch}) => {
+const App: React.FC = () => {
 
     return (
         <div className="app-wrapper">
@@ -26,8 +18,7 @@ const App: React.FC<AppPropsType> = ({state, dispatch}) => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/profile"
-                       render={() => <Profile newPostText={state.profilePage.newPostText}
-                                              postsData={state.profilePage.postsData} dispatch={dispatch}/>}/>
+                       render={() => <Profile />}/>
                 <Route path="/dialogs"
                        render={() => <DialogsContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>

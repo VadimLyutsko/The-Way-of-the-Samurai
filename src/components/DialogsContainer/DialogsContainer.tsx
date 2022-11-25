@@ -1,47 +1,36 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {Dialogs} from './Dialogs/Dialogs';
 import {addNewDialogsMessageActionCreator, updateDialogsMessageActionCreator} from '../../redux/dialogs-Reducer';
-import {Message} from './Dialogs/MessageItem/MessageItem';
+import {connect} from 'react-redux';
+import {StateType} from '../../redux/redux-store';
+import {ActionType} from '../../redux/Types';
 import {DialogItem} from './Dialogs/DialogsItem/DialogsItem';
-import {StoreContext} from '../../Context';
+import {Message} from './Dialogs/MessageItem/MessageItem';
 
 
-// type DialogsContainerPropsType = {  //  if use without Context
-//     dialogsData: MessageItemType[]
-//     messagesData: MessageType[]
-//     newDialogMessageText: string
-//     dispatch: (action: ActionType) => void
-// }
+const mapStateToProps = (state: StateType) => {
+    return {
+        newDialogMessageText: state.dialogsPage.newDialogMessageText,
+        dialogsElements: state.dialogsPage.dialogsData.map(item => <DialogItem imgAddress={item.imgAddress}
+                                                                               name={item.name} id={item.id}
+        />),
+        messageElements: state.dialogsPage.messagesData.map(item => <Message message={item.message}/>)
 
-
-export const DialogsContainer: React.FC = () => {
-
-    return (<StoreContext.Consumer>
-
-            {(store) => {
-                let state = store.getState();
-                const {dialogsPage: {newDialogMessageText, dialogsData, messagesData}} = state;
-
-                const dialogsElements = dialogsData.map(item => <DialogItem id={item.id} name={item.name}
-                                                                            imgAddress={item.imgAddress}/>);
-
-                const messageElements = messagesData.map(item => <Message message={item.message}/>);
-
-                const addMessage = (newMessageText: string) => {
-                    newMessageText ? store.dispatch(addNewDialogsMessageActionCreator(newMessageText)) : alert(`Введи хоть что-нибудь, умник...`);
-                };
-
-                const onChangeMessageValue = (changeNewMessageText: string) => {
-                    changeNewMessageText && store.dispatch(updateDialogsMessageActionCreator(changeNewMessageText));
-                };
-                return <Dialogs messageElements={messageElements} newDialogMessageText={newDialogMessageText}
-                                dialogsElements={dialogsElements} addMessage={addMessage}
-                                onChangeMessageValue={onChangeMessageValue}/>;
-            }}
-
-        </StoreContext.Consumer>
-    );
+    };
 };
+
+const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => {
+    return {
+        addMessage: (newMessageText: string) => {
+            newMessageText ? dispatch(addNewDialogsMessageActionCreator(newMessageText)) : alert(`Введи хоть что-нибудь, умник...`);
+        },
+        onChangeMessageValue: (changeNewMessageText: string) => {
+            changeNewMessageText && dispatch(updateDialogsMessageActionCreator(changeNewMessageText));
+        }
+    };
+};
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 
 

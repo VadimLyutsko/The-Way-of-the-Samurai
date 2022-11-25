@@ -3,19 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {BrowserRouter} from 'react-router-dom';
 import store, {StateType} from './redux/redux-store';
-import {Provider} from './Context';
 import App from './App';
+import {Provider} from 'react-redux';
 
 
 export let renderEntireThree = (state: StateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
-            <Provider value={store}>
-                <App
-                    state={store.getState()}
-                    dispatch={store.dispatch.bind(store)}
-                />
+            <Provider store={store}>
+                <App/>
             </Provider>
         </BrowserRouter>,
         document.getElementById('root')
