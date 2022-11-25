@@ -7,7 +7,7 @@ import App from './App';
 import {Provider} from 'react-redux';
 
 
-export let renderEntireThree = (state: StateType) => {
+// export let renderEntireThree = (state: StateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
@@ -17,12 +17,12 @@ export let renderEntireThree = (state: StateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-};
+// };
 
 
-renderEntireThree(store.getState());
-
-store.subscribe(() => {
-    renderEntireThree(store.getState());
-});
+// renderEntireThree(store.getState());
+//
+// store.subscribe(() => {
+//     renderEntireThree(store.getState());
+// });
 

@@ -30,7 +30,7 @@ let initialState = {
     newPostText: '',
 };
 
-const ProfileReducer = (state:  InitialProfileReducerType = initialState, action: ActionType): InitialProfileReducerType => {
+const ProfileReducer = (state: InitialProfileReducerType = initialState, action: ActionType): InitialProfileReducerType => {
     switch (action.type) {
         case ADD_NEW_POST: {
             let newPost = {
@@ -39,17 +39,23 @@ const ProfileReducer = (state:  InitialProfileReducerType = initialState, action
                 likeCount: 0,
                 imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
             };
-            state.postsData.unshift(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                postsData: [newPost, ...state.postsData],
+                newPostText: ''
+            };
         }
         case UPDATE_NEW_POST_TEXT: {
-            state.newPostText = action.mewPostText;
-            return state;
+            return {
+                ...state,
+                newPostText: action.mewPostText
+            };
         }
         case DELETE_LAST_POST: {
-            state.postsData.shift();
-            return state;
+            return {
+                ...state,
+                ...state.postsData.pop()
+            };
         }
         default:
             return state;

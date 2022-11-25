@@ -49,13 +49,18 @@ const DialogsReducer = (state: InitialDialogsReducerType = initialState, action:
     switch (action.type) {
         case ADD_NEW_DIALOG_MESSAGE: {
             let newDialogMessage = {message: action.mewMessage};
-            state.messagesData = [...state.messagesData, newDialogMessage];
-            state.newDialogMessageText = '';
-            return state;
+            return {
+                ...state,
+                messagesData: [...state.messagesData, newDialogMessage],
+                newDialogMessageText: ''  // Зануляем введенный текст
+            };
         }
         case UPDATE_DIALOG_MESSAGE : {
-            state.newDialogMessageText = action.mewMessageText;
-            return state;
+            return {
+                ...state,
+                dialogsData: [...state.dialogsData],
+                newDialogMessageText: action.mewMessageText   // Изменяем введенный текст
+            };
         }
         default:
             return state;
