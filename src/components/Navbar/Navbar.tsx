@@ -23,6 +23,10 @@ export const Navbar: React.FC = () => {
             </div>
 
             <div className={style.item}>
+                <NavLink exact to="/users" activeClassName={style.active}>Users</NavLink>   {/*exact */}
+            </div>
+
+            <div className={style.item}>
                 <NavLink exact to="/settings" activeClassName={style.active}>Settings</NavLink>   {/*exact */}
             </div>
 

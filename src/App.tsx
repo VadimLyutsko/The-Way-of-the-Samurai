@@ -8,6 +8,7 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import {DialogsContainer} from './components/DialogsContainer/DialogsContainer';
+import {UsersContainer} from './components/Users/UsersContainer';
 
 
 const App: React.FC = () => {
@@ -18,12 +19,13 @@ const App: React.FC = () => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/profile"
-                       render={() => <Profile />}/>
+                       render={() => <Profile/>}/>
                 <Route path="/dialogs"
                        render={() => <DialogsContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
+                <Route path="/users" render={() => <UsersContainer/>}/>
             </div>
         </div>
     );

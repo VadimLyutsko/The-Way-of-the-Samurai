@@ -6,6 +6,9 @@ export type ActionType =
     | DeletePostTextAT
     | AddNewDialogMessageAT
     | UpdateDialogsMessageAT
+    | UnFollowUserAT
+    | FollowUserAT
+    | SetUserAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -31,10 +34,48 @@ export type DeletePostTextAT = {
     type: 'DELETE-LAST-POST'
 }
 
+// AT for Users
+
+export type FollowUserAT = {
+    type: 'FOLLOW-USER'
+    userId: string
+}
+
+export type UnFollowUserAT = {
+    type: 'UNFOLLOW-USER'
+    userId: string
+}
+
+export type SetUserAT = {
+    type: 'SET-USER'
+    users:UserType[]
+}
+
 
 //Store
 
 export type StoreType = typeof store
+
+
+//UsersDataType
+
+export type InitialUsersReducerType = {
+    UsersData: UserType[]
+}
+
+export type UserType = {
+    id: string
+    name: string
+    location: UserLocationType
+    follow: boolean
+    userPhoto: string
+}
+
+type UserLocationType = {
+    country: string
+    city: string
+}
+
 
 //PostsDataType
 export type InitialProfileReducerType = {
