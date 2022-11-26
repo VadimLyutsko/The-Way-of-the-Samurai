@@ -6,7 +6,7 @@ export const ProfileInfo: React.FC = () => {
         <div>
             <div>
                 <img
-                    src="https://www.wallpaperflare.com/static/555/605/138/mountain-range-panorama-landscape-nature-wallpaper-preview.jpg"
+                    src="https://pbs.twimg.com/profile_banners/557861893/1497433330/1500x500"
                     alt=""/>
             </div>
             <div className={styles.description}>ava + description

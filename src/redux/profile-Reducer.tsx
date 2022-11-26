@@ -12,19 +12,19 @@ let initialState = {
             id: '1',
             message: 'Hello, my friends',
             likeCount: 1,
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://r3.mt.ru/r4/photo8EBF/20750698803-0/jpeg/bp.jpeg'
         },
         {
             id: '2',
             message: 'My brother',
             likeCount: 17,
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://yt3.ggpht.com/a/AATXAJyxyzVyRlYVGXRHd157SIfb7B5eK0oIjJHAKRohsw=s900-c-k-c0xffffffff-no-rj-mo'
         },
         {
             id: '3',
             message: 'My Valeria',
             likeCount: 175,
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://yt3.ggpht.com/a/AGF-l78SDKUTFWu93u84ILpJMBiA0safKfEX2blQVQ=s900-c-k-c0xffffffff-no-rj-mo'
         }
     ],
     newPostText: '',
