@@ -11,45 +11,48 @@ type UsersType = {
     setUsers: (users: UserType[]) => void
 }
 
-export const Users: React.FC<UsersType> = ({users, setUsers, unFollowUser, followUser}) => {
+export class Users extends React.Component<UsersType> {
 
-    if (users.length === 0) {
-        debugger
+    constructor(props:UsersType) {
+        super(props);
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             debugger
-            setUsers(response.data.items);
+            this.props.setUsers(response.data.items);
         });
     }
 
-    return (
-        <div>
-            {users.map(user => <div key={user.id}>
+    render() {
+        return (
+            <div>
+                {/*<SuperButton type={'Goodness'} title={'Get users'} callBack={this.getUsersHandler}></SuperButton>*/}
+                {this.props.users.map(user => <div key={user.id}>
 
-                    <div className={styles.usersContent}>
-                        <div className={styles.userPhoto}>
-                            <img
-                                src={user.photos.small === null ? 'https://i.stack.imgur.com/zJGYX.png?s=192&g=1' : user.photos.small}
-                                alt=""/>
-                        </div>
+                        <div className={styles.usersContent}>
+                            <div className={styles.userPhoto}>
+                                <img
+                                    src={user.photos.small === null ? 'https://i.stack.imgur.com/zJGYX.png?s=192&g=1' : user.photos.small}
+                                    alt=""/>
+                            </div>
 
-                        <div>{user.name}</div>
+                            <div>{user.name}</div>
 
-                        <span>{!user.uniqueUrlName ? `NoUniqueName${user.id}` : user.uniqueUrlName}</span>
+                            <span>{!user.uniqueUrlName ? `NoUniqueName${user.id}` : user.uniqueUrlName}</span>
 
-                        <div>{user.followed ?
+                            <div>{user.followed ?
 
-                            <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
-                                unFollowUser(user.id);
-                            }}></SuperButton> :
+                                <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
+                                    this.props.unFollowUser(user.id);
+                                }}></SuperButton> :
 
-                            <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
-                                followUser(user.id);
-                            }}></SuperButton>}
+                                <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
+                                    this.props.followUser(user.id);
+                                }}></SuperButton>}
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
-    );
-};
+                )}
+            </div>
+        );
+    }
+}
