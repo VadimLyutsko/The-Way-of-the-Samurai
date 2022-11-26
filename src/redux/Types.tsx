@@ -38,17 +38,17 @@ export type DeletePostTextAT = {
 
 export type FollowUserAT = {
     type: 'FOLLOW-USER'
-    userId: string
+    userId: number
 }
 
 export type UnFollowUserAT = {
     type: 'UNFOLLOW-USER'
-    userId: string
+    userId: number
 }
 
 export type SetUserAT = {
     type: 'SET-USER'
-    users:UserType[]
+    users: UserType[]
 }
 
 
@@ -64,16 +64,18 @@ export type InitialUsersReducerType = {
 }
 
 export type UserType = {
-    id: string
     name: string
-    location: UserLocationType
-    follow: boolean
-    userPhoto: string
+    id: number
+    uniqueUrlName: any
+    photos: UserPhotosType
+    status: any
+    followed: boolean
+
 }
 
-type UserLocationType = {
-    country: string
-    city: string
+type UserPhotosType = {
+    small: string
+    large: string
 }
 
 

@@ -14,10 +14,10 @@ let mapStateToProps = (state: StateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch<ActionType>) => {
     return {
-        followUser: (userId: string) => {
+        followUser: (userId: number) => {
             dispatch(FollowUserAC(userId));
         },
-        unFollowUser: (userId: string) => {
+        unFollowUser: (userId: number) => {
             dispatch(UnFollowUserAC(userId));
         },
         setUsers: (users: UserType[]) => {

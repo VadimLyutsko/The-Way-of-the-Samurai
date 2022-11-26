@@ -58,14 +58,14 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
 };
 
 
-export const FollowUserAC = (userId: string): FollowUserAT => {
+export const FollowUserAC = (userId: number): FollowUserAT => {
     return {
         type: FOLLOW_USER,
         userId
     };
 };
 
-export const UnFollowUserAC = (userId: string): UnFollowUserAT => {
+export const UnFollowUserAC = (userId: number): UnFollowUserAT => {
     return {
         type: UNFOLLOW_USER,
         userId

@@ -1,4 +1,13 @@
+.usersContent{
+    margin: 15px 5px;
+}
+
 .userPhoto{
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
+}
+
+.userPhoto img{
+    border-radius: 25px;
+
 }
