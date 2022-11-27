@@ -6,15 +6,15 @@ import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 type UsersType = {
     users: UserType[]
     currentPageHAndler: (currentPage: number) => void
-    currentPage: number
-    followUser: (userId: number) => void
     unFollowUser: (userId: number) => void
+    followUser: (userId: number) => void
+    currentPage: number
 }
 
-export const Users: React.FC<UsersType> = (props) => {
+export const Users: React.FC<UsersType> = ({users, unFollowUser, followUser, currentPageHAndler, currentPage}) => {
 
     let pagesCount = Math.ceil(15);  //hardCode for normal UI
-    // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+    // let pagesCount = Math.ceil(this.totalUsersCount / this.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -23,17 +23,19 @@ export const Users: React.FC<UsersType> = (props) => {
     return (<div>
 
         <div>
-            {pages.map(p => {
-                return <span onClick={() => {
-                    props.currentPageHAndler(p);
-                }}
-                             className={props.currentPage === p ? styles.selectedPageNow : styles.selectedPage}>{p}</span>;
-            })}
+            {
+                pages.map(p => {
+                    return <span onClick={() => {
+                        currentPageHAndler(p);
+                    }}
+                                 className={currentPage === p ? styles.selectedPageNow : styles.selectedPage}>{p}</span>;
+                })
+            }
             ... and others
         </div>
 
         {
-            props.users.map(user => <div key={user.id}>
+            users.map(user => <div key={user.id}>
 
                     <div className={styles.usersContent}>
                         <div className={styles.userPhoto}>
@@ -47,19 +49,18 @@ export const Users: React.FC<UsersType> = (props) => {
                         <span>{!user.uniqueUrlName ? `NoUniqueName${user.id}` : user.uniqueUrlName}</span>
 
                         <div>{user.followed ?
-
                             <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
-                                props.unFollowUser(user.id);
+                                unFollowUser(user.id);
                             }}></SuperButton> :
-
                             <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
-                                props.followUser(user.id);
+                                followUser(user.id);
                             }}></SuperButton>}
 
                         </div>
                     </div>
                 </div>
-            )}
+            )
+        }
     </div>);
 };
 

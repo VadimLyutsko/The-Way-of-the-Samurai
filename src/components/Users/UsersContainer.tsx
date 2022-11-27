@@ -44,10 +44,10 @@ export class UsersAPI extends React.Component<UsersContainerType> {
         return (
             <Users
                 currentPageHAndler={this.currentPageHAndler}
-                currentPage={this.props.currentPage}
-                users={this.props.users}
-                followUser={this.props.followUser}
                 unFollowUser={this.props.unFollowUser}
+                currentPage={this.props.currentPage}
+                followUser={this.props.followUser}
+                users={this.props.users}
             />
         );
     }
@@ -56,10 +56,10 @@ export class UsersAPI extends React.Component<UsersContainerType> {
 
 let mapStateToProps = (state: StateType) => {
     return {
-        users: state.userPage.UsersData,
-        pageSize: state.userPage.pageSize,
         totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage
+        currentPage: state.userPage.currentPage,
+        pageSize: state.userPage.pageSize,
+        users: state.userPage.UsersData,
     };
 };
 
