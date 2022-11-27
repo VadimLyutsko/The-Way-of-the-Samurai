@@ -9,6 +9,8 @@ export type ActionType =
     | UnFollowUserAT
     | FollowUserAT
     | SetUserAT
+    | SetCurrentPageAT
+    | SetTotalUserCountAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -51,6 +53,15 @@ export type SetUserAT = {
     users: UserType[]
 }
 
+export type SetCurrentPageAT = {
+    type: 'SET-USER-CURRENT-PAGE'
+    currentPage: number
+}
+export type SetTotalUserCountAT = {
+    type: 'SET-TOTAL-USER-COUNT'
+    totalUsersCount: number
+}
+
 
 //Store
 
@@ -61,6 +72,9 @@ export type StoreType = typeof store
 
 export type InitialUsersReducerType = {
     UsersData: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export type UserType = {

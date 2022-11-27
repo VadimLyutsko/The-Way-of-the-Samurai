@@ -11,3 +11,16 @@
     border-radius: 25px;
 
 }
+
+.selectedPageNow{
+    font-weight: bold;
+    font-size: 20px;
+    margin-left:  5px;
+}
+
+.selectedPage{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left:  5px;
+}

@@ -1,9 +1,19 @@
 import React from 'react';
-import {ActionType, FollowUserAT, InitialUsersReducerType, SetUserAT, UnFollowUserAT, UserType} from './Types';
+import {
+    ActionType,
+    FollowUserAT,
+    InitialUsersReducerType, SetCurrentPageAT,
+    SetTotalUserCountAT,
+    SetUserAT,
+    UnFollowUserAT,
+    UserType
+} from './Types';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USER = 'SET-USER';
+const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT';
+const SET_USER_CURRENT_PAGE = 'SET-USER-CURRENT-PAGE';
 
 // let initialState = {
 //     UsersData: [
@@ -30,7 +40,12 @@ const SET_USER = 'SET-USER';
 //         }
 //     ]
 // };
-let   initialState= {UsersData:[]}
+let initialState = {
+    UsersData: [],
+    totalUsersCount: 10,
+    pageSize: 10,
+    currentPage: 1
+};
 
 const UsersReducer = (state: InitialUsersReducerType = initialState, action: ActionType): InitialUsersReducerType => {
     switch (action.type) {
@@ -46,11 +61,23 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
                 UsersData: state.UsersData.map(user => user.id === action.userId ? {...user, follow: false} : user)
             };
         }
-        case SET_USER:{
+        case SET_USER: {
             return {
                 ...state,
-                UsersData:[...state.UsersData, ...action.users]
-            }
+                UsersData: [ ...action.users]
+            };
+        }
+        case SET_TOTAL_USER_COUNT: {
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount
+            };
+        }
+        case SET_USER_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage
+            };
         }
         default:
             return state;
@@ -58,26 +85,41 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
 };
 
 
-export const FollowUserAC = (userId: number): FollowUserAT => {
+export const followUserAC = (userId: number): FollowUserAT => {
     return {
         type: FOLLOW_USER,
         userId
     };
 };
 
-export const UnFollowUserAC = (userId: number): UnFollowUserAT => {
+export const unFollowUserAC = (userId: number): UnFollowUserAT => {
     return {
         type: UNFOLLOW_USER,
         userId
     };
 };
 
-export const SetUserAC = (users: UserType[]): SetUserAT => {
+export const setUserAC = (users: UserType[]): SetUserAT => {
     return {
         type: SET_USER,
         users
     };
 };
+
+export const setCurrentPageAC=(currentPage:number):SetCurrentPageAT=>{
+    return{
+        type:SET_USER_CURRENT_PAGE,
+        currentPage
+    }
+}
+
+export const setTotalUserCountAC = (totalUsersCount:number): SetTotalUserCountAT => {
+    return {
+        type: SET_TOTAL_USER_COUNT,
+        totalUsersCount
+    };
+};
+
 
 
 
