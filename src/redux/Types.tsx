@@ -11,6 +11,7 @@ export type ActionType =
     | SetUserAT
     | SetCurrentPageAT
     | SetTotalUserCountAT
+    | SetFetchingPreloaderAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -61,6 +62,10 @@ export type SetTotalUserCountAT = {
     type: 'SET-TOTAL-USER-COUNT'
     totalUsersCount: number
 }
+export type SetFetchingPreloaderAT = {
+    type: 'SET-FETCHING-PRELOADER'
+    isFetching: boolean
+}
 
 
 //Store
@@ -72,6 +77,7 @@ export type StoreType = typeof store
 
 export type InitialUsersReducerType = {
     UsersData: UserType[]
+    isFetching: boolean
     pageSize: number
     totalUsersCount: number
     currentPage: number

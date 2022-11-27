@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ActionType,
     FollowUserAT,
-    InitialUsersReducerType, SetCurrentPageAT,
+    InitialUsersReducerType, SetCurrentPageAT, SetFetchingPreloaderAT,
     SetTotalUserCountAT,
     SetUserAT,
     UnFollowUserAT,
@@ -14,34 +14,11 @@ const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USER = 'SET-USER';
 const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT';
 const SET_USER_CURRENT_PAGE = 'SET-USER-CURRENT-PAGE';
+const SET_FETCHING_PRELOADER = 'SET-FETCHING-PRELOADER';
 
-// let initialState = {
-//     UsersData: [
-//         {
-//             id: '1',
-//             name: 'Vadim',
-//             location: {country: 'Belarus', city: 'Kopyl'},
-//             follow: true,
-//             userPhoto: 'https://yt3.ggpht.com/ytc/AKedOLRAVID-MTG8mna_7U1E4o2_3GANNg6fVfKKGp5r=s900-c-k-c0x00ffffff-no-rj'
-//         },
-//         {
-//             id: '2',
-//             name: 'Vadim',
-//             location: {country: 'Belarus', city: 'Kopyl'},
-//             follow: true,
-//             userPhoto: 'https://yt3.ggpht.com/ytc/AKedOLRAVID-MTG8mna_7U1E4o2_3GANNg6fVfKKGp5r=s900-c-k-c0x00ffffff-no-rj'
-//         },
-//         {
-//             id: '3',
-//             name: 'Vadim',
-//             location: {country: 'Belarus', city: 'Kopyl'},
-//             follow: true,
-//             userPhoto: 'https://yt3.ggpht.com/ytc/AKedOLRAVID-MTG8mna_7U1E4o2_3GANNg6fVfKKGp5r=s900-c-k-c0x00ffffff-no-rj'
-//         }
-//     ]
-// };
 let initialState = {
     UsersData: [],
+    isFetching: true,
     totalUsersCount: 10,
     pageSize: 10,
     currentPage: 1
@@ -64,7 +41,7 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
         case SET_USER: {
             return {
                 ...state,
-                UsersData: [ ...action.users]
+                UsersData: [...action.users]
             };
         }
         case SET_TOTAL_USER_COUNT: {
@@ -77,6 +54,12 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
             return {
                 ...state,
                 currentPage: action.currentPage
+            };
+        }
+        case SET_FETCHING_PRELOADER: {
+            return {
+                ...state,
+                isFetching: action.isFetching
             };
         }
         default:
@@ -106,21 +89,25 @@ export const setUserAC = (users: UserType[]): SetUserAT => {
     };
 };
 
-export const setCurrentPageAC=(currentPage:number):SetCurrentPageAT=>{
-    return{
-        type:SET_USER_CURRENT_PAGE,
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => {
+    return {
+        type: SET_USER_CURRENT_PAGE,
         currentPage
-    }
-}
+    };
+};
 
-export const setTotalUserCountAC = (totalUsersCount:number): SetTotalUserCountAT => {
+export const setTotalUserCountAC = (totalUsersCount: number): SetTotalUserCountAT => {
     return {
         type: SET_TOTAL_USER_COUNT,
         totalUsersCount
     };
 };
-
-
+export const setFetchingPreloaderAC = (isFetching: boolean): SetFetchingPreloaderAT => {
+    return {
+        type: SET_FETCHING_PRELOADER,
+        isFetching
+    };
+};
 
 
 export default UsersReducer;

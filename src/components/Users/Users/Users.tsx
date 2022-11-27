@@ -2,16 +2,27 @@ import React from 'react';
 import {UserType} from '../../../redux/Types';
 import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
+import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
 
 type UsersType = {
     users: UserType[]
     currentPageHAndler: (currentPage: number) => void
     unFollowUser: (userId: number) => void
     followUser: (userId: number) => void
+    preloaderImage:string
+    isFetching: boolean
     currentPage: number
 }
 
-export const Users: React.FC<UsersType> = ({users, unFollowUser, followUser, currentPageHAndler, currentPage}) => {
+export const Users: React.FC<UsersType> = ({
+                                               currentPageHAndler,
+                                               unFollowUser,
+                                               currentPage,
+                                               isFetching,
+                                               preloaderImage,
+                                               followUser,
+                                               users,
+                                           }) => {
 
     let pagesCount = Math.ceil(15);  //hardCode for normal UI
     // let pagesCount = Math.ceil(this.totalUsersCount / this.pageSize);
@@ -21,6 +32,9 @@ export const Users: React.FC<UsersType> = ({users, unFollowUser, followUser, cur
     }
 
     return (<div>
+        {
+            isFetching ? <SuperPreloader preloaderImage={preloaderImage}/> : null
+        }
 
         <div>
             {
