@@ -32,8 +32,7 @@ export const Users: React.FC<UsersType> = ({
     }
 
     return (<div>
-        {
-            isFetching ? <SuperPreloader preloaderImage={preloaderImage}/> : null
+        {            isFetching ? <SuperPreloader preloaderImage={preloaderImage}/> : null
         }
 
         <div>
