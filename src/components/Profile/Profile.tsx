@@ -6,14 +6,14 @@ import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif'
 
 type ProfileType = {
     // updateProfileData: (profile: UserProfileType) => void
-    profileDate:UserProfileType
+    profileDate: UserProfileType
 }
 
 export const Profile: React.FC<ProfileType> = (props) => {
 
     return (
         <div>
-            <ProfileInfo preloaderImage={preloaderImage} profileDate={props.profileDate} />
+            <ProfileInfo preloaderImage={preloaderImage} profileDate={props.profileDate}/>
             <MyPostsContainer/>
             {/*<MyPostsContainer newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>*/}
         </div>

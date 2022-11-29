@@ -5,16 +5,24 @@ import {connect} from 'react-redux';
 import {setUserProfileData} from '../../redux/profile-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 type ProfileContainerType = {
     setUserProfileData: (profile: UserProfileType) => void
-    profileDate:UserProfileType
+    profileDate: UserProfileType
 }
 
-class ProfileAPI extends React.Component<ProfileContainerType> {
+type MatchParams = {
+    userId: string
+}
+
+class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/2`).then(response => {
+
+        const userId = this.props.match.params.userId || 2;
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/` + userId).then(response => {
 
             this.props.setUserProfileData(response.data);
         });
@@ -33,8 +41,10 @@ class ProfileAPI extends React.Component<ProfileContainerType> {
 
 let mapStateToProps = (state: StateType) => {
     return {
-        profileDate:state.profilePage.profile
+        profileDate: state.profilePage.profile
     };
 };
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfileData})(ProfileAPI);
+let WidthURLProfileContainerComponent = withRouter(ProfileContainer);
+
+export default connect(mapStateToProps, {setUserProfileData})(WidthURLProfileContainerComponent);

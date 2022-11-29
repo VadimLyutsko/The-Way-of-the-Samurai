@@ -28,7 +28,7 @@ type UsersContainerType = {
     pageSize: number
 }
 
-export class UsersAPI extends React.Component<UsersContainerType> {
+export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.setFetchingPreloader(true);
@@ -75,11 +75,11 @@ let mapStateToProps = (state: StateType) => {
     };
 };
 
-export const UsersContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     setFetchingPreloader,
     setTotalUserCount,
     setCurrentPage,
     unFollowUser,
     followUser,
     setUsers,
-})(UsersAPI);
+})(UsersContainer);

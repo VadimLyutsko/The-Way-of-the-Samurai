@@ -22,6 +22,7 @@ let initialState = {
             message: 'Hello, my friends',
             likeCount: 1,
             imgAddress: 'https://r3.mt.ru/r4/photo8EBF/20750698803-0/jpeg/bp.jpeg'
+            // https://yandex.by/images/search?from=tabbar&text=avatar%20img&pos=6&img_url=http%3A%2F%2Fr3.mt.ru%2Fr4%2Fphoto8EBF%2F20750698803-0%2Fjpeg%2Fbp.jpeg&rpt=simage&lr=102200&rlt_url=https%3A%2F%2Fyt3.ggpht.com%2FHI4NXsPYEuFVGoX8AVWgRoZ28Eqb-WA0l-6tFea-w-KGt4ro_FpAbWR5FV-646gyYdnM2prbnA%3Ds900-c-k-c0x00ffffff-no-rj&ogl_url=http%3A%2F%2Fr3.mt.ru%2Fr4%2Fphoto8EBF%2F20750698803-0%2Fjpeg%2Fbp.jpeg
         },
         {
             id: '2',
@@ -46,7 +47,7 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
                 id: v1(),
                 message: action.mewPostMessage,
                 likeCount: 0,
-                imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+                imgAddress: 'https://yt3.ggpht.com/HI4NXsPYEuFVGoX8AVWgRoZ28Eqb-WA0l-6tFea-w-KGt4ro_FpAbWR5FV-646gyYdnM2prbnA=s900-c-k-c0x00ffffff-no-rj'
             };
             return {
                 ...state,
