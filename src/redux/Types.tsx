@@ -12,6 +12,7 @@ export type ActionType =
     | SetCurrentPageAT
     | SetTotalUserCountAT
     | SetFetchingPreloaderAT
+    | UpdateUserProfileDataAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -67,6 +68,11 @@ export type SetFetchingPreloaderAT = {
     isFetching: boolean
 }
 
+export type UpdateUserProfileDataAT = {
+    type: 'UPDATE-NEW-PROFILE',
+    profile: UserProfileType
+}
+
 
 //Store
 
@@ -99,10 +105,37 @@ type UserPhotosType = {
 }
 
 
-//PostsDataType
+//ProfileType
 export type InitialProfileReducerType = {
+    profile: UserProfileType
     postsData: PostType[]
     newPostText: string
+}
+
+export type UserProfileType = {
+    aboutMe: null | string
+    contacts: userProfileContactsType,
+    lookingForAJob: null | string
+    lookingForAJobDescription: null | string
+    fullName: string,
+    userId: number,
+    photos: UserProfilePhotosType
+} | null
+
+type UserProfilePhotosType = {
+    small: undefined | string
+    large: undefined | string
+}
+
+type userProfileContactsType = {
+    facebook: null | string
+    website: null | string
+    vk: null | string
+    twitter: null | string
+    instagram: null | string
+    youtube: null | string
+    github: null | string
+    mainLink: null | string
 }
 
 export type PostType = {

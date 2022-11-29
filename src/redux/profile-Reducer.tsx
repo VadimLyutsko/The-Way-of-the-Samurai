@@ -1,12 +1,21 @@
 import React from 'react';
 import {v1} from 'uuid';
-import {ActionType, AddNewPostAT, DeletePostTextAT, InitialProfileReducerType, UpdateNewPostTextAT} from './Types';
+import {
+    ActionType,
+    AddNewPostAT,
+    DeletePostTextAT,
+    InitialProfileReducerType,
+    UpdateNewPostTextAT, UpdateUserProfileDataAT,
+    UserProfileType
+} from './Types';
 
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const DELETE_LAST_POST = 'DELETE-LAST-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_PROFILE = 'UPDATE-NEW-PROFILE';
 
 let initialState = {
+    profile: null,
     postsData: [
         {
             id: '1',
@@ -57,6 +66,12 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
                 ...state.postsData.pop()
             };
         }
+        case UPDATE_NEW_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            };
+        }
         default:
             return state;
     }
@@ -80,6 +95,13 @@ export const updatePostText = (mewPostText: string): UpdateNewPostTextAT => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         mewPostText
+    };
+};
+
+export const setUserProfileData = (profile: UserProfileType): UpdateUserProfileDataAT => {
+    return {
+        type: UPDATE_NEW_PROFILE,
+        profile
     };
 };
 

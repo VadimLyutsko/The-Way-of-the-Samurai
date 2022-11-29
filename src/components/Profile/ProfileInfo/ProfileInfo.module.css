@@ -5,3 +5,8 @@
 img {
     width: 100%;
 }
+
+.userLargeImage {
+    width: 350px;
+    height: 350px;
+}

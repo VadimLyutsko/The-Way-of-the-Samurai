@@ -10,27 +10,27 @@ let initialState = {
         {
             id: '1',
             name: 'Vadim',
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://library.kissclipart.com/20191017/rtw/kissclipart-suit-white-collar-worker-official-formal-wear-busi-066d43efeda2e974.png'
         },
         {
             id: '2',
             name: 'Ivan',
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://library.kissclipart.com/20191017/rtw/kissclipart-suit-white-collar-worker-official-formal-wear-busi-066d43efeda2e974.png'
         },
         {
             id: '3',
             name: 'Vadim',
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://library.kissclipart.com/20191017/rtw/kissclipart-suit-white-collar-worker-official-formal-wear-busi-066d43efeda2e974.png'
         },
         {
             id: '4',
             name: 'Andrey',
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://library.kissclipart.com/20191017/rtw/kissclipart-suit-white-collar-worker-official-formal-wear-busi-066d43efeda2e974.png'
         },
         {
             id: '5',
             name: 'Valera',
-            imgAddress: 'https://termosfera.su/wp-content/uploads/2022/04/2816616767_vubrbej.jpg'
+            imgAddress: 'https://library.kissclipart.com/20191017/rtw/kissclipart-suit-white-collar-worker-official-formal-wear-busi-066d43efeda2e974.png'
         },
 
     ],

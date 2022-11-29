@@ -3,6 +3,7 @@ import {UserType} from '../../../redux/Types';
 import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
+import {NavLink} from 'react-router-dom';
 
 type UsersType = {
     users: UserType[]
@@ -53,9 +54,11 @@ export const Users: React.FC<UsersType> = ({
 
                     <div className={styles.usersContent}>
                         <div className={styles.userPhoto}>
+                            <NavLink to={'profile/' + user.id}>
                             <img
                                 src={user.photos.small === null ? 'https://i.stack.imgur.com/zJGYX.png?s=192&g=1' : user.photos.small}
                                 alt=""/>
+                        </NavLink>
                         </div>
 
                         <div>{user.name}</div>

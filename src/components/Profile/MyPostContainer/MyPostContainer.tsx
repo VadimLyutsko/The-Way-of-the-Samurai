@@ -20,10 +20,8 @@ const mapStateToProps = (state: StateType) => {
 };
 
 
-
-
 export const MyPostsContainer = connect(mapStateToProps, {
-    addNewPost,
     updatePostText,
+    addNewPost,
     deletePost
 })(MyPosts);
