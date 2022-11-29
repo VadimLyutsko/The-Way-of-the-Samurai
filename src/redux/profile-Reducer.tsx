@@ -62,7 +62,7 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
     }
 };
 
-export const addNewPostActionCreator = (mewPostMessage: string): AddNewPostAT => {
+export const addNewPost = (mewPostMessage: string): AddNewPostAT => {
     return {
         type: ADD_NEW_POST,
         mewPostMessage
@@ -70,13 +70,13 @@ export const addNewPostActionCreator = (mewPostMessage: string): AddNewPostAT =>
 };
 
 
-export const deletePostActionCreator = (): DeletePostTextAT => {
+export const deletePost = (): DeletePostTextAT => {
     return {
         type: DELETE_LAST_POST,
     };
 };
 
-export const updatePostTextActionCreator = (mewPostText: string): UpdateNewPostTextAT => {
+export const updatePostText = (mewPostText: string): UpdateNewPostTextAT => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         mewPostText

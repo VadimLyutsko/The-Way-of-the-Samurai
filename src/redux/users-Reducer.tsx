@@ -68,41 +68,41 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
 };
 
 
-export const followUserAC = (userId: number): FollowUserAT => {
+export const followUser = (userId: number): FollowUserAT => {
     return {
         type: FOLLOW_USER,
         userId
     };
 };
 
-export const unFollowUserAC = (userId: number): UnFollowUserAT => {
+export const unFollowUser = (userId: number): UnFollowUserAT => {
     return {
         type: UNFOLLOW_USER,
         userId
     };
 };
 
-export const setUserAC = (users: UserType[]): SetUserAT => {
+export const setUsers = (users: UserType[]): SetUserAT => {
     return {
         type: SET_USER,
         users
     };
 };
 
-export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => {
+export const setCurrentPage = (currentPage: number): SetCurrentPageAT => {
     return {
         type: SET_USER_CURRENT_PAGE,
         currentPage
     };
 };
 
-export const setTotalUserCountAC = (totalUsersCount: number): SetTotalUserCountAT => {
+export const setTotalUserCount = (totalUsersCount: number): SetTotalUserCountAT => {
     return {
         type: SET_TOTAL_USER_COUNT,
         totalUsersCount
     };
 };
-export const setFetchingPreloaderAC = (isFetching: boolean): SetFetchingPreloaderAT => {
+export const setFetchingPreloader = (isFetching: boolean): SetFetchingPreloaderAT => {
     return {
         type: SET_FETCHING_PRELOADER,
         isFetching

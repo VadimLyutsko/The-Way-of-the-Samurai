@@ -3,21 +3,21 @@ import style from './MyPosts.module.css';
 import SuperButton from '../../../SuperComponents/SuperButton/SuperButton';
 
 type MyPostType = {
-    addPost: (text: string) => void
-    deletePost: () => void
-    onPostChange: (newPostElement: string) => void
     postsElements: JSX.Element[]
+    updatePostText: (newPostElement: string) => void
+    addNewPost: (text: string) => void
+    deletePost: () => void
     newPostText: string
 }
 
 export const MyPosts: React.FC<MyPostType> = (props
 ) => {
 
-    const {postsElements, newPostText, addPost, deletePost, onPostChange} = props;   // Destructuring for convenience
+    const {postsElements, newPostText, addNewPost, deletePost, updatePostText} = props;   // Destructuring for convenience
 
 
     const addMyPost = () => {
-        newPostElement.current?.value ? addPost(newPostText) : alert('Введите хоть что-нибудь...');
+        newPostElement.current?.value ? addNewPost(newPostText) : alert('Введите хоть что-нибудь...');
     };
 
     const deleteMyPost = () => {
@@ -25,7 +25,7 @@ export const MyPosts: React.FC<MyPostType> = (props
     };
 
     const onMyPostChange = () => {
-        newPostElement.current?.value && onPostChange(newPostElement.current?.value);
+        newPostElement.current?.value && updatePostText(newPostElement.current?.value);
     };
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();

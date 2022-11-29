@@ -9,7 +9,7 @@ type UsersType = {
     currentPageHAndler: (currentPage: number) => void
     unFollowUser: (userId: number) => void
     followUser: (userId: number) => void
-    preloaderImage:string
+    preloaderImage: string
     isFetching: boolean
     currentPage: number
 }
@@ -32,7 +32,8 @@ export const Users: React.FC<UsersType> = ({
     }
 
     return (<div>
-        {            isFetching ? <SuperPreloader preloaderImage={preloaderImage}/> : null
+        {
+            isFetching ? <SuperPreloader preloaderImage={preloaderImage}/> : null
         }
 
         <div>
