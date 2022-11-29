@@ -2,6 +2,7 @@ import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
 import {UserProfileType} from '../../redux/Types';
+import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif'
 
 type ProfileType = {
     // updateProfileData: (profile: UserProfileType) => void
@@ -12,7 +13,7 @@ export const Profile: React.FC<ProfileType> = (props) => {
 
     return (
         <div>
-            <ProfileInfo profileDate={props.profileDate} />
+            <ProfileInfo preloaderImage={preloaderImage} profileDate={props.profileDate} />
             <MyPostsContainer/>
             {/*<MyPostsContainer newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>*/}
         </div>

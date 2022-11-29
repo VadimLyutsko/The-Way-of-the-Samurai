@@ -1,12 +1,17 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../redux/Types';
+import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
 
 type ProfileInfoType = {
     profileDate: UserProfileType
+    preloaderImage: string
 }
 
-export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate}) => {
+export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, preloaderImage}) => {
+    if (!profileDate) {
+        return <SuperPreloader preloaderImage={preloaderImage}/>;
+    }
     return (
         <div>
 
