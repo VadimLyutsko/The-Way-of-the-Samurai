@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/The-Way-of-the-Samurai/static/css/main.4037f554.css",
-    "main.js": "/The-Way-of-the-Samurai/static/js/main.bb3bafa5.js",
+    "main.css": "/The-Way-of-the-Samurai/static/css/main.c7aebe18.css",
+    "main.js": "/The-Way-of-the-Samurai/static/js/main.d99abcde.js",
     "static/media/sound.mp3": "/The-Way-of-the-Samurai/static/media/sound.7fb70d35bd78c175dd74.mp3",
     "static/media/Preloader.gif": "/The-Way-of-the-Samurai/static/media/Preloader.0e96a86a1f3288001e17.gif",
     "index.html": "/The-Way-of-the-Samurai/index.html",
-    "main.4037f554.css.map": "/The-Way-of-the-Samurai/static/css/main.4037f554.css.map",
-    "main.bb3bafa5.js.map": "/The-Way-of-the-Samurai/static/js/main.bb3bafa5.js.map"
+    "main.c7aebe18.css.map": "/The-Way-of-the-Samurai/static/css/main.c7aebe18.css.map",
+    "main.d99abcde.js.map": "/The-Way-of-the-Samurai/static/js/main.d99abcde.js.map"
   },
   "entrypoints": [
-    "static/css/main.4037f554.css",
-    "static/js/main.bb3bafa5.js"
+    "static/css/main.c7aebe18.css",
+    "static/js/main.d99abcde.js"
   ]
 }
