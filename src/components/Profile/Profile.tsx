@@ -2,10 +2,9 @@ import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
 import {UserProfileType} from '../../redux/Types';
-import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif'
+import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif';
 
 type ProfileType = {
-    // updateProfileData: (profile: UserProfileType) => void
     profileDate: UserProfileType
 }
 

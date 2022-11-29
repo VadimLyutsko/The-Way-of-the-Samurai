@@ -23,7 +23,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, preloaderIm
 
             <div className={styles.userLargeImage}>
                 <img
-                    src={profileDate?.photos.large}
+                    src={profileDate.photos.large?profileDate.photos.large:'https://pbs.twimg.com/media/EYJZQ-eWkAAOMGd?format=jpg&name=medium'}
                     alt=""/>
             </div>
 

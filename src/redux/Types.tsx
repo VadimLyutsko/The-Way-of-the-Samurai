@@ -13,6 +13,7 @@ export type ActionType =
     | SetTotalUserCountAT
     | SetFetchingPreloaderAT
     | UpdateUserProfileDataAT
+    | SetAuthDataAT
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -73,6 +74,11 @@ export type UpdateUserProfileDataAT = {
     profile: UserProfileType
 }
 
+export type SetAuthDataAT = {
+    type: 'SET-AUTH-DATA',
+    data: AuthData
+}
+
 
 //Store
 
@@ -102,6 +108,20 @@ export type UserType = {
 type UserPhotosType = {
     small: string
     large: string
+}
+
+//Auth
+
+
+export type InitialAuthDataType = {
+    data: AuthData
+    isAuth: boolean
+}
+
+export type AuthData = {
+    UserId: null | string
+    email: null | string
+    login: null | string
 }
 
 
