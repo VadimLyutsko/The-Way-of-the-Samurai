@@ -6,6 +6,15 @@
 }
 
 .header img {
-    width: 50%;
+    width: 85%;
     height: 100%;
 }
+
+.logIn{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 15px;
+    font-weight: bold;
+    height: 5%;
+}
+

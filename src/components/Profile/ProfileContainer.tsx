@@ -22,7 +22,8 @@ class ProfileContainer extends React.Component<ProfileContainerType & RouteCompo
 
         const userId = this.props.match.params.userId || 21989;
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/` + userId).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/` + userId)
+            .then(response => {
 
             this.props.setUserProfileData(response.data);
         });

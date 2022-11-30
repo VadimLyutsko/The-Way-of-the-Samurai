@@ -2,17 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {UserType} from '../../redux/Types';
 import {
-    followUser,
-    setCurrentPage,
     setFetchingPreloader,
     setTotalUserCount,
+    setCurrentPage,
+    unFollowUser,
+    followUser,
     setUsers,
-    unFollowUser
 } from '../../redux/users-Reducer';
 import {StateType} from '../../redux/redux-store';
-import axios from 'axios';
 import {Users} from './Users/Users';
 import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif';
+import {usersApi} from '../../api/api';
 
 type UsersContainerType = {
     users: UserType[]
@@ -32,36 +32,35 @@ export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.setFetchingPreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true,
-        }).then(response => {
-            this.props.setFetchingPreloader(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUserCount(response.data.totalCount);
-        });
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data => {
+                this.props.setFetchingPreloader(false);
+                this.props.setTotalUserCount(data.totalCount);
+                this.props.setUsers(data.items);
+            });
     }
 
     currentPageHAndler = (currentPage: number) => {
-
-        this.props.setCurrentPage(currentPage);
         this.props.setFetchingPreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true,
-        }).then(response => {
-            this.props.setFetchingPreloader(false);
-            this.props.setUsers(response.data.items);
-        });
+        this.props.setCurrentPage(currentPage);
+        usersApi.getUsers(currentPage, this.props.pageSize)
+            .then(response => {
+                this.props.setFetchingPreloader(false);
+                this.props.setUsers(response.data.items);
+            });
     };
 
     render() {
         return (
             <Users
                 currentPageHAndler={this.currentPageHAndler}
+                totalUsersCount={this.props.totalUsersCount}
                 unFollowUser={this.props.unFollowUser}
                 currentPage={this.props.currentPage}
                 followUser={this.props.followUser}
                 isFetching={this.props.isFetching}
                 preloaderImage={preloaderImage}
+                pageSize={this.props.pageSize}
                 users={this.props.users}
             />
         );

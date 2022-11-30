@@ -4,30 +4,34 @@ import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
+import {usersApi} from '../../../api/api';
 
 type UsersType = {
     users: UserType[]
     currentPageHAndler: (currentPage: number) => void
     unFollowUser: (userId: number) => void
     followUser: (userId: number) => void
+    totalUsersCount: number
     preloaderImage: string
     isFetching: boolean
     currentPage: number
+    pageSize: number
 }
 
 export const Users: React.FC<UsersType> = ({
+                                               totalUsersCount,
                                                currentPageHAndler,
                                                unFollowUser,
                                                currentPage,
                                                isFetching,
                                                preloaderImage,
                                                followUser,
+                                               pageSize,
                                                users,
                                            }) => {
 
-    let pagesCount = Math.ceil(15);  //hardCode for normal UI
-    // let pagesCount = Math.ceil(this.totalUsersCount / this.pageSize);
+    // let pagesCount = Math.ceil(15);  //hardCode for normal UI
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -40,7 +44,7 @@ export const Users: React.FC<UsersType> = ({
 
         <div>
             {
-                pages.map((p, i) => {
+                pages.slice(0, 15).map((p, i) => {   //slice(0, 15) -> Временно укоротил список
                     return <span key={i} onClick={() => {
                         currentPageHAndler(p);
                     }}
@@ -69,26 +73,17 @@ export const Users: React.FC<UsersType> = ({
                         <div>
                             {user.followed ?
                                 <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                        withCredentials: true,
-                                        headers: {'API-KEY': '1e09ab9f-6c75-4b1b-b630-54d8c35cb68b'}
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                unFollowUser(user.id);
-                                            }
+                                    usersApi.unfollowUserAPI(user.id)
+                                        .then(resultCode => {
+                                            resultCode === 0 && unFollowUser(user.id);
                                         });
                                 }}/>
                                 :
                                 <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {'API-KEY': '1e09ab9f-6c75-4b1b-b630-54d8c35cb68b'}
-                                    }).then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            followUser(user.id);
-                                        }
-                                    });
+                                    usersApi.followUserAPI(user.id)
+                                        .then(resultCode => {
+                                            resultCode === 0 && followUser(user.id);
+                                        });
                                 }}/>}
 
                         </div>
