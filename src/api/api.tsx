@@ -22,9 +22,15 @@ export const followAPI = {
 };
 
 
-export const authAPI={
-    getAuthApi:function (){
-        return instance.get(`auth/me`, ).then(response=>response.data)
+export const authAPI = {
+    getAuthApi: function () {
+        return instance.get(`auth/me`,).then(response => response.data);
     }
-}
+};
+
+export const profileAPI = {
+    getData: function (userId: string | 21989) {
+        return instance.get(`profile/${userId}`,).then(response => response);
+    }
+};
 

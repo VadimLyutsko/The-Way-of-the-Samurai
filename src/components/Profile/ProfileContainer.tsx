@@ -1,11 +1,12 @@
 import React from 'react';
 import {Profile} from './Profile';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {setUserProfileData} from '../../redux/profile-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {profileAPI} from '../../api/api';
+
 
 type ProfileContainerType = {
     setUserProfileData: (profile: UserProfileType) => void
@@ -22,11 +23,12 @@ class ProfileContainer extends React.Component<ProfileContainerType & RouteCompo
 
         const userId = this.props.match.params.userId || 21989;
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/` + userId)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
+        profileAPI.getData(userId)
             .then(response => {
 
-            this.props.setUserProfileData(response.data);
-        });
+                this.props.setUserProfileData(response.data);
+            });
     }
 
     render() {
