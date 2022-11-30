@@ -17,7 +17,7 @@ const SET_USER_CURRENT_PAGE = 'SET-USER-CURRENT-PAGE';
 const SET_FETCHING_PRELOADER = 'SET-FETCHING-PRELOADER';
 
 let initialState = {
-    UsersData: [],
+    UsersData: []as UserType[],
     isFetching: true,
     totalUsersCount: 10,
     pageSize: 10,
@@ -29,15 +29,16 @@ const UsersReducer = (state: InitialUsersReducerType = initialState, action: Act
         case FOLLOW_USER: {
             return {
                 ...state,
-                UsersData: state.UsersData.map(user => user.id === action.userId ? {...user, follow: true} : user)
+                UsersData: state.UsersData.map(user => user.id === action.userId ? {...user, followed: true} : user),
             };
         }
         case UNFOLLOW_USER: {
             return {
                 ...state,
-                UsersData: state.UsersData.map(user => user.id === action.userId ? {...user, follow: false} : user)
+                UsersData: state.UsersData.map(user => user.id === action.userId ? {...user, followed: false} : user)
             };
         }
+
         case SET_USER: {
             return {
                 ...state,

@@ -102,7 +102,6 @@ export type UserType = {
     photos: UserPhotosType
     status: any
     followed: boolean
-
 }
 
 type UserPhotosType = {

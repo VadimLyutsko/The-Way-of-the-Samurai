@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderType> = ({isAuth, login}) => {
             alt=""/>
             <span
                 style={{position: 'absolute', marginTop: '10px', marginLeft: '15px', fontWeight: 'bold'}}>
-                <NavLink to={'/login'}>{login}{isAuth ? login : 'Log in'}</NavLink>
+                <NavLink to={'/login'}>{isAuth ? login?.slice(0, 12) : 'Log in'}</NavLink>
             </span>
         </header>
     );

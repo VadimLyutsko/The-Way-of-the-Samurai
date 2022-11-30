@@ -32,7 +32,9 @@ export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.setFetchingPreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials: true,
+        }).then(response => {
             this.props.setFetchingPreloader(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUserCount(response.data.totalCount);
@@ -40,14 +42,16 @@ export class UsersContainer extends React.Component<UsersContainerType> {
     }
 
     currentPageHAndler = (currentPage: number) => {
+
         this.props.setCurrentPage(currentPage);
         this.props.setFetchingPreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`,{
+            withCredentials: true,
+        }).then(response => {
             this.props.setFetchingPreloader(false);
             this.props.setUsers(response.data.items);
         });
     };
-
 
     render() {
         return (
