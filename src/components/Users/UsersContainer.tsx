@@ -12,7 +12,7 @@ import {
 import {StateType} from '../../redux/redux-store';
 import {Users} from './Users/Users';
 import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif';
-import {usersApi} from '../../api/api';
+import {usersAPI} from '../../api/api';
 
 type UsersContainerType = {
     users: UserType[]
@@ -32,7 +32,7 @@ export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.setFetchingPreloader(true);
-        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setFetchingPreloader(false);
                 this.props.setTotalUserCount(data.totalCount);
@@ -43,7 +43,7 @@ export class UsersContainer extends React.Component<UsersContainerType> {
     currentPageHAndler = (currentPage: number) => {
         this.props.setFetchingPreloader(true);
         this.props.setCurrentPage(currentPage);
-        usersApi.getUsers(currentPage, this.props.pageSize)
+        usersAPI.getUsers(currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setFetchingPreloader(false);
                 this.props.setUsers(response.data.items);

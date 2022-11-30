@@ -4,7 +4,7 @@ import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
 import {NavLink} from 'react-router-dom';
-import {usersApi} from '../../../api/api';
+import {followAPI} from '../../../api/api';
 
 type UsersType = {
     users: UserType[]
@@ -73,14 +73,14 @@ export const Users: React.FC<UsersType> = ({
                         <div>
                             {user.followed ?
                                 <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
-                                    usersApi.unfollowUserAPI(user.id)
+                                    followAPI.unfollowUserApi(user.id)
                                         .then(resultCode => {
                                             resultCode === 0 && unFollowUser(user.id);
                                         });
                                 }}/>
                                 :
                                 <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
-                                    usersApi.followUserAPI(user.id)
+                                    followAPI.followUserApi(user.id)
                                         .then(resultCode => {
                                             resultCode === 0 && followUser(user.id);
                                         });
