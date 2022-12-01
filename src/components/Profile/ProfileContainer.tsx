@@ -20,27 +20,18 @@ type MatchParams = {
 class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
-
         const userId = this.props.match.params.userId || 21989;
-
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
         profileAPI.getData(userId)
             .then(response => {
-
                 this.props.setUserProfileData(response.data);
             });
     }
 
     render() {
-
-        return (
-            <Profile
-
-                profileDate={this.props.profileDate}
-            />
-        );
+        return (<Profile profileDate={this.props.profileDate}/>);
     }
 }
+
 
 let mapStateToProps = (state: StateType) => {
     return {
@@ -48,6 +39,6 @@ let mapStateToProps = (state: StateType) => {
     };
 };
 
-let WidthURLProfileContainerComponent = withRouter(ProfileContainer);
+let WidthURLProfileContainerComponent = withRouter(ProfileContainer);   //withRouter указывает реакту на текущий URL
 
 export default connect(mapStateToProps, {setUserProfileData})(WidthURLProfileContainerComponent);
