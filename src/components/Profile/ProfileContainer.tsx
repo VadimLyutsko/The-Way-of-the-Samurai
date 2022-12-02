@@ -13,6 +13,7 @@ type ProfileContainerType = {
     profileDate: UserProfileType
 }
 
+
 type MatchParams = {
     userId: string
 }
