@@ -18,6 +18,7 @@ type MatchParams = {
     userId: string
 }
 
+
 class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
