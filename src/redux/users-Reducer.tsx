@@ -24,7 +24,7 @@ let initialState = {
     currentPage: 1
 };
 
-const UsersReducer = (state: InitialUsersReducerType = initialState, action: ActionType): InitialUsersReducerType => {
+export const UsersReducer = (state: InitialUsersReducerType = initialState, action: ActionType): InitialUsersReducerType => {
     switch (action.type) {
         case FOLLOW_USER: {
             return {
