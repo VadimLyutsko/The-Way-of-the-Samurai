@@ -8,8 +8,8 @@ import {authAPI} from '../../api/api';
 
 type HeaderContainerType = {
     setAuthData: (data: AuthData) => void
-    isAuth: boolean
     login: string | null
+    isAuth: boolean
 }
 
 class HeaderContainer extends React.Component<HeaderContainerType> {
@@ -30,6 +30,7 @@ class HeaderContainer extends React.Component<HeaderContainerType> {
 }
 
 let mapStateToProps = (state: StateType) => {
+
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.data.login

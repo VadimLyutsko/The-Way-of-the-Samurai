@@ -21,10 +21,10 @@ type UsersType = {
 export const Users: React.FC<UsersType> = ({
                                                totalUsersCount,
                                                currentPageHAndler,
+                                               preloaderImage,
                                                unFollowUser,
                                                currentPage,
                                                isFetching,
-                                               preloaderImage,
                                                followUser,
                                                pageSize,
                                                users,
@@ -85,7 +85,6 @@ export const Users: React.FC<UsersType> = ({
                                             resultCode === 0 && followUser(user.id);
                                         });
                                 }}/>}
-
                         </div>
                     </div>
                 </div>

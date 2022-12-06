@@ -3,6 +3,7 @@ import style from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
+
     return (
         <nav className={style.nav}>
 

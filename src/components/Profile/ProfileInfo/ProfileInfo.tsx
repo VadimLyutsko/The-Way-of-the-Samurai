@@ -9,12 +9,13 @@ type ProfileInfoType = {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, preloaderImage}) => {
+
     if (!profileDate) {
         return <SuperPreloader preloaderImage={preloaderImage}/>;
     }
+
     return (
         <div>
-
             <div>
                 <img
                     src="https://pbs.twimg.com/profile_banners/557861893/1497433330/1500x500"

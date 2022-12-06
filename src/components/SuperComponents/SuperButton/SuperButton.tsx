@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import styles from './SuperButtot.module.css';
 
 type SuperButtonPropsType = {
@@ -8,7 +8,7 @@ type SuperButtonPropsType = {
 }
 
 
-export const SuperButton: React.FC<SuperButtonPropsType> = ({callBack, title,type}) => {
+export const SuperButton: React.FC<SuperButtonPropsType> = ({callBack, title, type}) => {
 
     let ButtonClassName = type === 'Evil' ? styles.deleteSuperButton : styles.addSuperButton;
 

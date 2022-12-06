@@ -9,8 +9,14 @@ export const Music: React.FC = () => {
         new Audio(sound).play();
     }
 
+    let musicStyle = {
+        justifyContent: 'center',
+        marginTop: '50px',
+        display: 'flex'
+    };
+
     return (
-        <div style={{display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
+        <div style={musicStyle}>
             <SuperButton type={'Evil'} title={'Touch me!'} callBack={play}></SuperButton>&#128529;
         </div>
     );

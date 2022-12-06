@@ -42,18 +42,18 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
                 {messageElements}
                 <div className={styles.inpNewMessage}>
                     <textarea
-                        ref={newMessageElement}
-                        value={newDialogMessageText}
-                        onChange={onChangeTextAreaValue}
                         placeholder={'Enter your message'}
+                        onChange={onChangeTextAreaValue}
+                        value={newDialogMessageText}
+                        ref={newMessageElement}
                     />
                     <SuperButton
+                        callBack={onClickButtonHandler}
                         type={'Evil'}
                         title={'Add'}
-                        callBack={onClickButtonHandler}/>
+                    />
                 </div>
             </div>
-
         </div>
     );
 };

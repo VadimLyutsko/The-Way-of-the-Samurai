@@ -3,9 +3,9 @@ import style from './MyPosts.module.css';
 import SuperButton from '../../../SuperComponents/SuperButton/SuperButton';
 
 type MyPostType = {
-    postsElements: JSX.Element[]
     updatePostText: (newPostElement: string) => void
     addNewPost: (text: string) => void
+    postsElements: JSX.Element[]
     deletePost: () => void
     newPostText: string
 }
@@ -37,22 +37,23 @@ export const MyPosts: React.FC<MyPostType> = (props
                 < >
                     <textarea
                         className={style.myPostsTextArea}
-                        ref={newPostElement}
                         placeholder="Type some text"
                         onChange={onMyPostChange}
-                        value={newPostText}/>
+                        ref={newPostElement}
+                        value={newPostText}
+                    />
                 </>
                 <div className={style.myPostsButtonContainer}>
                     <SuperButton
-                        type={'Goodness'}
-                        title={'Add post'}
                         callBack={addMyPost}
+                        title={'Add post'}
+                        type={'Goodness'}
                     />
 
                     <SuperButton
-                        type={'Evil'}
-                        title={'Delete post'}
                         callBack={deleteMyPost}
+                        title={'Delete post'}
+                        type={'Evil'}
                     />
 
                 </div>

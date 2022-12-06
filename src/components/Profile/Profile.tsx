@@ -8,11 +8,11 @@ type ProfileType = {
     profileDate: UserProfileType
 }
 
-export const Profile: React.FC<ProfileType> = (props) => {
+export const Profile: React.FC<ProfileType> = ({profileDate}) => {
 
     return (
         <div>
-            <ProfileInfo preloaderImage={preloaderImage} profileDate={props.profileDate}/>
+            <ProfileInfo preloaderImage={preloaderImage} profileDate={profileDate}/>
             <MyPostsContainer/>
             {/*<MyPostsContainer newPostText={newPostText} postsData={postsData} dispatch={dispatch}/>*/}
         </div>

@@ -2,26 +2,29 @@ import React from 'react';
 import {
     ActionType,
     FollowUserAT,
-    InitialUsersReducerType, SetCurrentPageAT, SetFetchingPreloaderAT,
+    InitialUsersReducerType,
+    SetCurrentPageAT,
+    SetFetchingPreloaderAT,
     SetTotalUserCountAT,
     SetUserAT,
     UnFollowUserAT,
     UserType
 } from './Types';
 
-const FOLLOW_USER = 'FOLLOW-USER';
-const UNFOLLOW_USER = 'UNFOLLOW-USER';
-const SET_USER = 'SET-USER';
-const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT';
-const SET_USER_CURRENT_PAGE = 'SET-USER-CURRENT-PAGE';
+
 const SET_FETCHING_PRELOADER = 'SET-FETCHING-PRELOADER';
+const SET_USER_CURRENT_PAGE = 'SET-USER-CURRENT-PAGE';
+const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT';
+const UNFOLLOW_USER = 'UNFOLLOW-USER';
+const FOLLOW_USER = 'FOLLOW-USER';
+const SET_USER = 'SET-USER';
 
 let initialState = {
-    UsersData: []as UserType[],
-    isFetching: true,
+    UsersData: [] as UserType[],
     totalUsersCount: 10,
-    pageSize: 10,
-    currentPage: 1
+    isFetching: true,
+    currentPage: 1,
+    pageSize: 10
 };
 
 export const UsersReducer = (state: InitialUsersReducerType = initialState, action: ActionType): InitialUsersReducerType => {

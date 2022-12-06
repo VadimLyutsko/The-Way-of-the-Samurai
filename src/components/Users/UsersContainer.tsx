@@ -22,9 +22,9 @@ type UsersContainerType = {
     unFollowUser: (userId: number) => void
     setUsers: (users: UserType[]) => void
     followUser: (userId: number) => void
-    isFetching: boolean
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     pageSize: number
 }
 

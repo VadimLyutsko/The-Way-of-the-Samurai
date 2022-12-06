@@ -2,13 +2,11 @@
     grid-area: n;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 25px;
-
 }
 
 .item a{
     color: #ffffff;
     text-decoration: none;
-
 }
 
 .item :hover{

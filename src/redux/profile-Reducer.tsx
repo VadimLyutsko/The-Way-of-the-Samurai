@@ -1,18 +1,20 @@
 import React from 'react';
 import {v1} from 'uuid';
 import {
-    ActionType,
-    AddNewPostAT,
-    DeletePostTextAT,
     InitialProfileReducerType,
-    UpdateNewPostTextAT, UpdateUserProfileDataAT,
-    UserProfileType
+    UpdateUserProfileDataAT,
+    UpdateNewPostTextAT,
+    DeletePostTextAT,
+    UserProfileType,
+    AddNewPostAT,
+    ActionType,
 } from './Types';
 
-const ADD_NEW_POST = 'ADD-NEW-POST';
-const DELETE_LAST_POST = 'DELETE-LAST-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_PROFILE = 'UPDATE-NEW-PROFILE';
+const DELETE_LAST_POST = 'DELETE-LAST-POST';
+const ADD_NEW_POST = 'ADD-NEW-POST';
+
 
 let initialState = {
     profile: null,
