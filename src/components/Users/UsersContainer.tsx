@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {UserType} from '../../redux/Types';
 import {
     followUser,
+    getUsers,
     setCurrentPage,
     setFetchingPreloader,
     setTotalUserCount,
@@ -11,7 +12,6 @@ import {
 } from '../../redux/users-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {Users} from './Users/Users';
-import {usersAPI} from '../../api/api';
 
 type UsersContainerType = {
     users: UserType[]
@@ -25,32 +25,17 @@ type UsersContainerType = {
     currentPage: number
     isFetching: boolean
     pageSize: number
+    getUsers:(currentPage: number, pageSize: number)=>void
 }
 
 export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.setFetchingPreloader(true);
-        setTimeout(() => {
-            usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-                .then(data => {
-                    this.props.setFetchingPreloader(false);
-                    this.props.setTotalUserCount(data.totalCount);
-                    this.props.setUsers(data.items);
-                });
-        }, 2000);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     currentPageHAndler = (currentPage: number) => {
-        this.props.setFetchingPreloader(true);
-        this.props.setCurrentPage(currentPage);
-        setTimeout(() => {
-            usersAPI.getUsers(currentPage, this.props.pageSize)
-                .then(response => {
-                    this.props.setFetchingPreloader(false);
-                    this.props.setUsers(response.items);
-                });
-        }, 2000);
+        this.props.getUsers(currentPage,this.props.pageSize)
     };
 
     render() {
@@ -86,5 +71,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     unFollowUser,
     followUser,
+    getUsers,
     setUsers,
 })(UsersContainer);

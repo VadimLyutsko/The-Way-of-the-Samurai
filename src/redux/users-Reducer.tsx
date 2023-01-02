@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {
     ActionType,
     FollowUserAT,
@@ -10,6 +10,7 @@ import {
     UnFollowUserAT,
     UserType
 } from './Types';
+import {usersAPI} from '../api/api';
 
 
 const SET_FETCHING_PRELOADER = 'SET-FETCHING-PRELOADER';
@@ -106,10 +107,29 @@ export const setTotalUserCount = (totalUsersCount: number): SetTotalUserCountAT 
         totalUsersCount
     };
 };
+
 export const setFetchingPreloader = (isFetching: boolean): SetFetchingPreloaderAT => {
     return {
         type: SET_FETCHING_PRELOADER,
         isFetching
+    };
+};
+
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: Dispatch<ActionType>) => {
+        dispatch(setUsers([]));
+        dispatch(setFetchingPreloader(true));
+        dispatch(setCurrentPage(currentPage))
+
+        setTimeout(()=>{
+            usersAPI.getUsers(currentPage, pageSize).then(data => {
+                dispatch(setFetchingPreloader(false));
+                dispatch(setTotalUserCount(data.totalCount));
+                dispatch(setUsers(data.items));
+            });
+        },500)
     };
 };
 
