@@ -14,8 +14,8 @@ const mapStateToProps = (state: StateType) => {
         dialogsElements: state.dialogsPage.dialogsData.map(item => <DialogItem imgAddress={item.imgAddress}
                                                                                name={item.name} id={item.id}
         />),
-        messageElements: state.dialogsPage.messagesData.map(item => <Message message={item.message}/>)
-
+        messageElements: state.dialogsPage.messagesData.map(item => <Message message={item.message}/>),
+        isAuth: state.auth.isAuth
     };
 };
 

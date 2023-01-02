@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Dialogs.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
+import {Redirect} from 'react-router-dom';
 
 
 type DialogsPropsType = {
@@ -9,6 +10,7 @@ type DialogsPropsType = {
     addMessage: (newMessageText: string) => void
     onChangeMessageValue: (changeNewMessageText: string) => void
     newDialogMessageText: string
+    isAuth:boolean
 }
 
 
@@ -17,7 +19,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
                                                         messageElements,
                                                         newDialogMessageText,
                                                         addMessage,
-                                                        onChangeMessageValue
+                                                        onChangeMessageValue,isAuth
                                                     }) => {
 
 
@@ -30,6 +32,8 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
     };
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+        if(!isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={styles.dialogs}>
