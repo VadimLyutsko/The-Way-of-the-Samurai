@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {v1} from 'uuid';
 import {
     InitialProfileReducerType,
@@ -9,6 +9,7 @@ import {
     AddNewPostAT,
     ActionType,
 } from './Types';
+import {profileAPI} from '../api/api';
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_PROFILE = 'UPDATE-NEW-PROFILE';
@@ -105,6 +106,16 @@ export const setUserProfileData = (profile: UserProfileType): UpdateUserProfileD
     return {
         type: UPDATE_NEW_PROFILE,
         profile
+    };
+};
+
+export const getData = (userId: string) => {
+    return (dispatch: Dispatch<ActionType>) => {
+
+        profileAPI.getData(userId)
+            .then(response => {
+                dispatch(setUserProfileData(response.data))
+            });
     };
 };
 

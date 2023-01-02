@@ -9,9 +9,11 @@ img {
 .userLargeImage {
     background: transparent;
     width: 350px;
-    height: 250px;
+    height: 300px;
 }
 
 .userLargeImage img{
     border-radius: 25px;
+    width: 350px;
+    height: 250px;
 }

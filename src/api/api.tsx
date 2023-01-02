@@ -28,7 +28,7 @@ export const authAPI = {
 };
 
 export const profileAPI = {
-    getData: function (userId: string | 21989) {
+    getData: function (userId: string) {
         return instance.get(`profile/${userId}`,).then(response => response);
     }
 };

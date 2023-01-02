@@ -1,15 +1,14 @@
 import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {setUserProfileData} from '../../redux/profile-Reducer';
+import {getData} from '../../redux/profile-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {profileAPI} from '../../api/api';
 
 
 type ProfileContainerType = {
-    setUserProfileData: (profile: UserProfileType) => void
+    getData: (userId: string) => void
     profileDate: UserProfileType
 }
 
@@ -22,11 +21,13 @@ type MatchParams = {
 class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
-        const userId = this.props.match.params.userId || 21989;
-        profileAPI.getData(userId)
-            .then(response => {
-                this.props.setUserProfileData(response.data);
-            });
+
+        this.props.getData(this.props.match.params.userId);
+
+        // profileAPI.getData(this.props.match.params.userId)
+        //     .then(response => {
+        //         this.props.setUserProfileData(response.data);
+        //     });
     }
 
     render() {
@@ -43,4 +44,4 @@ let mapStateToProps = (state: StateType) => {
 
 let WidthURLProfileContainerComponent = withRouter(ProfileContainer);   //withRouter указывает реакту на текущий URL
 
-export default connect(mapStateToProps, {setUserProfileData})(WidthURLProfileContainerComponent);
+export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
