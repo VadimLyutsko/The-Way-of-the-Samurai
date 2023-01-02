@@ -10,7 +10,7 @@ import {
     UnFollowUserAT,
     UserType
 } from './Types';
-import {usersAPI} from '../api/api';
+import {followAPI, usersAPI} from '../api/api';
 
 
 const SET_FETCHING_PRELOADER = 'SET-FETCHING-PRELOADER';
@@ -121,17 +121,35 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch<ActionType>) => {
         dispatch(setUsers([]));
         dispatch(setFetchingPreloader(true));
-        dispatch(setCurrentPage(currentPage))
+        dispatch(setCurrentPage(currentPage));
 
-        setTimeout(()=>{
+        setTimeout(() => {
             usersAPI.getUsers(currentPage, pageSize).then(data => {
                 dispatch(setFetchingPreloader(false));
                 dispatch(setTotalUserCount(data.totalCount));
                 dispatch(setUsers(data.items));
             });
-        },500)
+        }, 500);
     };
 };
 
 
+export const follow = (userId: number) => {
+    return (dispatch: Dispatch<ActionType>) => {
+        followAPI.followUserApi(userId)
+            .then(resultCode => {
+                resultCode === 0 && dispatch(followUser(userId));
+            });
+    };
+};
+
+export const unfollow = (userId: number) => {
+
+    return (dispatch: Dispatch<ActionType>) => {
+        followAPI.unfollowUserApi(userId)
+            .then(resultCode => {
+                resultCode === 0 && dispatch(unFollowUser(userId));
+            });
+    };
+};
 export default UsersReducer;

@@ -4,28 +4,27 @@ import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
 import {NavLink} from 'react-router-dom';
-import {followAPI} from '../../../api/api';
 
 type UsersType = {
     users: UserType[]
     currentPageHAndler: (currentPage: number) => void
-    unFollowUser: (userId: number) => void
-    followUser: (userId: number) => void
     totalUsersCount: number
     isFetching: boolean
     currentPage: number
     pageSize: number
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 export const Users: React.FC<UsersType> = ({
                                                totalUsersCount,
                                                currentPageHAndler,
-                                               unFollowUser,
                                                currentPage,
                                                isFetching,
-                                               followUser,
                                                pageSize,
                                                users,
+                                               follow,
+                                               unfollow
                                            }) => {
 
     // let pagesCount = Math.ceil(15);  //hardCode for normal UI
@@ -70,19 +69,18 @@ export const Users: React.FC<UsersType> = ({
 
                         <div>
                             {user.followed ?
-                                <SuperButton type={'Evil'} title={'Unfollow'} callBack={() => {
-                                    followAPI.unfollowUserApi(user.id)
-                                        .then(resultCode => {
-                                            resultCode === 0 && unFollowUser(user.id);
-                                        });
-                                }}/>
+                                <SuperButton
+                                    type={'Evil'}
+                                    title={'Unfollow'}
+                                    callBack={() => {
+                                        unfollow(user.id);
+                                    }}/>
                                 :
-                                <SuperButton type={'Goodness'} title={'Follow'} callBack={() => {
-                                    followAPI.followUserApi(user.id)
-                                        .then(resultCode => {
-                                            resultCode === 0 && followUser(user.id);
-                                        });
-                                }}/>}
+                                <SuperButton type={'Goodness'}
+                                             title={'Follow'}
+                                             callBack={() => {
+                                                 follow(user.id);
+                                             }}/>}
                         </div>
                     </div>
                 </div>
