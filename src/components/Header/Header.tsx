@@ -1,10 +1,9 @@
 import React from 'react';
 import style from './Header.module.css';
 import {NavLink} from 'react-router-dom';
-import {AuthData} from '../../redux/Types';
 
 type HeaderType = {
-    setAuthData: (data: AuthData) => void
+    me: () => void
     login: string | null
     isAuth: boolean
 }

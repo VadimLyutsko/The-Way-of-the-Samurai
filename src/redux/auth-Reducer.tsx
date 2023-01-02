@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {ActionType, AuthData, InitialAuthDataType, SetAuthDataAT} from './Types';
+import {authAPI} from '../api/api';
 
 const SET_AUTH_DATA = 'SET-AUTH-DATA';
 
@@ -35,5 +36,13 @@ export const setAuthData = (data: AuthData): SetAuthDataAT => {
         data
     };
 };
+
+export const me = () => {
+    return (dispatch: Dispatch<ActionType>)=>{
+        authAPI.getAuthApi().then(data => {
+            data.resultCode === 0 &&  dispatch(setAuthData(data));
+        });
+    }
+}
 
 export default AuthReducer;

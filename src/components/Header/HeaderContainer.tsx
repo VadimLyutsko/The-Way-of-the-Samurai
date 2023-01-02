@@ -2,12 +2,10 @@ import React from 'react';
 import {Header} from './Header';
 import {connect} from 'react-redux';
 import {StateType} from '../../redux/redux-store';
-import {setAuthData} from '../../redux/auth-Reducer';
-import {AuthData} from '../../redux/Types';
-import {authAPI} from '../../api/api';
+import {me} from '../../redux/auth-Reducer';
 
 type HeaderContainerType = {
-    setAuthData: (data: AuthData) => void
+    me: () => void
     login: string | null
     isAuth: boolean
 }
@@ -15,9 +13,7 @@ type HeaderContainerType = {
 class HeaderContainer extends React.Component<HeaderContainerType> {
 
     componentDidMount() {
-        authAPI.getAuthApi().then(data => {
-            data.resultCode === 0 && this.props.setAuthData(data);
-        });
+        this.props.me();
     }
 
     render() {
@@ -37,4 +33,4 @@ let mapStateToProps = (state: StateType) => {
     };
 };
 
-export default connect(mapStateToProps, {setAuthData})(HeaderContainer);
+export default connect(mapStateToProps, {me})(HeaderContainer);
