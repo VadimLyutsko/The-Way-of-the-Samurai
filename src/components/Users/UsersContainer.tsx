@@ -2,16 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {UserType} from '../../redux/Types';
 import {
+    followUser,
+    setCurrentPage,
     setFetchingPreloader,
     setTotalUserCount,
-    setCurrentPage,
-    unFollowUser,
-    followUser,
     setUsers,
+    unFollowUser,
 } from '../../redux/users-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {Users} from './Users/Users';
-import preloaderImage from '../SuperComponents/SuperPreloader/Preloader.gif';
 import {usersAPI} from '../../api/api';
 
 type UsersContainerType = {
@@ -32,22 +31,26 @@ export class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.setFetchingPreloader(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setFetchingPreloader(false);
-                this.props.setTotalUserCount(data.totalCount);
-                this.props.setUsers(data.items);
-            });
+        setTimeout(() => {
+            usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+                .then(data => {
+                    this.props.setFetchingPreloader(false);
+                    this.props.setTotalUserCount(data.totalCount);
+                    this.props.setUsers(data.items);
+                });
+        }, 2000);
     }
 
     currentPageHAndler = (currentPage: number) => {
         this.props.setFetchingPreloader(true);
         this.props.setCurrentPage(currentPage);
-        usersAPI.getUsers(currentPage, this.props.pageSize)
-            .then(response => {
-                this.props.setFetchingPreloader(false);
-                this.props.setUsers(response.data.items);
-            });
+        setTimeout(() => {
+            usersAPI.getUsers(currentPage, this.props.pageSize)
+                .then(response => {
+                    this.props.setFetchingPreloader(false);
+                    this.props.setUsers(response.items);
+                });
+        }, 2000);
     };
 
     render() {
@@ -59,7 +62,6 @@ export class UsersContainer extends React.Component<UsersContainerType> {
                 currentPage={this.props.currentPage}
                 followUser={this.props.followUser}
                 isFetching={this.props.isFetching}
-                preloaderImage={preloaderImage}
                 pageSize={this.props.pageSize}
                 users={this.props.users}
             />

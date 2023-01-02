@@ -5,13 +5,12 @@ import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader'
 
 type ProfileInfoType = {
     profileDate: UserProfileType
-    preloaderImage: string
 }
 
-export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, preloaderImage}) => {
+export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate}) => {
 
     if (!profileDate) {
-        return <SuperPreloader preloaderImage={preloaderImage}/>;
+        return <SuperPreloader/>;
     }
 
     return (
@@ -24,7 +23,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, preloaderIm
 
             <div className={styles.userLargeImage}>
                 <img
-                    src={profileDate.photos.large?profileDate.photos.large:'https://pbs.twimg.com/media/EYJZQ-eWkAAOMGd?format=jpg&name=medium'}
+                    src={profileDate.photos.large ? profileDate.photos.large : 'https://pbs.twimg.com/media/EYJZQ-eWkAAOMGd?format=jpg&name=medium'}
                     alt=""/>
             </div>
 
