@@ -3,7 +3,6 @@ import style from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 
 type HeaderType = {
-    me: () => void
     login: string | null
     isAuth: boolean
 }

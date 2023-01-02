@@ -37,12 +37,12 @@ export const setAuthData = (data: AuthData): SetAuthDataAT => {
     };
 };
 
-export const me = () => {
-    return (dispatch: Dispatch<ActionType>)=>{
+export const getAuthUserData = () => {
+    return (dispatch: Dispatch<ActionType>) => {
         authAPI.getAuthApi().then(data => {
-            data.resultCode === 0 &&  dispatch(setAuthData(data));
+            data.resultCode === 0 && dispatch(setAuthData(data));
         });
-    }
-}
+    };
+};
 
 export default AuthReducer;
