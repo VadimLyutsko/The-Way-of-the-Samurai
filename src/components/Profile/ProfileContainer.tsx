@@ -6,6 +6,7 @@ import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {widthAuthRedirect} from '../hoc/widthRedirect';
+import {compose} from 'redux';
 
 
 type ProfileContainerType = {
@@ -30,14 +31,19 @@ class ProfileContainer extends React.Component<ProfileContainerType & RouteCompo
     }
 }
 
-let AuthRedirectComponent = widthAuthRedirect(ProfileContainer);   //widthAuthRedirect - мой HOC для авторизации и редиректа
-
 let mapStateToProps = (state: StateType) => {
     return {
         profileDate: state.profilePage.profile
     };
 };
 
-let WidthURLProfileContainerComponent = withRouter(AuthRedirectComponent);   //withRouter указывает реакту на текущий URL
+// let AuthRedirectComponent = widthAuthRedirect(ProfileContainer);   //widthAuthRedirect - мой HOC для авторизации и редиректа
+//
+// let WidthURLProfileContainerComponent = withRouter(AuthRedirectComponent);   //withRouter указывает реакту на текущий URL
+//
+// export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
 
-export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getData}),
+    withRouter,
+    widthAuthRedirect)(ProfileContainer);

@@ -18,16 +18,13 @@ export function  widthAuthRedirect  <T>(Component: React.ComponentType<T>)  {
 
         let {isAuth, ...restProps} = props
 
-        if (isAuth) return <Redirect to={'/login'}/>;
+        if (!isAuth) return <Redirect to={'/login'}/>;
 
         return <Component {...restProps as T} />;
     };
 
-    // let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
-    // return ConnectedAuthRedirectComponent
-
     return connect(mapStateToPropsForRedirect)(RedirectComponent);
-};
+}
 
 // let mapStateToPropsForRedirect = (state: StateType)=>({
 //     isAuth: state.auth.isAuth

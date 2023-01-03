@@ -7,6 +7,7 @@ import {ActionType} from '../../redux/Types';
 import {DialogItem} from './Dialogs/DialogsItem/DialogsItem';
 import {Message} from './Dialogs/MessageItem/MessageItem';
 import {widthAuthRedirect} from '../hoc/widthRedirect';
+import {compose} from 'redux';
 
 
 const mapStateToProps = (state: StateType) => {
@@ -16,7 +17,6 @@ const mapStateToProps = (state: StateType) => {
                                                                                name={item.name} id={item.id}
         />),
         messageElements: state.dialogsPage.messagesData.map(item => <Message message={item.message}/>),
-        // isAuth: state.auth.isAuth
     };
 };
 
@@ -31,10 +31,9 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => {
     };
 };
 
-let AuthRedirectComponent = widthAuthRedirect(Dialogs);
-
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    widthAuthRedirect
+)(Dialogs);
 
 
