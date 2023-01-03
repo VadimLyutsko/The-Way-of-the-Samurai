@@ -5,6 +5,7 @@ import {getData} from '../../redux/profile-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {widthAuthRedirect} from '../hoc/widthRedirect';
 
 
 type ProfileContainerType = {
@@ -21,13 +22,7 @@ type MatchParams = {
 class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
-
         this.props.getData(this.props.match.params.userId);
-
-        // profileAPI.getData(this.props.match.params.userId)
-        //     .then(response => {
-        //         this.props.setUserProfileData(response.data);
-        //     });
     }
 
     render() {
@@ -35,6 +30,7 @@ class ProfileContainer extends React.Component<ProfileContainerType & RouteCompo
     }
 }
 
+let AuthRedirectComponent = widthAuthRedirect(ProfileContainer);   //widthAuthRedirect - мой HOC для авторизации и редиректа
 
 let mapStateToProps = (state: StateType) => {
     return {
@@ -42,6 +38,6 @@ let mapStateToProps = (state: StateType) => {
     };
 };
 
-let WidthURLProfileContainerComponent = withRouter(ProfileContainer);   //withRouter указывает реакту на текущий URL
+let WidthURLProfileContainerComponent = withRouter(AuthRedirectComponent);   //withRouter указывает реакту на текущий URL
 
 export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
