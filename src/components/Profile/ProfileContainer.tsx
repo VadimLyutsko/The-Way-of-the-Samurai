@@ -46,4 +46,5 @@ let mapStateToProps = (state: StateType) => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getData}),
     withRouter,
-    widthAuthRedirect)(ProfileContainer);
+    // widthAuthRedirect
+)(ProfileContainer);
