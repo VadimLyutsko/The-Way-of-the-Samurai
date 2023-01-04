@@ -12,6 +12,7 @@ let mapStateToPropsForRedirect = (state: StateType):MapStatePropsType => ({
     isAuth: state.auth.isAuth
 });
 
+
 export function  widthAuthRedirect  <T>(Component: React.ComponentType<T>)  {
 
     const RedirectComponent = (props: MapStatePropsType) => {
