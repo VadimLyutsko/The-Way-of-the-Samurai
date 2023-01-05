@@ -15,17 +15,17 @@ import {Users} from './Users/Users';
 
 type UsersContainerType = {
     users: UserType[]
+    getUsers: (currentPage: number, pageSize: number) => void
     setTotalUserCount: (totalUsersCount: number) => void
     setFetchingPreloader: (isFetching: boolean) => void
     setCurrentPage: (currentPage: number) => void
     setUsers: (users: UserType[]) => void
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
     pageSize: number
-    getUsers: (currentPage: number, pageSize: number) => void
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
 }
 
 export class UsersContainer extends React.Component<UsersContainerType> {
@@ -46,9 +46,9 @@ export class UsersContainer extends React.Component<UsersContainerType> {
                 currentPage={this.props.currentPage}
                 isFetching={this.props.isFetching}
                 pageSize={this.props.pageSize}
-                users={this.props.users}
-                follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                follow={this.props.follow}
+                users={this.props.users}
             />
         );
     }
