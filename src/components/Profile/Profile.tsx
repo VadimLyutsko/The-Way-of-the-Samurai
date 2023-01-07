@@ -13,7 +13,10 @@ export const Profile: React.FC<ProfileType> = ({profileDate, updateUserStatus, s
 
     return (
         <div>
-            <ProfileInfo profileDate={profileDate} status={status} updateUserStatus={updateUserStatus}/>
+            <ProfileInfo
+                profileDate={profileDate}
+                status={status}
+                updateUserStatus={updateUserStatus}/>
             <MyPostsContainer/>
         </div>
     );

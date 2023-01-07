@@ -10,7 +10,7 @@ type ProfileInfoType = {
     status: string
 }
 
-export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, status,updateUserStatus}) => {
+export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, status, updateUserStatus}) => {
 
     if (!profileDate) {
         return <SuperPreloader/>;
@@ -34,7 +34,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, status,upda
                 {/*<div> {profileDate?.contacts.vk}</div>*/}
                 {/*<div>   {profileDate?.lookingForAJobDescription}</div>*/}
                 <div>{profileDate?.fullName}</div>
-                <ProfileStatus status  = {status} updateUserStatus={updateUserStatus}/>
+                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
 
             </div>
         </div>

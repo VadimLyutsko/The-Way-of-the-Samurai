@@ -9,7 +9,7 @@ type ProfileStatusPropsType = {
 export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({status, updateUserStatus}) => {
 
     const [editMode, setEditMode] = useState(false);
-    const [userStatus, setUserStatus] = useState(status);
+    const [userStatus, setUserStatus] = useState('');
 
     const onEditMode = () => {
         setEditMode(true);
@@ -28,7 +28,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({status, updateU
             {
                 !editMode ?
                     <div>
-                        <span onDoubleClick={onEditMode}>{status}</span>
+                        <span onDoubleClick={onEditMode}>{status||"-----"}</span>
                     </div> :
                     <div>
                         <input autoFocus={true}
