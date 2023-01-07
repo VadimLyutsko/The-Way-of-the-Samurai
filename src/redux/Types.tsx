@@ -13,6 +13,7 @@ export type ActionType =
     | SetTotalUserCountAT
     | SetFetchingPreloaderAT
     | UpdateUserProfileDataAT
+    |GetUserProfileStatusAT
     | SetAuthDataAT
 
 export type AddNewPostAT = {
@@ -74,6 +75,11 @@ export type UpdateUserProfileDataAT = {
     profile: UserProfileType
 }
 
+export type GetUserProfileStatusAT = {
+    type: 'SET-STATUS',
+    status: string
+}
+
 export type SetAuthDataAT = {
     type: 'SET-AUTH-DATA',
     data: AuthData
@@ -129,6 +135,7 @@ export type InitialProfileReducerType = {
     profile: UserProfileType
     postsData: PostType[]
     newPostText: string
+    status:string
 }
 
 export type UserProfileType = {

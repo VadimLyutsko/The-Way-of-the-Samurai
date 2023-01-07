@@ -5,10 +5,12 @@ import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader'
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
 
 type ProfileInfoType = {
+    updateUserStatus: (status: string) => void
     profileDate: UserProfileType
+    status: string
 }
 
-export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate}) => {
+export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate, status,updateUserStatus}) => {
 
     if (!profileDate) {
         return <SuperPreloader/>;
@@ -28,11 +30,11 @@ export const ProfileInfo: React.FC<ProfileInfoType> = ({profileDate}) => {
                     alt=""/>
             </div>
             <div className={styles.description}>
-                <div> {profileDate?.aboutMe}</div>
-                <div> {profileDate?.contacts.vk}</div>
-                <div>   {profileDate?.lookingForAJobDescription}</div>
+                {/*<div> {profileDate?.aboutMe}</div>*/}
+                {/*<div> {profileDate?.contacts.vk}</div>*/}
+                {/*<div>   {profileDate?.lookingForAJobDescription}</div>*/}
                 <div>{profileDate?.fullName}</div>
-                <ProfileStatus/>
+                <ProfileStatus status  = {status} updateUserStatus={updateUserStatus}/>
 
             </div>
         </div>

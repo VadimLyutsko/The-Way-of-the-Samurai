@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {getData} from '../../redux/profile-Reducer';
+import {getData, getUserStatus, updateUserStatus} from '../../redux/profile-Reducer';
 import {StateType} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
@@ -10,8 +10,11 @@ import {compose} from 'redux';
 
 
 type ProfileContainerType = {
+    getUserStatus: (userId: string) => void
+    updateUserStatus: (status: string) => void
     getData: (userId: string) => void
     profileDate: UserProfileType
+    status:string
 }
 
 
@@ -23,17 +26,28 @@ type MatchParams = {
 class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
 
     componentDidMount() {
-        this.props.getData(this.props.match.params.userId);
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = '2';
+        }
+
+        this.props.getData(userId);
+        this.props.getUserStatus(userId);
     }
 
     render() {
-        return (<Profile profileDate={this.props.profileDate}/>);
+        return (<Profile
+            profileDate={this.props.profileDate}
+            status={this.props.status}
+            updateUserStatus={this.props.updateUserStatus}
+        />);
     }
 }
 
 let mapStateToProps = (state: StateType) => {
     return {
-        profileDate: state.profilePage.profile
+        profileDate: state.profilePage.profile,
+        status:state.profilePage.status
     };
 };
 
@@ -44,7 +58,7 @@ let mapStateToProps = (state: StateType) => {
 // export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getData}),
+    connect(mapStateToProps, {getData, getUserStatus, updateUserStatus}),
     withRouter,
     // widthAuthRedirect
 )(ProfileContainer);

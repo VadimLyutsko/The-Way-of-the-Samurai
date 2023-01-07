@@ -7,7 +7,7 @@ import {
     DeletePostTextAT,
     UserProfileType,
     AddNewPostAT,
-    ActionType,
+    ActionType, GetUserProfileStatusAT,
 } from './Types';
 import {profileAPI} from '../api/api';
 
@@ -15,6 +15,7 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_PROFILE = 'UPDATE-NEW-PROFILE';
 const DELETE_LAST_POST = 'DELETE-LAST-POST';
 const ADD_NEW_POST = 'ADD-NEW-POST';
+const SET_STATUS = 'SET-STATUS';
 
 
 let initialState = {
@@ -41,6 +42,7 @@ let initialState = {
         }
     ],
     newPostText: '',
+    status: 'No Status!!!',
 };
 
 const ProfileReducer = (state: InitialProfileReducerType = initialState, action: ActionType): InitialProfileReducerType => {
@@ -76,6 +78,12 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
                 profile: action.profile
             };
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            };
+        }
         default:
             return state;
     }
@@ -109,12 +117,41 @@ export const setUserProfileData = (profile: UserProfileType): UpdateUserProfileD
     };
 };
 
+export const setUserStatus = (status: string): GetUserProfileStatusAT => {
+    return {
+        type: SET_STATUS,
+        status
+    };
+};
+
 export const getData = (userId: string) => {
     return (dispatch: Dispatch<ActionType>) => {
 
         profileAPI.getData(userId)
             .then(response => {
-                dispatch(setUserProfileData(response.data))
+                dispatch(setUserProfileData(response.data));
+            });
+    };
+};
+
+export const getUserStatus = (userId: string) => {
+    return (dispatch: Dispatch<ActionType>) => {
+
+        profileAPI.getUserStatus(userId)
+            .then(response => {
+                dispatch(setUserStatus(response.data));
+            });
+    };
+};
+
+export const updateUserStatus = (status: string) => {
+    return (dispatch: Dispatch<ActionType>) => {
+
+        profileAPI.updateUserStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserStatus(response.data));
+                }
             });
     };
 };

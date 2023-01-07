@@ -1,29 +1,42 @@
 import React, {useState} from 'react';
-import styles from './ProfileStatus.module.css'
+import styles from './ProfileStatus.module.css';
 
+type ProfileStatusPropsType = {
+    updateUserStatus: (status: string) => void
+    status: string
+}
 
-export const ProfileStatus = () => {
+export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({status, updateUserStatus}) => {
 
     const [editMode, setEditMode] = useState(false);
+    const [userStatus, setUserStatus] = useState(status);
 
     const onEditMode = () => {
-        setEditMode(true)
-        console.log(editMode);
-    }
+        setEditMode(true);
+    };
 
     const offEditMode = () => {
-        setEditMode(false)
-        console.log(editMode);
-    }
+        setEditMode(false);
+        updateUserStatus(userStatus);
+    };
+
+    const onStatusChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setUserStatus(e.currentTarget.value);
+    };
     return (
         <div className={styles.status}>
             {
                 !editMode ?
                     <div>
-                        <span onDoubleClick={onEditMode}>My status</span>
+                        <span onDoubleClick={onEditMode}>{status}</span>
                     </div> :
                     <div>
-                        <input autoFocus={true} onBlur={offEditMode} type="text" value={'text from props'}></input>
+                        <input autoFocus={true}
+                               onBlur={offEditMode}
+                               type="text"
+                               value={userStatus}
+                               onChange={onStatusChange}
+                        ></input>
                     </div>
             }
         </div>
