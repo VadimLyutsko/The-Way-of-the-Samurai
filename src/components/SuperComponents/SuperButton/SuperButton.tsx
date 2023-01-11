@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './SuperButtot.module.css';
 
 type SuperButtonPropsType = {
+    disabled?:boolean
     callBack: () => void
     title: string
     type: 'Goodness' | 'Evil'

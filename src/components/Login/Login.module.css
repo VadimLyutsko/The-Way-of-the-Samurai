@@ -1,6 +1,37 @@
-.login{
-    font-size: 50px;
-    font-weight: bold;
-    margin-left:  250px;
-    margin-top: 50px;
+.form {
+    display: block;
+    font-family: Arial, Helvetica, SansSerif, serif;
+    position: relative;
+    padding: 24px;
+    margin: 10px auto;
+    width: 400px;
+    border: solid 1px #eeeeee;
+    border-radius: 24px;
+}
+
+.formHeader{
+    margin: auto;
+    width: fit-content;
+}
+
+.inputForm {
+    line-height: 1.5em;
+    border-radius: 4px;
+    border: solid 1px #eeeeee;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.buttonForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.error{
+    color: red;
+    font-weight: 700;
+    font-size: 15px;
 }
