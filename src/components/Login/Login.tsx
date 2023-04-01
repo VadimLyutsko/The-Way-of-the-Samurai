@@ -1,144 +1,127 @@
 import React from 'react';
-import {Formik} from 'formik';
-import * as yup from 'yup';
-import styles from './Login.module.css';
-import SuperButton from '../SuperComponents/SuperButton/SuperButton';
+import {useFormik} from 'formik';
+import Grid from '@mui/material/Grid';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import FormLabel from '@mui/material/FormLabel';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import {useAppDispatch, useAppSelector} from '../../redux/redux-store';
+import {logInTC} from '../../redux/auth-Reducer';
+import {Navigate} from 'react-router-dom';
+
+
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
+
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 
 
 export const Login = () => {
-    const initialValuesForFormik = {
-        name: '',
-        secondName: '',
-        password: '',
-        confirmPassword: '',
-        email: '',
-        confirmEmail: ''
-    };
 
-    const validationSchema = yup.object().shape({
-        name: yup.string().typeError('Должно быть строкой').required(`* Обязательно`),
-        secondName: yup.string().typeError('Должно быть строкой').required(`* Обязательно`),
-        password: yup.string().typeError('Должно быть строкой').required(`* Обязательно`),
-        confirmPassword: yup.string().oneOf([yup.ref('password')], 'Пароли не совпадают').required(`* Обязательно`),
-        email: yup.string().email('Введите верный email').required(`* Обязательно`),
-        confirmEmail: yup.string().email('Введите верный email').oneOf([yup.ref('email')], 'Email не совпадают').required(`* Обязательно`),
-    });
+    const dispatch = useAppDispatch()
+    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            rememberMe: false
+        },
+        validate: values => {
+            const errors: FormikErrorType = {}
+            if (!values.email) {
+                errors.email = 'Required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address'
+            }
+
+            if (!values.password) {
+                errors.password = 'Required'
+            } else if (values.password.length <= 3) {
+                errors.password = 'Password is too short'
+            }
+            return errors
+        },
+        onSubmit: values => {
+            formik.resetForm()
+            dispatch(logInTC(values))
+        },
+    })
 
 
-    return (
-        <form
-        >
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
+    } //Редирект перед return из-за правил использования хуков
 
-            <Formik
 
-                initialValues={initialValuesForFormik}
-                validateOnBlur
-                onSubmit={(values) => {
-                    console.log(values);
-                }}
-                validationSchema={validationSchema}>
-                {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleBlur,
-                      isValid,
-                      handleSubmit,
-                      dirty
-                  }) =>
-                    (<div className={styles.form}>
-                        <h1 className={styles.formHeader}>Регистрация</h1>
+    return <Grid container justifyContent={'center'}>
+        <Grid item justifyContent={'center'}>
 
-                        <p>
-                            <label htmlFor={'name'}>Имя</label> <br/>
-                            <input type={'text'}
-                                   className={styles.inputForm}
-                                   name={'name'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.name}
-                            />
-                        </p>
-                        {touched.name && errors.name && <p className={styles.error}>{errors.name}</p>}
-
-                        <p>
-                            <label htmlFor={'secondName'}>Фамилия</label> <br/>
-                            <input type={'text'}
-                                   className={styles.inputForm}
-                                   name={'secondName'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.secondName}
-                            />
-                        </p>
-                        {touched.secondName && errors.secondName && <p className={styles.error}>{errors.secondName}</p>}
-
-                        <p>
-                            <label htmlFor={'password'}>Пароль</label> <br/>
-                            <input type={'password'}
-                                   className={styles.inputForm}
-                                   name={'password'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.password}
-                            />
-                        </p>
-                        {touched.password && errors.password && <p className={styles.error}>{errors.password}</p>}
-
-                        <p>
-                            <label htmlFor={'confirmPassword'}>Подтвердите пароль</label> <br/>
-                            <input type={'password'}
-                                   className={styles.inputForm}
-                                   name={'confirmPassword'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.confirmPassword}
-                            />
-                        </p>
-                        {touched.confirmPassword && errors.confirmPassword &&
-                            <p className={styles.error}>{errors.confirmPassword}</p>}
-
-                        <p>
-                            <label htmlFor={'email'}>Email</label> <br/>
-                            <input type={'email'}
-                                   className={styles.inputForm}
+            <FormControl>
+                <FormLabel>
+                    <p>Для входа зарегистрируйтесь
+                        <a style={{textDecoration: 'none', color: '#1b5e20', fontWeight: 'bold'}}
+                           href={'https://social-network.samuraijs.com/'}
+                           target={'_blank'}> здесь
+                        </a>
+                    </p>
+                    <p>или используйте учетные данные тестовой учетной записи:</p>
+                    <p>Email: <span style={{fontWeight: 'bold'}}>free@samuraijs.com</span></p>
+                    <p>Password: <span style={{fontWeight: 'bold'}}>free</span></p>
+                </FormLabel>
+                <form onSubmit={formik.handleSubmit}>
+                    <FormGroup>
+                        <TextField label="Email"
+                                   margin="normal"
                                    name={'email'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.email}
-                            />
-                        </p>
-                        {touched.email && errors.email && <p className={styles.error}>{errors.email}</p>}
+                                   onChange={formik.handleChange}
+                                   value={formik.values.email}
+                                   onBlur={formik.handleBlur}
 
-                        <p>
-                            <label htmlFor={'confirmEmail'}>Подтвердите Email</label> <br/>
-                            <input type={'email'}
-                                   className={styles.inputForm}
-                                   name={'confirmEmail'}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.confirmEmail}
-                            />
-                        </p>
-                        {touched.confirmEmail && errors.confirmEmail &&
-                            <p className={styles.error}>{errors.confirmEmail}</p>}
+                        />
+                        {formik.errors.email && formik.touched.email &&
+                            <div style={{color: 'red'}}> {formik.errors.email}</div>}
+                        <TextField type="password"
+                                   label="Password"
+                                   margin="normal"
+                                   name={'password'}
+                                   onChange={formik.handleChange}
+                                   value={formik.values.password}
+                                   onBlur={formik.handleBlur}
+                        />
+                        {formik.errors.password && formik.touched.password &&
+                            <div style={{color: 'red'}}> {formik.errors.password}</div>}
 
+                        <FormControlLabel label={'Remember me'}
+                                          control={<Checkbox
+                                              checked={formik.values.rememberMe} {...formik.getFieldProps('rememberMe')} />}/>
 
-                        <div className={styles.buttonForm}><SuperButton
-                            disabled={!isValid && !dirty}
-                            // onClick={()=>{handleSubmit()}}
-                            callBack={() => {
-                                handleSubmit();
-                            }}
-                            type={'Goodness'}
-                            title={'Отправить'}
-                        >
-                        </SuperButton></div>
-                    </div>)
-                }
-            </Formik>
-        </form>
-    );
-};
+                        <Button type={'submit'} variant={'contained'} color={'primary'}>
+                            Login
+                        </Button>
+                    </FormGroup>
+                </form>
+                <FormLabel>
+                    <p>Рад приветствовать dас в своей социальной сети </p>
+                    <p>детальнее ознакомиться с моими проектамы вы можете <a
+                        style={{textDecoration: 'none', color: 'black', fontWeight: 'bold'}}
+                        href={'https://vadimlyutsko.github.io/Portfolio/'}
+                        target={'_blank'}> здесь
+                    </a>
+                    </p>
 
+                </FormLabel>
+            </FormControl>
+        </Grid>
+    </Grid>
+}

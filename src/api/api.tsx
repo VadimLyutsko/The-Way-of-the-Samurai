@@ -1,10 +1,25 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import {FormDataType} from '../components/Login/Login';
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    headers: {'API-KEY': '1e09ab9f-6c75-4b1b-b630-54d8c35cb68b'}
+    headers: {'API-KEY': '6460e8b1-6d9f-47f4-9d85-6295c9ba0d11'}
 });
+
+
+export const authAPI = {
+    me: function () {
+        return instance.get(`auth/me`,)
+    },
+    login(data:FormDataType) {
+        return instance.post<{ email: string, password:string  }, AxiosResponse<ResponseType<{ userId:number }>>>('auth/login', data);
+    },
+    logout(){
+        return instance.delete<ResponseType>(`/auth/login`);
+    }
+};
+
 
 export const usersAPI = {
     getUsers: function (currentPage: number, pageSize: number) {
@@ -21,11 +36,6 @@ export const followAPI = {
     }
 };
 
-export const authAPI = {
-    getAuthApi: function () {
-        return instance.get(`auth/me`,).then(response => response.data);
-    }
-};
 
 export const profileAPI = {
     getData: function (userId: string) {
@@ -39,3 +49,10 @@ export const profileAPI = {
     }
 };
 
+//types
+export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: Array<string>
+    fieldsErrors: Array<string>
+    data: D
+}

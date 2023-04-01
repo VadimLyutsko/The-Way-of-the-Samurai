@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Dialogs.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
+import {useAppSelector} from '../../../redux/redux-store';
+import {Navigate} from 'react-router-dom';
 
 
 type DialogsPropsType = {
@@ -21,6 +23,8 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
                                                         onChangeMessageValue,
                                                     }) => {
 
+    const isLoggedIn = useAppSelector<boolean>((state) => state.auth.isLoggedIn)
+
 
     const onClickButtonHandler = () => {
         newMessageElement.current?.value ? addMessage(newMessageElement.current?.value) : alert('Введи хоть что-нибудь, умник...');
@@ -32,6 +36,9 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>();
 
+    if(!isLoggedIn){
+        return <Navigate to={'/login'}/>
+    }
     return (
         <div className={styles.dialogs}>
 

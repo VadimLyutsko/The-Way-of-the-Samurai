@@ -9,6 +9,8 @@
 
 .userPhoto img{
     border-radius: 25px;
+    width: 100px;
+    height: 100px;
 }
 
 .selectedPageNow{

@@ -28,7 +28,7 @@ type UsersContainerType = {
     pageSize: number
 }
 
-export class UsersContainer extends React.Component<UsersContainerType> {
+export class UsersContainer extends React.Component<UsersContainerType, any> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);

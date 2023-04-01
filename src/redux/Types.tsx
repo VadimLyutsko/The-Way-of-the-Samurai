@@ -1,4 +1,5 @@
 import store from './redux-store';
+import {setIsInitializedAC, setIsLoggedInAC} from './auth-Reducer';
 
 export type ActionType =
     AddNewPostAT
@@ -13,8 +14,10 @@ export type ActionType =
     | SetTotalUserCountAT
     | SetFetchingPreloaderAT
     | UpdateUserProfileDataAT
-    |GetUserProfileStatusAT
+    | GetUserProfileStatusAT
     | SetAuthDataAT
+    | ReturnType<typeof setIsLoggedInAC>
+    | ReturnType<typeof setIsInitializedAC>
 
 export type AddNewPostAT = {
     type: 'ADD-NEW-POST'
@@ -135,7 +138,7 @@ export type InitialProfileReducerType = {
     profile: UserProfileType
     postsData: PostType[]
     newPostText: string
-    status:string
+    status: string
 }
 
 export type UserProfileType = {
@@ -187,4 +190,10 @@ export type MessageItemType = {
 
 export type MessageType = {
     message: string
+}
+
+export enum Result_Code {
+    Ok = 0,
+    Error = 1,
+    Captcha = 10,
 }

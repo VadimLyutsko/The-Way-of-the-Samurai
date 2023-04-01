@@ -2,12 +2,12 @@ import React from 'react';
 import style from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 
-type HeaderType = {
-    login: string | null
-    isAuth: boolean
-}
+// type HeaderType = {
+//     login: string | null
+//     isAuth: boolean
+// }
 
-export const Header: React.FC<HeaderType> = ({isAuth, login}) => {
+export const Header: React.FC = () => {
 
     return (
         <header className={style.header}>
@@ -16,7 +16,11 @@ export const Header: React.FC<HeaderType> = ({isAuth, login}) => {
                 alt=""
             />
             <span className={style.logIn}>
-                <NavLink to={'/profile/21989'}>{isAuth ? login?.slice(0, 12) : 'Log in'}</NavLink>
+                <NavLink to={'/profile/21989'}>
+                    {
+                        // isAuth ? login?.slice(0, 12) :
+                        'Log in'}
+                </NavLink>
             </span>
         </header>
     );

@@ -1,48 +1,69 @@
-import React, {Dispatch} from 'react';
-import {ActionType, AuthData, InitialAuthDataType, SetAuthDataAT} from './Types';
+import React from 'react';
+import {ActionType, Result_Code} from './Types';
 import {authAPI} from '../api/api';
+import {Dispatch} from 'redux';
+import {FormDataType} from '../components/Login/Login';
 
-const SET_AUTH_DATA = 'SET-AUTH-DATA';
 
+const initialState = {
+    isInitialized: false,  //инициальзация (Я ли)
+    isLoggedIn: false       // Залогинен ли Я
+}
+type InitialStateType = typeof initialState
 
-let initialState = {
-    data: {
-        UserId: null,
-        email: null,
-        login: null,
-    },
-    isAuth: false
-
-};
-
-const AuthReducer = (state: InitialAuthDataType = initialState, action: ActionType): InitialAuthDataType => {
+export const authReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
-        case SET_AUTH_DATA: {
-            return {
-                ...state,
-                ...action.data,
-                isAuth: true
-            };
-        }
+        case 'login/SET-IS-LOGGED-IN':
+            return {...state, isLoggedIn: action.value}
+        case 'login/SET-IS-INITIALIZED':
+            return {...state, isInitialized: action.value}
         default:
-            return state;
+            return state
     }
+}
+
+// actions
+export const setIsLoggedInAC = (value: boolean) =>
+    ({type: 'login/SET-IS-LOGGED-IN', value} as const)
+
+export const setIsInitializedAC = (value: boolean) =>
+    ({type: 'login/SET-IS-INITIALIZED', value} as const)
+
+
+export const initializeAppTC = () => (dispatch: Dispatch) => {
+    authAPI.me().then(res => {
+        if (res.data.resultCode === Result_Code.Ok) {
+            dispatch(setIsLoggedInAC(true));
+            dispatch(setIsInitializedAC(true))
+        } else {
+            dispatch(setIsInitializedAC(true))
+        }
+    });
 };
 
+export const logInTC = (data: FormDataType) => async (dispatch: Dispatch<ActionType>) => {
+    try {
+        const res = await authAPI.login(data)
+        if (res.data.resultCode === Result_Code.Ok) {
+            dispatch(setIsLoggedInAC(true))
+        } else {
+            console.log(res.data.messages + 'handleServerAppError')
+        }
+    } catch (err: any) {  //заглушка, чтобы не фонило
+        console.log('err' + err)
+    }
+}
 
-export const setAuthData = (data: AuthData): SetAuthDataAT => {
-    return {
-        type: SET_AUTH_DATA,
-        data
-    };
-};
-
-export const getAuthUserData = () => {
-    return (dispatch: Dispatch<ActionType>) => {
-        authAPI.getAuthApi().then(data => {
-            data.resultCode === 0 && dispatch(setAuthData(data));
-        });
-    };
-};
-
-export default AuthReducer;
+export const logOutTC = () => (dispatch: Dispatch<ActionType>) => {
+    authAPI.logout()
+        .then(res => {
+            if (res.data.resultCode === Result_Code.Ok) {
+                dispatch(setIsLoggedInAC(false))
+            } else {
+                console.log(res.data.messages + 'handleServerAppError')
+            }
+        })
+        .catch((err) => {
+            console.log('handleServerNetworkError' + err)
+        })
+}

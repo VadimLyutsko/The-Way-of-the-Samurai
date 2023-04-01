@@ -1,21 +1,29 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
 import ProfileReducer from './profile-Reducer';
 import DialogsReducer from './dialogs-Reducer';
 import UsersReducer from './users-Reducer';
-import AuthReducer from './auth-Reducer';
-import thunkMiddleware from 'redux-thunk';
+import {authReducer} from './auth-Reducer';
+import thunkMiddleware, {ThunkDispatch} from 'redux-thunk';
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 
+export type StateType = ReturnType<typeof rootReducer>
 
-export type StateType = ReturnType<typeof reducers>
-
-let reducers = combineReducers({
+const rootReducer = combineReducers({
     dialogsPage: DialogsReducer,
     profilePage: ProfileReducer,
     userPage: UsersReducer,
-    auth: AuthReducer
+    auth: authReducer
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+// непосредственно создаём store
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+// определить автоматически тип всего объекта состояния
+export type AppRootStateType = ReturnType<typeof rootReducer>
+// создаем тип диспатча который принимает как AC так и TC
+export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
+
+export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
+export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
 export default store;

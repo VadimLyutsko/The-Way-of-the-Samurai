@@ -3,7 +3,8 @@ import {UserType} from '../../../redux/Types';
 import styles from './Users.module.css';
 import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
+import {useAppSelector} from '../../../redux/redux-store';
 
 type UsersType = {
     users: UserType[]
@@ -27,11 +28,18 @@ export const Users: React.FC<UsersType> = ({
                                                unfollow
                                            }) => {
 
+    const isLoggedIn = useAppSelector<boolean>((state) => state.auth.isLoggedIn)
+
+
     // let pagesCount = Math.ceil(15);  //hardCode for normal UI
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
+    }
+
+    if(!isLoggedIn){
+        return <Navigate to={'/login'}/>
     }
 
     return (<div>

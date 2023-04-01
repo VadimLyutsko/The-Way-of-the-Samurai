@@ -2,9 +2,9 @@ import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
 import {getData, getUserStatus, updateUserStatus} from '../../redux/profile-Reducer';
-import {StateType} from '../../redux/redux-store';
+import {StateType, useAppSelector} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+// import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {widthAuthRedirect} from '../hoc/widthRedirect';
 import {compose} from 'redux';
 
@@ -23,42 +23,47 @@ type MatchParams = {
 }
 
 
-class ProfileContainer extends React.Component<ProfileContainerType & RouteComponentProps<MatchParams>> {
+// class ProfileContainer extends React.Component<ProfileContainerType , any> {
+//
+//     componentDidMount() {
+//         let userId = this.props.match.params.userId;
+//         if (!userId) {
+//             userId = '2';
+//         }
+//
+//         this.props.getData(userId);
+//         this.props.getUserStatus(userId);
+//     }
+//
+//     // render() {
+//     //     return (<Profile
+//     //         profileDate={this.props.profileDate}
+//     //         status={this.props.status}
+//     //         updateUserStatus={this.props.updateUserStatus}
+//     //     />);
+//     // }
+// }
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = '2';
-        }
-
-        this.props.getData(userId);
-        this.props.getUserStatus(userId);
-    }
-
-    render() {
-        return (<Profile
-            profileDate={this.props.profileDate}
-            status={this.props.status}
-            updateUserStatus={this.props.updateUserStatus}
-        />);
-    }
+export const ProfileContainer = ()=>{
+const profileDate = useAppSelector(state => state.profilePage.profile)
+const status = useAppSelector(state => state.profilePage.status)
+    return (<Profile
+        profileDate={profileDate}
+        status={status}
+        // updateUserStatus={this.props.updateUserStatus}
+    />);
 }
 
-let mapStateToProps = (state: StateType) => {
-    return {
-        profileDate: state.profilePage.profile,
-        status:state.profilePage.status
-    };
-};
+// let mapStateToProps = (state: StateType) => {
+//     return {
+//         profileDate: state.profilePage.profile,
+//         status:state.profilePage.status
+//     };
+// };
 
-// let AuthRedirectComponent = widthAuthRedirect(ProfileContainer);   //widthAuthRedirect - мой HOC для авторизации и редиректа
-//
-// let WidthURLProfileContainerComponent = withRouter(AuthRedirectComponent);   //withRouter указывает реакту на текущий URL
-//
-// export default connect(mapStateToProps, {getData})(WidthURLProfileContainerComponent);
 
-export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getData, getUserStatus, updateUserStatus}),
-    withRouter,
-    // widthAuthRedirect
-)(ProfileContainer);
+// export default compose<React.ComponentType>(
+//     connect(mapStateToProps, {getData, getUserStatus, updateUserStatus}),
+//     withRouter,
+//     // widthAuthRedirect
+// )(ProfileContainer);

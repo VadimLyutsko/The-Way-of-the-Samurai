@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import {UserProfileType} from '../../../redux/Types';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
-import ProfileStatus from '../ProfileStatus/ProfileStatus';
+import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
 
 type ProfileInfoType = {
     updateUserStatus: (status: string) => void
