@@ -5,7 +5,7 @@ import {getData, getUserStatus, updateUserStatus} from '../../redux/profile-Redu
 import {StateType, useAppSelector} from '../../redux/redux-store';
 import {UserProfileType} from '../../redux/Types';
 // import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {widthAuthRedirect} from '../hoc/widthRedirect';
+import {widthAuthRedirect} from '../HOC\'s/widthRedirect';
 import {compose} from 'redux';
 
 
