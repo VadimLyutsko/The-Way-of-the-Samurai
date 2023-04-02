@@ -52,7 +52,7 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
                 id: v1(),
                 message: action.mewPostMessage,
                 likeCount: 0,
-                imgAddress: 'https://yt3.ggpht.com/HI4NXsPYEuFVGoX8AVWgRoZ28Eqb-WA0l-6tFea-w-KGt4ro_FpAbWR5FV-646gyYdnM2prbnA=s900-c-k-c0x00ffffff-no-rj'
+                imgAddress: 'https://avatars.mds.yandex.net/i?id=5a44e6ef4e7f150d81516c99712730c41b082b18-7043984-images-thumbs&ref=rim&n=33&w=165&h=165'
             };
             return {
                 ...state,
@@ -89,6 +89,7 @@ const ProfileReducer = (state: InitialProfileReducerType = initialState, action:
     }
 };
 
+
 export const addNewPost = (mewPostMessage: string): AddNewPostAT => {
     return {
         type: ADD_NEW_POST,
@@ -124,9 +125,8 @@ export const setUserStatus = (status: string): GetUserProfileStatusAT => {
     };
 };
 
-export const getData = (userId: string) => {
+export const getDataTC = (userId: string) => {
     return (dispatch: Dispatch<ActionType>) => {
-
         profileAPI.getData(userId)
             .then(response => {
                 dispatch(setUserProfileData(response.data));
@@ -136,7 +136,6 @@ export const getData = (userId: string) => {
 
 export const getUserStatus = (userId: string) => {
     return (dispatch: Dispatch<ActionType>) => {
-
         profileAPI.getUserStatus(userId)
             .then(response => {
                 dispatch(setUserStatus(response.data));

@@ -1,69 +1,42 @@
-import React from 'react';
-import {Profile} from './Profile';
-import {connect} from 'react-redux';
-import {getData, getUserStatus, updateUserStatus} from '../../redux/profile-Reducer';
-import {StateType, useAppSelector} from '../../redux/redux-store';
+import React, {useEffect} from 'react';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {MyPostsContainer} from './MyPostContainer/MyPostContainer';
 import {UserProfileType} from '../../redux/Types';
-// import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {widthAuthRedirect} from '../HOC\'s/widthRedirect';
-import {compose} from 'redux';
+import {useAppDispatch, useAppSelector} from '../../redux/redux-store';
+import {getDataTC, getUserStatus} from '../../redux/profile-Reducer';
 
+// type ProfileType = {
+//     updateUserStatus: (status: string) => void
+//     profileDate: UserProfileType
+//     status: string
+// }
 
 type ProfileContainerType = {
     getUserStatus: (userId: string) => void
     updateUserStatus: (status: string) => void
     getData: (userId: string) => void
     profileDate: UserProfileType
-    status:string
+    status: string
 }
 
-
-type MatchParams = {
-    userId: string
-}
+export const ProfileContainer: React.FC = () => {
 
 
-// class ProfileContainer extends React.Component<ProfileContainerType , any> {
-//
-//     componentDidMount() {
-//         let userId = this.props.match.params.userId;
-//         if (!userId) {
-//             userId = '2';
-//         }
-//
-//         this.props.getData(userId);
-//         this.props.getUserStatus(userId);
-//     }
-//
-//     // render() {
-//     //     return (<Profile
-//     //         profileDate={this.props.profileDate}
-//     //         status={this.props.status}
-//     //         updateUserStatus={this.props.updateUserStatus}
-//     //     />);
-//     // }
-// }
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        // let userId = this.props.match.params.userId;
+        // if (!userId) {
+        //     userId = '2';
+        // }
+        //
+        dispatch(getDataTC('21989'))
+        dispatch(getUserStatus('21989'))
+    }, [])
 
-export const ProfileContainer = ()=>{
-const profileDate = useAppSelector(state => state.profilePage.profile)
-const status = useAppSelector(state => state.profilePage.status)
-    return (<Profile
-        profileDate={profileDate}
-        status={status}
-        // updateUserStatus={this.props.updateUserStatus}
-    />);
-}
-
-// let mapStateToProps = (state: StateType) => {
-//     return {
-//         profileDate: state.profilePage.profile,
-//         status:state.profilePage.status
-//     };
-// };
-
-
-// export default compose<React.ComponentType>(
-//     connect(mapStateToProps, {getData, getUserStatus, updateUserStatus}),
-//     withRouter,
-//     // widthAuthRedirect
-// )(ProfileContainer);
+    return (
+        <div>
+            <ProfileInfo/>
+            <MyPostsContainer/>
+        </div>
+    );
+};

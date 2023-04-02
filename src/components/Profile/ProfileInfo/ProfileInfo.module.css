@@ -1,18 +1,26 @@
+.profileInfoContainer{
+    border: cadetblue 3px solid;
+}
+
 .description {
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 img {
     width: 100%;
+    /*margin-bottom: 25px;*/
 }
 
 .userLargeImage {
     background: transparent;
     width: 350px;
     height: 300px;
+    margin: 0 auto;
 }
 
-.userLargeImage img{
+.userLargeImage img {
     border-radius: 25px;
     width: 350px;
     height: 250px;

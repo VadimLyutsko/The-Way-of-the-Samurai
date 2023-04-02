@@ -16,7 +16,7 @@ export const Post: React.FC<PestProps> = ({message, likeCount, imgAddress}) => {
             <img
                 src={imgAddress}
                 alt=""/>
-            {message}
+            <div className={style.message}>{message}</div>
             <div><span> Likes: {likeCount}</span></div>
         </div>
     );

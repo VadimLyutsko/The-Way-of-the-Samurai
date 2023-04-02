@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import logo from './components/Header/logo.png';
 import {Login} from './components/Login/Login';
 import {Error404} from './components/Error/Error404';
+import {ProfileContainer} from './components/Profile/ProfileContainer';
 
 
 const App: React.FC = () => {
@@ -56,7 +57,8 @@ const App: React.FC = () => {
                                 <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                                     My network
                                 </Typography>
-                                {isLoggedIn && <Button style={{backgroundColor:'#455a64'}} onClick={logOutHandler} color="myColor">Log out</Button>}
+                                {isLoggedIn && <Button style={{backgroundColor: '#455a64'}} onClick={logOutHandler}
+                                                       color="myColor">Log out</Button>}
                             </Toolbar>
                         </AppBar>
 
@@ -65,6 +67,7 @@ const App: React.FC = () => {
                             <Routes>
                                 <Route path={'/'} element={<DialogsContainer/>}/>
                                 <Route path={'login'} element={<Login/>}/>
+                                <Route path={'/profile'} element={<ProfileContainer/>}/>
                                 <Route path={'/dialogs'} element={<DialogsContainer/>}/>
                                 <Route path={'/news'} element={<News/>}/>
                                 <Route path={'/music'} element={<Music/>}/>
@@ -86,7 +89,6 @@ const App: React.FC = () => {
                     :
                     <Login/>
             }
-
         </>
     );
 };
