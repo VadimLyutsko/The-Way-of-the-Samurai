@@ -51,8 +51,11 @@ const App: React.FC = () => {
                                     aria-label="menu"
                                     sx={{mr: 5}}
                                 >
-                                    {isLoggedIn &&
-                                        <img style={{width: '40px', borderRadius: '25px'}} src={logo} alt=""/>}
+                                    {
+                                        isLoggedIn &&
+                                        // <img style={{width: '40px', borderRadius: '25px'}} src={logo} alt=""/>
+                                        <div style={{backgroundColor:'#455a64', borderRadius: '25px', width:'40px', height:'40px'}}></div>
+                                    }
                                 </IconButton>
                                 <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                                     My network

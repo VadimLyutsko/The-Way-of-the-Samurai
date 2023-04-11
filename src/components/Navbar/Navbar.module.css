@@ -1,7 +1,13 @@
 .nav {
     grid-area: n;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #455a64;
     padding: 25px;
+
+}
+
+.item {
+   padding: 5px;
+    font-size: 20px;
 }
 
 .item a{
@@ -10,7 +16,7 @@
 }
 
 .item :hover{
-    color: #ffffff
+    color: #000000
 }
 
 a.active{
