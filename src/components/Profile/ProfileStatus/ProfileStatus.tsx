@@ -75,51 +75,61 @@ type ProfileStatusPropsType = {
 
 export const ProfileStatus: React.FC<ProfileStatusPropsType> = () => {
 
+    const statusFromSelect = useAppSelector(state => state.profilePage.status)
     const dispatch = useAppDispatch()
-    const status = useAppSelector(state => state.profilePage.status)
-    // const [localStatus, setLocalStatus] = useState('')
+
+    const [status, setStatus] = useState(statusFromSelect)
     const [editMode, setEditMode] = useState(false)
 
-    // useEffect(()=>{
-    //     if(status!== localStatus){
-    //         dispatch(updateUserStatus(localStatus))
-    //     }
-    // })
+    useEffect(()=>{
+        if(status!== statusFromSelect){
+            // dispatch(updateUserStatus(localStatus))
+            setStatus('Your app is so stupid as you :)')
+        }
+    },[])
 
     // const [status, setStatus] = useState<void>(status)
 
-    const onEditMode = () => {
+    const activateEditMode = () => {
         setEditMode(true)
     };
 
-    const offEditMode = () => {
+    const deactivateEditMode = () => {
         setEditMode(false)
-        updateUserStatus(status);
-        // dispatch(updateUserStatus(status))
+        updateUserStatus('status');
+        dispatch(updateUserStatus(status))
         // this.state.dispatch(updateUserStatus(this.state.status))
     };
 
-   // const onStatusChange = (e: React.FormEvent<HTMLInputElement>) => {
-   //      // this.setState({
-   //      //     status: e.currentTarget.value
-   //      // });
-   //     setLocalStatus(e.currentTarget.value)
-   //  };
+    const onStatusChange = (e: React.FormEvent<HTMLInputElement>) => {
+         // this.setState({
+         //     status: e.currentTarget.value
+         // });
+        setStatus(e.currentTarget.value)
+     };
     return (
         <div className={styles.status}>
             {
                 !editMode &&
                 <div>
-                    <span onDoubleClick={onEditMode}>{status || '-----'}</span>
+                    <span
+                        onDoubleClick={activateEditMode}
+                    >
+                        {
+                            status || 'Click twice and write your status'
+                        }
+                    </span>
                 </div>
             }
-            {editMode &&
+            {
+                editMode &&
                 <div>
-                    <input autoFocus={true}
-                           onBlur={offEditMode}
-                           type="text"
-                           value={status}
-                           // onChange={onStatusChange}
+                    <input
+                        autoFocus={true}
+                        onBlur={deactivateEditMode}
+                        type="text"
+                        value={status}
+                        onChange={onStatusChange}
                     ></input>
                 </div>
             }

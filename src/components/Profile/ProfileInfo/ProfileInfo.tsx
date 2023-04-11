@@ -38,7 +38,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = () => {
                 {/*<div> {profileDate?.contacts.vk}</div>*/}
                 {/*<div>   {profileDate?.lookingForAJobDescription}</div>*/}
                                {/*СДЕЛАТЬ CSS*/}
-                <div>{profileDate?.fullName}</div>
+                <div className={styles.userName}>{profileDate?.fullName?.slice(0,12)}</div>
                 <ProfileStatus />
 
             </div>
