@@ -10,31 +10,40 @@ type MyPostType = {
     newPostText: string
 }
 
-export const MyPosts: React.FC<MyPostType> = (props
-) => {
+export class MyPosts extends React.PureComponent<MyPostType,any> {
 
-    const {postsElements, newPostText, addNewPost, deletePost, updatePostText} = props;   // Destructuring for convenience
+    // shouldComponentUpdate(nextProps: Readonly<MyPostType>, nextState: Readonly<any>): boolean {
+    //     return nextProps!= this.props || nextState != this.state
+    // }
 
+    render() {
+        let {
+            postsElements,
+            newPostText,
+            addNewPost, deletePost,
+            updatePostText
+        } = this.props;
 
-    const addMyPost = () => {
-        newPostElement.current?.value ? addNewPost(newPostText) : alert('Введите хоть что-нибудь...');
-    };
+        console.log('RENDER')
+        const addMyPost = () => {
+            newPostElement.current?.value ? addNewPost(newPostText) : alert('Введите хоть что-нибудь...');
+        };
 
-    const deleteMyPost = () => {
-        deletePost();
-    };
+        const deleteMyPost = () => {
+            deletePost();
+        };
 
-    const onMyPostChange = () => {
-        newPostElement.current?.value && updatePostText(newPostElement.current?.value);
-    };
+        const onMyPostChange = () => {
+            newPostElement.current?.value && updatePostText(newPostElement.current?.value);
+        };
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+        let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    return (
-        <div className={style.postsBlock}>
-            <h3> My posts</h3>
-            <div>
-                < >
+        return (
+            <div className={style.postsBlock}>
+                <h3> My posts</h3>
+                <div>
+                    < >
                     <textarea
                         className={style.myPostsTextArea}
                         placeholder="Type some text"
@@ -42,27 +51,28 @@ export const MyPosts: React.FC<MyPostType> = (props
                         ref={newPostElement}
                         value={newPostText}
                     />
-                </>
-                <div className={style.myPostsButtonContainer}>
-                    <SuperButton
-                        callBack={addMyPost}
-                        title={'Add post'}
-                        type={'Goodness'}
-                    />
+                    </>
+                    <div className={style.myPostsButtonContainer}>
+                        <SuperButton
+                            callBack={addMyPost}
+                            title={'Add post'}
+                            type={'Goodness'}
+                        />
 
-                    <SuperButton
-                        callBack={deleteMyPost}
-                        title={'Delete post'}
-                        type={'Evil'}
-                    />
+                        <SuperButton
+                            callBack={deleteMyPost}
+                            title={'Delete post'}
+                            type={'Evil'}
+                        />
 
+                    </div>
                 </div>
-            </div>
 
-            <div className={style.posts}>
-                {postsElements}
-            </div>
+                <div className={style.posts}>
+                    {postsElements}
+                </div>
 
-        </div>
-    );
-};
+            </div>
+        );
+    }
+}
