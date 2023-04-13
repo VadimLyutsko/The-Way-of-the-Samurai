@@ -136,7 +136,7 @@ export type AuthData = {
 //ProfileType
 export type InitialProfileReducerType = {
     profile: UserProfileType
-    postsData: PostType[]
+    postsData: PostType[] | null
     newPostText: string
     status: string
 }

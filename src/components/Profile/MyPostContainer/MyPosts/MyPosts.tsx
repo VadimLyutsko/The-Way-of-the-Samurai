@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import style from './MyPosts.module.css';
 import SuperButton from '../../../SuperComponents/SuperButton/SuperButton';
 
@@ -10,13 +10,13 @@ type MyPostType = {
     newPostText: string
 }
 
-export const MyPosts: React.FC<MyPostType> = React.memo(({
+export const MyPosts: React.FC<MyPostType> = memo(({
                                                              postsElements,
                                                              newPostText,
                                                              addNewPost, deletePost,
                                                              updatePostText
                                                          }) => {
-
+    console.log('MyPosts')
 
     const addMyPost = () => {
         newPostElement.current?.value ? addNewPost(newPostText) : alert('Введите хоть что-нибудь...');
