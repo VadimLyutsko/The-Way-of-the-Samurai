@@ -10,6 +10,7 @@ import {useAppDispatch, useAppSelector} from '../../../redux/redux-store';
 
 
 export const ProfileStatus: React.FC = () => {
+    console.log('ProfileStatus')
 
     const statusFromSelect = useAppSelector(state => state.profilePage.status)
     const dispatch = useAppDispatch()
