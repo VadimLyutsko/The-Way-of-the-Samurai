@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navigate} from 'react-router-dom';
-import {StateType} from '../../redux/redux-store';
+import {StateType} from '../../../redux/redux-store';
 import {connect} from 'react-redux';
 
 

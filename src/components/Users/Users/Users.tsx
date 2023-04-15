@@ -1,10 +1,10 @@
 import React from 'react';
 import {UserType} from '../../../redux/Types';
-import styles from './Users.module.css';
-import SuperButton from '../../SuperComponents/SuperButton/SuperButton';
 import SuperPreloader from '../../SuperComponents/SuperPreloader/SuperPreloader';
-import {Navigate, NavLink} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../../redux/redux-store';
+import Pagination from '../../Commons/Pagination/Pagination';
+import User from './User/User';
 
 type UsersType = {
     users: UserType[]
@@ -30,70 +30,21 @@ export const Users: React.FC<UsersType> = ({
 
     const isLoggedIn = useAppSelector<boolean>((state) => state.auth.isLoggedIn)
 
-
-    // let pagesCount = Math.ceil(15);  //hardCode for normal UI
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
 
-    return (<div>
-        {
-            isFetching ? <SuperPreloader/> : null
-        }
+    return (<>
+        {isFetching ? <SuperPreloader/> : null}
 
-        <div>
-            {
-                pages.slice(0, 15).map((p, i) => {   //slice(0, 15) -> Временно укоротил список
-                    return <span key={i} onClick={() => {
-                        currentPageHAndler(p);
-                    }}
-                                 className={currentPage === p ? styles.selectedPageNow : styles.selectedPage}>{p}</span>;
-                })
-            }
-            ... and others
-        </div>
+        <Pagination totalUsersCount={totalUsersCount} currentPage={currentPage}
+                    currentPageHAndler={currentPageHAndler} pageSize={pageSize}
+        />
 
         {
-            users.map(user => <div key={user.id}>
-
-                    <div className={styles.usersContent}>
-                        <div className={styles.userPhoto}>
-                            <NavLink to={'profile/' + user.id}>
-                                <img
-                                    src={user.photos.small === null ? 'https://i.stack.imgur.com/zJGYX.png?s=192&g=1' : user.photos.small}
-                                    alt=""/>
-                            </NavLink>
-                        </div>
-
-                        <div>{user.name}</div>
-
-                        <span>{!user.uniqueUrlName ? `NoUniqueName${user.id}` : user.uniqueUrlName}</span>
-
-                        <div>
-                            {user.followed ?
-                                <SuperButton
-                                    type={'Evil'}
-                                    title={'Unfollow'}
-                                    callBack={() => {
-                                        unfollow(user.id);
-                                    }}/>
-                                :
-                                <SuperButton type={'Goodness'}
-                                             title={'Follow'}
-                                             callBack={() => {
-                                                 follow(user.id);
-                                             }}/>}
-                        </div>
-                    </div>
-                </div>
-            )
+            users.map(user =>
+                <User user={user} follow={follow} unfollow={unfollow}/>)
         }
-    </div>);
-};
+    </>)
+}
 

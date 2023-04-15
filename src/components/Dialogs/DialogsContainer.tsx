@@ -6,8 +6,8 @@ import {StateType} from '../../redux/redux-store';
 import {ActionType} from '../../redux/Types';
 import {DialogItem} from './Dialogs/DialogsItem/DialogsItem';
 import {Message} from './Dialogs/MessageItem/MessageItem';
-import {widthAuthRedirect} from '../HOC\'s/widthRedirect';
 import {compose} from 'redux';
+import {widthAuthRedirect} from '../Commons/HOC\'s/widthRedirect'
 
 
 const mapStateToProps = (state: StateType) => {

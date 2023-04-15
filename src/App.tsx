@@ -12,9 +12,8 @@ import {useAppDispatch, useAppSelector} from './redux/redux-store';
 import {initializeAppTC, logOutTC} from './redux/auth-Reducer';
 import {AppBar, CircularProgress, IconButton, Toolbar} from '@mui/material';
 import Typography from '@mui/material/Typography';
-import logo from './components/Header/logo.png';
 import {Login} from './components/Login/Login';
-import {Error404} from './components/Error/Error404';
+import {Error404} from './components/Commons/Error/Error404';
 import {ProfileContainer} from './components/Profile/ProfileContainer';
 
 
@@ -54,7 +53,12 @@ const App: React.FC = () => {
                                     {
                                         isLoggedIn &&
                                         // <img style={{width: '40px', borderRadius: '25px'}} src={logo} alt=""/>
-                                        <div style={{backgroundColor:'#455a64', borderRadius: '25px', width:'40px', height:'40px'}}></div>
+                                        <div style={{
+                                            backgroundColor: '#455a64',
+                                            borderRadius: '25px',
+                                            width: '40px',
+                                            height: '40px'
+                                        }}></div>
                                     }
                                 </IconButton>
                                 <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
