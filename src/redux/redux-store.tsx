@@ -1,4 +1,4 @@
-import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
+import {AnyAction, applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import ProfileReducer from './profile-Reducer';
 import DialogsReducer from './dialogs-Reducer';
 import UsersReducer from './users-Reducer';
@@ -16,8 +16,12 @@ const rootReducer = combineReducers({
     auth: authReducer
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+
 // непосредственно создаём store
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+// let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
 // создаем тип диспатча который принимает как AC так и TC
