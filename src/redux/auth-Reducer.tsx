@@ -30,15 +30,16 @@ export const setIsInitializedAC = (value: boolean) =>
     ({type: 'login/SET-IS-INITIALIZED', value} as const)
 
 
-export const initializeAppTC = () => (dispatch: Dispatch) => {
-    authAPI.me().then(res => {
-        if (res.data.resultCode === Result_Code.Ok) {
-            dispatch(setIsLoggedInAC(true));
-            dispatch(setIsInitializedAC(true))
-        } else {
-            dispatch(setIsInitializedAC(true))
-        }
-    });
+export const initializeAppTC = () => async (dispatch: Dispatch) => {
+
+    let res = await authAPI.me()
+
+    if (res.data.resultCode === Result_Code.Ok) {
+        dispatch(setIsLoggedInAC(true));
+        dispatch(setIsInitializedAC(true))
+    } else {
+        dispatch(setIsInitializedAC(true))
+    }
 };
 
 export const logInTC = (data: FormDataType) => async (dispatch: Dispatch<ActionType>) => {
