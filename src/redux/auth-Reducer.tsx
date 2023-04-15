@@ -55,16 +55,16 @@ export const logInTC = (data: FormDataType) => async (dispatch: Dispatch<ActionT
     }
 }
 
-export const logOutTC = () => (dispatch: Dispatch<ActionType>) => {
-    authAPI.logout()
-        .then(res => {
-            if (res.data.resultCode === Result_Code.Ok) {
-                dispatch(setIsLoggedInAC(false))
-            } else {
-                console.log(res.data.messages + 'handleServerAppError')
-            }
-        })
-        .catch((err) => {
-            console.log('handleServerNetworkError' + err)
-        })
+export const logOutTC = () => async (dispatch: Dispatch<ActionType>) => {
+    let res = await authAPI.logout()
+    // .then(res => {
+    try {
+        if (res.data.resultCode === Result_Code.Ok) {
+            dispatch(setIsLoggedInAC(false))
+        } else {
+            console.log(res.data.messages + 'handleServerAppError')
+        }
+    } catch (err: any) {  //заглушка, чтобы не фонило
+        console.log('handleServerNetworkError' + err)
+    }
 }
