@@ -58,7 +58,6 @@ export class UsersContainer extends React.Component<UsersContainerType, any> {
 let mapStateToProps = (state: StateType) => {
     return {
         totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage,
         isFetching: state.userPage.isFetching,
         pageSize: state.userPage.pageSize,
         users: state.userPage.UsersData,

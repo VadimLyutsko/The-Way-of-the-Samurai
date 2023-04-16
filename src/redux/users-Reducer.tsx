@@ -126,9 +126,9 @@ export const getUsers = (currentPage: number, pageSize: number) => {
         setTimeout(() => {
             usersAPI.getUsers(currentPage, pageSize).then(data => {
                 dispatch(setFetchingPreloader(false));
-                dispatch(setTotalUserCount(data.totalCount));
-                dispatch(setUsers(data.items));
-            });
+                dispatch(setTotalUserCount(data.data.totalCount));
+                dispatch(setUsers(data.data.items));
+            })
         }, 500);
     };
 };
