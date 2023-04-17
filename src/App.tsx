@@ -6,7 +6,7 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {Settings} from './components/Settings/Settings';
 import Button from '@mui/material/Button';
-import UsersContainer from './components/Users/UsersContainer';
+// import UsersContainer from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import {useAppDispatch, useAppSelector} from './redux/redux-store';
 import {initializeAppTC, logOutTC} from './redux/auth-Reducer';
@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import {Login} from './components/Login/Login';
 import {Error404} from './components/Commons/Error/Error404';
 import {ProfileContainer} from './components/Profile/ProfileContainer';
+import superPreloader from './components/SuperComponents/SuperPreloader/SuperPreloader';
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 
 
 const App: React.FC = () => {
@@ -78,8 +80,13 @@ const App: React.FC = () => {
                                 <Route path={'/dialogs'} element={<DialogsContainer/>}/>
                                 <Route path={'/news'} element={<News/>}/>
                                 <Route path={'/music'} element={<Music/>}/>
+
+                                <Route path={'/users'} element={
+                                    <React.Suspense fallback={superPreloader}>
+                                    <UsersContainer/>
+                                    </React.Suspense>
+                                }/>
                                 <Route path={'/settings'} element={<Settings/>}/>
-                                <Route path={'/users'} element={<UsersContainer/>}/>
                                 <Route path={'/404'} element={<Error404/>}/>
                                 <Route path="*" element={<Navigate to={'404'}/>}/>
 
