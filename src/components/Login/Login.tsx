@@ -112,7 +112,7 @@ export const Login = () => {
                     </FormGroup>
                 </form>
                 <FormLabel>
-                    <p>Рад приветствовать dас в своей социальной сети </p>
+                    <p>Рад приветствовать Вас в своей социальной сети </p>
                     <p>детальнее ознакомиться с моими проектамы вы можете <a
                         style={{textDecoration: 'none', color: 'black', fontWeight: 'bold'}}
                         href={'https://vadimlyutsko.github.io/Portfolio/'}
